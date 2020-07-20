@@ -4,6 +4,7 @@ The Code of Conduct can be found in this repository, under the path .github/CODE
 THIS MUST BE FOLLOWED BY ALL CONTRIBUTERS
 
 ***Helping Out***
+
 *Pull Requests*
 * Use the template that best fits the scope of your PR. 
 * Make sure to mention what you changed.
