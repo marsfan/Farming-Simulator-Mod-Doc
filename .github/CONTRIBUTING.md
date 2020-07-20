@@ -11,7 +11,7 @@ THIS MUST BE FOLLOWED BY ALL CONTRIBUTERS
 * Provide an example of a working game file or mod that uses the change your have proposed. 
 * Try to make sure that only one main change is made per Pull Request. If you cannot, that is ok. We can work with it. 
 
-*If you understand how the documentation is set up, or how to use github*
+*If you don't understand how the documentation is set up, or how to use github*
 * File a issue.
 * Detail exactly what you would add.
 * Provide an example as proof.
