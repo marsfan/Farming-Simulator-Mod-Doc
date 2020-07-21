@@ -1,0 +1,2 @@
+# Since we have a "something else" template, we do not need to have the blank issue button shown
+blank_issues_enabled: false
