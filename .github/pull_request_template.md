@@ -1,12 +1,3 @@
----
-name: New Pull Request
-about: Template for all pull requests
-title: ''
-labels: needs-triage
-assignees: ''
-
----
-
 **IMPORTANT**
 Make sure there is not already a pull request, or an issue with someone assigned to it that would cover your pull request. 
 
