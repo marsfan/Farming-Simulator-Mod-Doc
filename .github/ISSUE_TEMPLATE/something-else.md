@@ -7,6 +7,9 @@ assignees: ''
 
 ---
 
+**IMPORTANT**
+Make sure to check that there is not already another issue posted that already covers yours. 
+
 **Summary**
 What is your issue
 
