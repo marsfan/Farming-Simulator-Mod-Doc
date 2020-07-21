@@ -134,3 +134,7 @@ dmypy.json
 
 # Local History for Visual Studio Code
 .history/
+
+
+# Ignore regulare xml files in schemas folder (because sometimes I put stuff there when checking schema files)
+schemas/**.xml
