@@ -8,6 +8,9 @@ assignees: ''
 
 ---
 
+**IMPORTANT**
+Make sure to check that there is not already another issue posted that already covers yours. 
+
 **Summary**
 Summarize the addition you would like to see
 
