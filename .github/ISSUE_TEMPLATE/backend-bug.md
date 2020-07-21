@@ -6,24 +6,23 @@ labels: bug, needs-triage
 assignees: ''
 
 ---
-**IMPORTANT**
-Make sure to check that there is not already another issue posted that already covers yours. 
+## **IMPORTANT**
+Check all of the open and closed issues to see if someone else has already reported the issue.
 
-**Describe the bug**
-A clear and concise description of what the bug is.
-
-**To Reproduce**
+## Reproduction Steps
 Steps to reproduce the behavior:
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
 
-**Expected behavior**
+## Expected Behavior
 A clear and concise description of what you expected to happen.
 
-**Screenshots**
+## Actual Behavior
+
+## Screenshots
 If applicable, add screenshots to help explain your problem.
 
-**Additional context**
+## Additional Context
 Add any other context about the problem here.

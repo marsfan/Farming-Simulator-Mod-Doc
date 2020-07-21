@@ -7,14 +7,14 @@ assignees: ''
 
 ---
 
-**IMPORTANT**
-Make sure to check that there is not already another issue posted that already covers yours. 
+## **IMPORTANT**
+Check all of the open and closed issues to see if someone else has already reported the issue.
 
-**Summary**
+## Summary
 What is your issue
 
-**Details**
+## Details
 Detailed information about your issue
 
-Additional context
+## Additional Context
 Add any other context or screenshots should go here.

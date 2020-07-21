@@ -7,20 +7,25 @@ assignees: ''
 
 ---
 
-**IMPORTANT**
-Make sure to check that there is not already another issue posted that already covers yours. 
+## **IMPORTANT**
+Check all of the open and closed issues to see if someone else has already reported the issue.
 
-**Describe the Error**
+## Summary
 A clear and concise description of what the error is.
 
-**Error Location**
+## Details
+A more thorough description of what the error is
+
+## Location
 Where in the documentation is the mistake
 
-**Propose Correction**
+## Proposed Correction
 What should it be changed to?
 
-**Proof**
-Example that proves the error needs correction. Either from game files, or a mod. 
+## Proof
+Example that proves the error needs correction. Do not copy and paste the example here, instead describe where the
+file that provides proof can be found. See [CONTRIBUTING.md](../../CONTRIBUTING.md) for information on how to properly
+provide proof.
 
-**Additional context**
+## Additional Context
 Add any other context about the problem here.
