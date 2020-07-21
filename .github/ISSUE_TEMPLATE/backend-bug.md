@@ -6,7 +6,7 @@ labels: bug, needs-triage
 assignees: ''
 
 ---
-**Important**
+**IMPORTANT**
 Make sure to check that there is not already another issue posted that already covers yours. 
 
 **Describe the bug**
