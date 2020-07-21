@@ -7,6 +7,9 @@ assignees: ''
 
 ---
 
+**IMPORTANT**
+Make sure to check that there is not already another issue posted that already covers yours. 
+
 **Describe the Error**
 A clear and concise description of what the error is.
 
