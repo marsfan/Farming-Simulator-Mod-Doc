@@ -22,9 +22,11 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2
 
-    # Runs a single command using the runners shell
+    # Build the sphinx documentation
     - name: Sphinx Build
       uses: ammaraskar/sphinx-action@0.4
+      with:
+        docs-folder: docs
 
     # Runs a set of commands using the runners shell
     - name: Deploy to GitHub Pages
