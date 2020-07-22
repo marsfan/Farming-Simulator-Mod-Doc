@@ -51,7 +51,7 @@ The actual documentation pages are built using [Sphinx](https://www.sphinx-doc.o
 
 If you want to test your changes to the documentation yourself, or plan to experiment with modifications to the
 documentation configuration, you will need to install Python, and then install the project requirements specified in
- `requirements.txt` with pip. This can be done with the command  `pip install -U -r requirements.txt`. I advise using a
+ `docs/requirements.txt` with pip. This can be done with the command  `pip install -U -r requirements.txt`. I advise using a
 Python virtual environment (such as [venv](https://docs.python.org/3/library/venv.html)) to keep this projects
 requirements from breaking other projects you might have. Note that Python virtual environments are not complete
 virtual machines (like VirtualBox), but simply a special folder structure to keep each project's requirements seperate
