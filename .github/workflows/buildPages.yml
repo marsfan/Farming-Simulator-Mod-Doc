@@ -4,10 +4,7 @@ name: Update Docs
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
-on:
-  push:
-    branches:
-      - master
+on: push
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -24,7 +21,9 @@ jobs:
 
     # Build the sphinx documentation
     - name: Install requirements
-      run: python3 -m pip install -r requirements.txt
+      run: |
+        python3 -m pip install -U -r requirements.txt
+        pip3 install install -U -r requirementx.txt
 
     # Build the sphinx documentation
     - name: Sphinx Build
