@@ -21,5 +21,6 @@ jobs:
 
     - name: Sphinx Build
       uses: ammaraskar/sphinx-action@0.4
-      docs-folder: "docs/"
+      with:
+        docs-folder: "docs/"
 
