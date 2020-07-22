@@ -19,14 +19,7 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2
 
-    # Build the sphinx documentation
-    - name: Install requirements
-      run: |
-        python3 -m pip install -U -r requirements.txt
-        pip3 install install -U -r requirements.txt
-
-    # Build the sphinx documentation
     - name: Sphinx Build
-      run: |
-        cd docs
-        make html
+      uses: ammaraskar/sphinx-action@0.4
+      docs-folder: "docs/"
+
