@@ -24,7 +24,7 @@ jobs:
 
     # Build the sphinx documentation
     - name: Install requirements
-      run: python3 -m pip install requirements.txt
+      run: python3 -m pip install -r requirements.txt
 
     - name: Sphinx Build
       run: make html
