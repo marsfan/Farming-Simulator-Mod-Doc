@@ -138,3 +138,6 @@ dmypy.json
 
 # Ignore regulare xml files in schemas folder (because sometimes I put stuff there when checking schema files)
 schemas/**/*.xml
+
+# Ignore Sphinx builds
+docs/build
