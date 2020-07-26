@@ -1,623 +1,608 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
-  <xs:element name="placeable">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="storeData"/>
-        <xs:element ref="placeableType"/>
-        <xs:element ref="filename"/>
-        <xs:element ref="placement"/>
-        <xs:element minOccurs="0" ref="bunkerSilos"/>
-        <xs:element minOccurs="0" ref="vehicle"/>
-        <xs:choice minOccurs="0" maxOccurs="unbounded">
-          <xs:element ref="storage"/>
-          <xs:element ref="animatedObjects"/>
-          <xs:element ref="clearAreas"/>
-          <xs:element ref="dayNightObjects"/>
-          <xs:element ref="dogHouse"/>
-          <xs:element ref="foliageAreas"/>
-          <xs:element ref="hotspots"/>
-          <xs:element ref="husbandry"/>
-          <xs:element ref="leveling"/>
-          <xs:element ref="loadingStation"/>
-          <xs:element ref="sellingPoint"/>
-          <xs:element ref="storages"/>
-          <xs:element ref="tipOcclusionUpdateArea"/>
-          <xs:element ref="triggerMarkers"/>
-          <xs:element ref="unloadingStation"/>
-        </xs:choice>
-        <xs:choice minOccurs="0">
-          <xs:element ref="buyingStation"/>
-          <xs:element ref="trigger"/>
-          <xs:sequence>
-            <xs:element ref="activation"/>
-            <xs:element ref="gates"/>
-            <xs:element ref="signals"/>
-            <xs:element ref="sounds"/>
-          </xs:sequence>
-        </xs:choice>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="storeData">
-    <xs:complexType mixed="true">
-      <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element ref="brand"/>
-        <xs:element ref="canBeSold"/>
-        <xs:element ref="category"/>
-        <xs:element ref="dailyUpkeep"/>
-        <xs:element ref="functions"/>
-        <xs:element ref="image"/>
-        <xs:element ref="indexBufferMemoryUsage"/>
-        <xs:element ref="instanceIndexBufferMemoryUsage"/>
-        <xs:element ref="instanceVertexBufferMemoryUsage"/>
-        <xs:element ref="lifetime"/>
-        <xs:element ref="maxItemCount"/>
-        <xs:element ref="name"/>
-        <xs:element ref="price"/>
-        <xs:element ref="rotation"/>
-        <xs:element ref="showInStore"/>
-        <xs:element ref="species"/>
-        <xs:element ref="specs"/>
-        <xs:element ref="textureMemoryUsage"/>
-        <xs:element ref="vertexBufferMemoryUsage"/>
-      </xs:choice>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="brand" type="xs:NCName"/>
-  <xs:element name="canBeSold" type="xs:boolean"/>
-  <xs:element name="category" type="xs:NCName"/>
-  <xs:element name="dailyUpkeep" type="xs:integer"/>
-  <xs:element name="functions">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="function"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="function" type="xs:string"/>
-  <xs:element name="image" type="xs:string"/>
-  <xs:element name="indexBufferMemoryUsage" type="xs:integer"/>
-  <xs:element name="instanceIndexBufferMemoryUsage" type="xs:integer"/>
-  <xs:element name="instanceVertexBufferMemoryUsage" type="xs:integer"/>
-  <xs:element name="lifetime" type="xs:integer"/>
-  <xs:element name="maxItemCount" type="xs:integer"/>
-  <xs:element name="name" type="xs:string"/>
-  <xs:element name="price" type="xs:integer"/>
-  <xs:element name="rotation" type="xs:integer"/>
-  <xs:element name="showInStore" type="xs:boolean"/>
-  <xs:element name="species" type="xs:NCName"/>
-  <xs:element name="specs">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" ref="capacity"/>
-        <xs:element ref="fillTypes"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="capacity" type="xs:integer"/>
-  <xs:element name="fillTypes" type="xs:string"/>
-  <xs:element name="textureMemoryUsage" type="xs:integer"/>
-  <xs:element name="vertexBufferMemoryUsage" type="xs:integer"/>
-  <xs:element name="placeableType" type="xs:NCName"/>
-  <xs:element name="filename" type="xs:string"/>
-  <xs:element name="placement">
-    <xs:complexType>
-      <xs:attribute name="placementPositionSnapOffset" type="xs:decimal"/>
-      <xs:attribute name="placementPositionSnapSize" type="xs:decimal"/>
-      <xs:attribute name="placementRotationSnapAngle" type="xs:integer"/>
-      <xs:attribute name="sizeX" use="required" type="xs:decimal"/>
-      <xs:attribute name="sizeZ" use="required" type="xs:decimal"/>
-      <xs:attribute name="testSizeX" use="required" type="xs:decimal"/>
-      <xs:attribute name="testSizeZ" use="required" type="xs:decimal"/>
-      <xs:attribute name="useManualYRotation" use="required" type="xs:boolean"/>
-      <xs:attribute name="useRandomYRotation" use="required" type="xs:boolean"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="bunkerSilos">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="bunkerSilo"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="bunkerSilo">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="area"/>
-        <xs:element ref="interactionTrigger"/>
-      </xs:sequence>
-      <xs:attribute name="acceptedFillTypes" use="required"/>
-      <xs:attribute name="distanceToCompactedFillLevel" use="required" type="xs:integer"/>
-      <xs:attribute name="fermentingHours" use="required" type="xs:integer"/>
-      <xs:attribute name="inputFillType" use="required" type="xs:NCName"/>
-      <xs:attribute name="openingLength" use="required" type="xs:integer"/>
-      <xs:attribute name="outputFillType" use="required" type="xs:NCName"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="interactionTrigger">
-    <xs:complexType>
-      <xs:attribute name="node" use="required" type="xs:integer"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="vehicle">
-    <xs:complexType>
-      <xs:attribute name="xmlFilename" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="animatedObjects">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="animatedObject"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="animatedObject">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="animation"/>
-        <xs:element ref="controls"/>
-        <xs:element ref="sounds"/>
-      </xs:sequence>
-      <xs:attribute name="saveId" use="required" type="xs:NCName"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="animation">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="part"/>
-      </xs:sequence>
-      <xs:attribute name="duration" use="required" type="xs:decimal"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="part">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="keyFrame"/>
-      </xs:sequence>
-      <xs:attribute name="node" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="keyFrame">
-    <xs:complexType>
-      <xs:attribute name="rotation" use="required"/>
-      <xs:attribute name="time" use="required" type="xs:decimal"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="controls">
-    <xs:complexType>
-      <xs:attribute name="negText" use="required" type="xs:NCName"/>
-      <xs:attribute name="posAction" use="required" type="xs:NCName"/>
-      <xs:attribute name="posText" use="required" type="xs:NCName"/>
-      <xs:attribute name="triggerNode" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="clearAreas">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="clearArea"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="clearArea">
-    <xs:complexType>
-      <xs:attribute name="heightIndex"/>
-      <xs:attribute name="heightNode"/>
-      <xs:attribute name="startIndex"/>
-      <xs:attribute name="startNode"/>
-      <xs:attribute name="widthIndex"/>
-      <xs:attribute name="widthNode"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="dayNightObjects">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="dayNightObject"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="dayNightObject">
-    <xs:complexType>
-      <xs:attribute name="intensityDay" type="xs:integer"/>
-      <xs:attribute name="intensityNight" type="xs:integer"/>
-      <xs:attribute name="node" use="required"/>
-      <xs:attribute name="visibleDay" type="xs:boolean"/>
-      <xs:attribute name="visibleNight" type="xs:boolean"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="dogHouse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="dog"/>
-        <xs:element ref="ball"/>
-        <xs:element ref="playerInteractionTrigger"/>
-        <xs:element ref="bowl"/>
-        <xs:element ref="nameplate"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="dog">
-    <xs:complexType>
-      <xs:attribute name="node" use="required" type="xs:integer"/>
-      <xs:attribute name="xmlFilename" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ball">
-    <xs:complexType>
-      <xs:attribute name="filename" use="required"/>
-      <xs:attribute name="node" use="required" type="xs:integer"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="playerInteractionTrigger">
-    <xs:complexType>
-      <xs:attribute name="node" use="required" type="xs:integer"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="bowl">
-    <xs:complexType>
-      <xs:attribute name="eatLocationNode" use="required" type="xs:integer"/>
-      <xs:attribute name="foodNode" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="nameplate">
-    <xs:complexType>
-      <xs:attribute name="node" use="required" type="xs:integer"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="foliageAreas">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" ref="foliageArea"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="foliageArea">
-    <xs:complexType>
-      <xs:attribute name="fruitType" use="required" type="xs:NCName"/>
-      <xs:attribute name="rootNode" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="hotspots">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="hotspot"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="hotspot">
-    <xs:complexType>
-      <xs:attribute name="category" use="required" type="xs:NCName"/>
-      <xs:attribute name="fullName" use="required"/>
-      <xs:attribute name="hidable" use="required" type="xs:boolean"/>
-      <xs:attribute name="imageName" use="required" type="xs:NCName"/>
-      <xs:attribute name="linkNode"/>
-      <xs:attribute name="name" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="husbandry">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="modules"/>
-        <xs:element ref="placementRaycast"/>
-      </xs:sequence>
-      <xs:attribute name="hasStatistics" use="required" type="xs:boolean"/>
-      <xs:attribute name="saveId" use="required" type="xs:NCName"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="modules">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="module"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="module">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="config"/>
-      </xs:sequence>
-      <xs:attribute name="name" use="required" type="xs:NCName"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="config">
-    <xs:complexType>
-      <xs:choice>
-        <xs:element ref="fillPlane"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" ref="area"/>
-      </xs:choice>
-      <xs:attribute name="acceptedToolTypes"/>
-      <xs:attribute name="animalLoadTriggerNode"/>
-      <xs:attribute name="animalPlacesNode" type="xs:integer"/>
-      <xs:attribute name="baleTriggerNode" type="xs:integer"/>
-      <xs:attribute name="carryingCapacity" type="xs:integer"/>
-      <xs:attribute name="exactFillRootNode" type="xs:integer"/>
-      <xs:attribute name="filename"/>
-      <xs:attribute name="fillType" type="xs:NCName"/>
-      <xs:attribute name="fillTypes" type="xs:NCName"/>
-      <xs:attribute name="fillUnitIndex" type="xs:integer"/>
-      <xs:attribute name="heightNode"/>
-      <xs:attribute name="husbandryFileName"/>
-      <xs:attribute name="maxNumAnimals" type="xs:integer"/>
-      <xs:attribute name="navmeshNode"/>
-      <xs:attribute name="node"/>
-      <xs:attribute name="placementRaycastDistance" type="xs:decimal"/>
-      <xs:attribute name="rideableDeliveryHeightNode"/>
-      <xs:attribute name="rideableDeliveryStartNode"/>
-      <xs:attribute name="rideableDeliveryWidthNode"/>
-      <xs:attribute name="size" type="xs:decimal"/>
-      <xs:attribute name="startNode"/>
-      <xs:attribute name="triggerNode" type="xs:integer"/>
-      <xs:attribute name="type" type="xs:NCName"/>
-      <xs:attribute name="widthNode"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="fillPlane">
-    <xs:complexType>
-      <xs:attribute name="colorChange" type="xs:boolean"/>
-      <xs:attribute name="maxY" use="required" type="xs:decimal"/>
-      <xs:attribute name="minY" use="required" type="xs:decimal"/>
-      <xs:attribute name="node" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="placementRaycast">
-    <xs:complexType>
-      <xs:attribute name="distance" use="required" type="xs:integer"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="leveling">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="levelAreas"/>
-        <xs:element minOccurs="0" ref="rampAreas"/>
-      </xs:sequence>
-      <xs:attribute name="maxEdgeAngle" use="required" type="xs:integer"/>
-      <xs:attribute name="maxSlope" use="required" type="xs:integer"/>
-      <xs:attribute name="maxSmoothDistance" use="required" type="xs:integer"/>
-      <xs:attribute name="requireLeveling" use="required" type="xs:boolean"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="levelAreas">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="levelArea"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="levelArea">
-    <xs:complexType>
-      <xs:attribute name="groundType" type="xs:NCName"/>
-      <xs:attribute name="heightNode" use="required"/>
-      <xs:attribute name="startNode" use="required"/>
-      <xs:attribute name="widthNode" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="rampAreas">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="rampArea"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="rampArea">
-    <xs:complexType>
-      <xs:attribute name="groundType" type="xs:NCName"/>
-      <xs:attribute name="heightNode" use="required"/>
-      <xs:attribute name="maxSlope" use="required" type="xs:integer"/>
-      <xs:attribute name="rootNode" use="required"/>
-      <xs:attribute name="startNode" use="required"/>
-      <xs:attribute name="widthNode" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="loadingStation">
-    <xs:complexType>
-      <xs:complexContent>
-        <xs:extension base="loadTrigger">
-          <xs:attribute name="appearsOnPDA" use="required" type="xs:boolean"/>
-          <xs:attribute name="fillSoundIdentifier" use="required" type="xs:NCName"/>
-          <xs:attribute name="stationName" use="required"/>
-          <xs:attribute name="storageRadius" use="required" type="xs:integer"/>
-        </xs:extension>
-      </xs:complexContent>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="sellingPoint">
-    <xs:complexType>
-      <xs:attribute name="iconNode" use="required"/>
-      <xs:attribute name="ownWorkshop" use="required" type="xs:boolean"/>
-      <xs:attribute name="playerTriggerNode" use="required" type="xs:integer"/>
-      <xs:attribute name="sellTriggerNode" use="required" type="xs:integer"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="storages">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="storage"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="tipOcclusionUpdateArea">
-    <xs:complexType>
-      <xs:attribute name="sizeX" use="required" type="xs:decimal"/>
-      <xs:attribute name="sizeZ" use="required" type="xs:integer"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="triggerMarkers">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="triggerMarker"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="triggerMarker">
-    <xs:complexType>
-      <xs:attribute name="node" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="unloadingStation">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="unloadTrigger"/>
-      </xs:sequence>
-      <xs:attribute name="appearsOnPDA" use="required" type="xs:boolean"/>
-      <xs:attribute name="stationName" use="required"/>
-      <xs:attribute name="storageRadius" use="required" type="xs:integer"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="unloadTrigger">
-    <xs:complexType>
-      <xs:attribute name="exactFillRootNode" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="buyingStation">
-    <xs:complexType>
-      <xs:complexContent>
-        <xs:extension base="loadTrigger">
-          <xs:sequence>
-            <xs:element ref="fillType"/>
-          </xs:sequence>
-          <xs:attribute name="appearsOnPDA" use="required" type="xs:boolean"/>
-          <xs:attribute name="fillSoundIdentifier" use="required" type="xs:NCName"/>
-          <xs:attribute name="hotspotTextOffset"/>
-          <xs:attribute name="stationName" use="required"/>
-          <xs:attribute name="storageRadius" use="required" type="xs:integer"/>
-        </xs:extension>
-      </xs:complexContent>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="fillType">
-    <xs:complexType>
-      <xs:attribute name="name" use="required" type="xs:NCName"/>
-      <xs:attribute name="priceScale" use="required" type="xs:decimal"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="trigger">
-    <xs:complexType>
-      <xs:attribute name="node" use="required" type="xs:integer"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="activation">
-    <xs:complexType>
-      <xs:attribute name="endDistance" use="required" type="xs:integer"/>
-      <xs:attribute name="startDistance" use="required" type="xs:integer"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="gates">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="gate"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="gate">
-    <xs:complexType>
-      <xs:attribute name="closingOffset" use="required" type="xs:decimal"/>
-      <xs:attribute name="duration" use="required" type="xs:integer"/>
-      <xs:attribute name="endRot" use="required"/>
-      <xs:attribute name="node" use="required"/>
-      <xs:attribute name="startRot" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="signals">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="signal"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="signal">
-    <xs:complexType>
-      <xs:attribute name="alternatingLights" use="required" type="xs:boolean"/>
-      <xs:attribute name="node" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="area">
-    <xs:complexType>
-      <xs:attribute name="heightNode" use="required"/>
-      <xs:attribute name="startNode" use="required"/>
-      <xs:attribute name="widthNode" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:complexType name="loadTrigger">
-    <xs:sequence>
-      <xs:element ref="loadTrigger"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="loadTrigger">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="unbounded" ref="effectNode"/>
-      </xs:sequence>
-      <xs:attribute name="autoStart" type="xs:boolean"/>
-      <xs:attribute name="dischargeNode"/>
-      <xs:attribute name="fillLitersPerSecond" use="required" type="xs:integer"/>
-      <xs:attribute name="infiniteCapacity" type="xs:boolean"/>
-      <xs:attribute name="triggerNode" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="effectNode">
-    <xs:complexType>
-      <xs:attribute name="controlPoint"/>
-      <xs:attribute name="effectClass" type="xs:NCName"/>
-      <xs:attribute name="effectNode" use="required"/>
-      <xs:attribute name="fadeTime" use="required" type="xs:decimal"/>
-      <xs:attribute name="materialType" use="required" type="xs:NCName"/>
-      <xs:attribute name="materialTypeId" use="required" type="xs:integer"/>
-      <xs:attribute name="maxBending" type="xs:integer"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="storage">
-    <xs:complexType>
-      <xs:attribute name="capacityPerFillType" use="required" type="xs:integer"/>
-      <xs:attribute name="fillTypeCategories" type="xs:NCName"/>
-      <xs:attribute name="fillTypes"/>
-      <xs:attribute name="node" use="required"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="sounds">
-    <xs:complexType>
-      <xs:choice>
-        <xs:element ref="crossing"/>
+    <xs:element name="placeable">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="storeData">
+                    <xs:complexType mixed="true">
+                        <xs:choice minOccurs="0" maxOccurs="unbounded">
+                            <xs:element name="brand" type="xs:NCName" />
+                            <xs:element name="canBeSold" type="xs:boolean" />
+                            <xs:element name="category" type="xs:NCName" />
+                            <xs:element name="dailyUpkeep" type="xs:integer" />
+                            <xs:element name="functions">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="function" type="xs:string" />
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="image" type="xs:string" />
+                            <xs:element name="indexBufferMemoryUsage" type="xs:integer" />
+                            <xs:element name="instanceIndexBufferMemoryUsage" type="xs:integer" />
+                            <xs:element name="instanceVertexBufferMemoryUsage" type="xs:integer" />
+                            <xs:element name="lifetime" type="xs:integer" />
+                            <xs:element name="maxItemCount" type="xs:integer" />
+                            <xs:element name="name" type="xs:string" />
+                            <xs:element name="price" type="xs:integer" />
+                            <xs:element name="rotation" type="xs:integer" />
+                            <xs:element name="showInStore" type="xs:boolean" />
+                            <xs:element name="species" type="xs:NCName" />
+                            <xs:element name="specs">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element minOccurs="0" name="capacity" type="xs:integer" />
+                                        <xs:element name="fillTypes" type="xs:string" />
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="textureMemoryUsage" type="xs:integer" />
+                            <xs:element name="vertexBufferMemoryUsage" type="xs:integer" />
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="placeableType" type="xs:NCName" />
+                <xs:element name="filename" type="xs:string" />
+                <xs:element name="placement">
+                    <xs:complexType>
+                        <xs:attribute name="placementPositionSnapOffset" type="xs:decimal" />
+                        <xs:attribute name="placementPositionSnapSize" type="xs:decimal" />
+                        <xs:attribute name="placementRotationSnapAngle" type="xs:integer" />
+                        <xs:attribute name="sizeX" use="required" type="xs:decimal" />
+                        <xs:attribute name="sizeZ" use="required" type="xs:decimal" />
+                        <xs:attribute name="testSizeX" use="required" type="xs:decimal" />
+                        <xs:attribute name="testSizeZ" use="required" type="xs:decimal" />
+                        <xs:attribute name="useManualYRotation" use="required" type="xs:boolean" />
+                        <xs:attribute name="useRandomYRotation" use="required" type="xs:boolean" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element minOccurs="0" name="bunkerSilos">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="bunkerSilo">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="area">
+                                            <xs:complexType>
+                                                <xs:attribute name="heightNode" use="required" />
+                                                <xs:attribute name="startNode" use="required" />
+                                                <xs:attribute name="widthNode" use="required" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="interactionTrigger">
+                                            <xs:complexType>
+                                                <xs:attribute name="node" use="required" type="xs:integer" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="acceptedFillTypes" use="required" />
+                                    <xs:attribute name="distanceToCompactedFillLevel" use="required" type="xs:integer" />
+                                    <xs:attribute name="fermentingHours" use="required" type="xs:integer" />
+                                    <xs:attribute name="inputFillType" use="required" type="xs:NCName" />
+                                    <xs:attribute name="openingLength" use="required" type="xs:integer" />
+                                    <xs:attribute name="outputFillType" use="required" type="xs:NCName" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element minOccurs="0" name="vehicle">
+                    <xs:complexType>
+                        <xs:attribute name="xmlFilename" use="required" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="storage">
+                        <xs:complexType>
+                            <xs:attribute name="capacityPerFillType" use="required" type="xs:integer" />
+                            <xs:attribute name="fillTypeCategories" type="xs:NCName" />
+                            <xs:attribute name="fillTypes" />
+                            <xs:attribute name="node" use="required" />
+                        </xs:complexType>
+                    </xs:element>
+
+                    <xs:element name="animatedObjects">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="animatedObject">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="animation">
+                                                <xs:complexType>
+                                                    <xs:sequence>
+                                                        <xs:element maxOccurs="unbounded" name="part">
+                                                            <xs:complexType>
+                                                                <xs:sequence>
+                                                                    <xs:element maxOccurs="unbounded" name="keyFrame">
+                                                                        <xs:complexType>
+                                                                            <xs:attribute name="rotation" use="required" />
+                                                                            <xs:attribute name="time" use="required" type="xs:decimal" />
+                                                                        </xs:complexType>
+                                                                    </xs:element>
+
+                                                                </xs:sequence>
+                                                                <xs:attribute name="node" use="required" />
+                                                            </xs:complexType>
+                                                        </xs:element>
+                                                    </xs:sequence>
+                                                    <xs:attribute name="duration" use="required" type="xs:decimal" />
+                                                </xs:complexType>
+                                            </xs:element>
+                                            <xs:element name="controls">
+                                                <xs:complexType>
+                                                    <xs:attribute name="negText" use="required" type="xs:NCName" />
+                                                    <xs:attribute name="posAction" use="required" type="xs:NCName" />
+                                                    <xs:attribute name="posText" use="required" type="xs:NCName" />
+                                                    <xs:attribute name="triggerNode" use="required" />
+                                                </xs:complexType>
+                                            </xs:element>
+                                            <xs:element name="sounds">
+                                                <xs:complexType>
+                                                    <xs:choice>
+                                                        <xs:element name="crossing">
+                                                            <xs:complexType>
+                                                                <xs:attribute name="linkNode" use="required" />
+                                                                <xs:attribute name="template" use="required" type="xs:NCName" />
+                                                            </xs:complexType>
+                                                        </xs:element>
+                                                        <xs:sequence>
+                                                            <xs:element name="moving">
+                                                                <xs:complexType>
+                                                                    <xs:attribute name="fadeOut" use="required" type="xs:decimal" />
+                                                                    <xs:attribute name="file" use="required" />
+                                                                    <xs:attribute name="innerRadius" use="required" type="xs:integer" />
+                                                                    <xs:attribute name="linkNode" use="required" />
+                                                                    <xs:attribute name="loops" use="required" type="xs:integer" />
+                                                                    <xs:attribute name="radius" use="required" type="xs:integer" />
+                                                                    <xs:attribute name="volume" use="required" type="xs:decimal" />
+                                                                </xs:complexType>
+                                                            </xs:element>
+                                                            <xs:element name="posEnd">
+                                                                <xs:complexType>
+                                                                    <xs:attribute name="file" use="required" />
+                                                                    <xs:attribute name="innerRadius" use="required" type="xs:integer" />
+                                                                    <xs:attribute name="linkNode" use="required" />
+                                                                    <xs:attribute name="radius" use="required" type="xs:integer" />
+                                                                    <xs:attribute name="volume" use="required" type="xs:decimal" />
+                                                                </xs:complexType>
+                                                            </xs:element>
+                                                            <xs:element name="negEnd">
+                                                                <xs:complexType>
+                                                                    <xs:attribute name="file" use="required" />
+                                                                    <xs:attribute name="innerRadius" use="required" type="xs:integer" />
+                                                                    <xs:attribute name="linkNode" use="required" />
+                                                                    <xs:attribute name="radius" use="required" type="xs:integer" />
+                                                                    <xs:attribute name="volume" use="required" type="xs:decimal" />
+                                                                </xs:complexType>
+                                                            </xs:element>
+                                                        </xs:sequence>
+                                                    </xs:choice>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                        <xs:attribute name="saveId" use="required" type="xs:NCName" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="clearAreas">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="clearArea">
+                                    <xs:complexType>
+                                        <xs:attribute name="heightIndex" />
+                                        <xs:attribute name="heightNode" />
+                                        <xs:attribute name="startIndex" />
+                                        <xs:attribute name="startNode" />
+                                        <xs:attribute name="widthIndex" />
+                                        <xs:attribute name="widthNode" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="dayNightObjects">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" name="dayNightObject">
+                                    <xs:complexType>
+                                        <xs:attribute name="intensityDay" type="xs:integer" />
+                                        <xs:attribute name="intensityNight" type="xs:integer" />
+                                        <xs:attribute name="node" use="required" />
+                                        <xs:attribute name="visibleDay" type="xs:boolean" />
+                                        <xs:attribute name="visibleNight" type="xs:boolean" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="dogHouse">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="dog">
+                                    <xs:complexType>
+                                        <xs:attribute name="node" use="required" type="xs:integer" />
+                                        <xs:attribute name="xmlFilename" use="required" />
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="ball">
+                                    <xs:complexType>
+                                        <xs:attribute name="filename" use="required" />
+                                        <xs:attribute name="node" use="required" type="xs:integer" />
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="playerInteractionTrigger">
+                                    <xs:complexType>
+                                        <xs:attribute name="node" use="required" type="xs:integer" />
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="bowl">
+                                    <xs:complexType>
+                                        <xs:attribute name="eatLocationNode" use="required" type="xs:integer" />
+                                        <xs:attribute name="foodNode" use="required" />
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="nameplate">
+                                    <xs:complexType>
+                                        <xs:attribute name="node" use="required" type="xs:integer" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="foliageAreas">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element minOccurs="0" name="foliageArea">
+                                    <xs:complexType>
+                                        <xs:attribute name="fruitType" use="required" type="xs:NCName" />
+                                        <xs:attribute name="rootNode" use="required" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="hotspots">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="hotspot">
+                                    <xs:complexType>
+                                        <xs:attribute name="category" use="required" type="xs:NCName" />
+                                        <xs:attribute name="fullName" use="required" />
+                                        <xs:attribute name="hidable" use="required" type="xs:boolean" />
+                                        <xs:attribute name="imageName" use="required" type="xs:NCName" />
+                                        <xs:attribute name="linkNode" />
+                                        <xs:attribute name="name" use="required" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="husbandry">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="modules">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element maxOccurs="unbounded" name="module">
+                                                <xs:complexType>
+                                                    <xs:sequence>
+                                                        <xs:element name="config">
+                                                            <xs:complexType>
+                                                                <xs:choice>
+                                                                    <xs:element name="fillPlane">
+                                                                        <xs:complexType>
+                                                                            <xs:attribute name="colorChange" type="xs:boolean" />
+                                                                            <xs:attribute name="maxY" use="required" type="xs:decimal" />
+                                                                            <xs:attribute name="minY" use="required" type="xs:decimal" />
+                                                                            <xs:attribute name="node" use="required" />
+                                                                        </xs:complexType>
+                                                                    </xs:element>
+
+                                                                    <xs:element minOccurs="0" maxOccurs="unbounded" name="area">
+                                                                        <xs:complexType>
+                                                                            <xs:attribute name="heightNode" use="required" />
+                                                                            <xs:attribute name="startNode" use="required" />
+                                                                            <xs:attribute name="widthNode" use="required" />
+                                                                        </xs:complexType>
+                                                                    </xs:element>
+                                                                </xs:choice>
+                                                                <xs:attribute name="acceptedToolTypes" />
+                                                                <xs:attribute name="animalLoadTriggerNode" />
+                                                                <xs:attribute name="animalPlacesNode" type="xs:integer" />
+                                                                <xs:attribute name="baleTriggerNode" type="xs:integer" />
+                                                                <xs:attribute name="carryingCapacity" type="xs:integer" />
+                                                                <xs:attribute name="exactFillRootNode" type="xs:integer" />
+                                                                <xs:attribute name="filename" />
+                                                                <xs:attribute name="fillType" type="xs:NCName" />
+                                                                <xs:attribute name="fillTypes" type="xs:NCName" />
+                                                                <xs:attribute name="fillUnitIndex" type="xs:integer" />
+                                                                <xs:attribute name="heightNode" />
+                                                                <xs:attribute name="husbandryFileName" />
+                                                                <xs:attribute name="maxNumAnimals" type="xs:integer" />
+                                                                <xs:attribute name="navmeshNode" />
+                                                                <xs:attribute name="node" />
+                                                                <xs:attribute name="placementRaycastDistance" type="xs:decimal" />
+                                                                <xs:attribute name="rideableDeliveryHeightNode" />
+                                                                <xs:attribute name="rideableDeliveryStartNode" />
+                                                                <xs:attribute name="rideableDeliveryWidthNode" />
+                                                                <xs:attribute name="size" type="xs:decimal" />
+                                                                <xs:attribute name="startNode" />
+                                                                <xs:attribute name="triggerNode" type="xs:integer" />
+                                                                <xs:attribute name="type" type="xs:NCName" />
+                                                                <xs:attribute name="widthNode" />
+                                                            </xs:complexType>
+                                                        </xs:element>
+                                                    </xs:sequence>
+                                                    <xs:attribute name="name" use="required" type="xs:NCName" />
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element name="placementRaycast">
+                                    <xs:complexType>
+                                        <xs:attribute name="distance" use="required" type="xs:integer" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="hasStatistics" use="required" type="xs:boolean" />
+                            <xs:attribute name="saveId" use="required" type="xs:NCName" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="leveling">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="levelAreas">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element maxOccurs="unbounded" name="levelArea">
+                                                <xs:complexType>
+                                                    <xs:attribute name="groundType" type="xs:NCName" />
+                                                    <xs:attribute name="heightNode" use="required" />
+                                                    <xs:attribute name="startNode" use="required" />
+                                                    <xs:attribute name="widthNode" use="required" />
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="rampAreas">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element maxOccurs="unbounded" name="rampArea">
+                                                <xs:complexType>
+                                                    <xs:attribute name="groundType" type="xs:NCName" />
+                                                    <xs:attribute name="heightNode" use="required" />
+                                                    <xs:attribute name="maxSlope" use="required" type="xs:integer" />
+                                                    <xs:attribute name="rootNode" use="required" />
+                                                    <xs:attribute name="startNode" use="required" />
+                                                    <xs:attribute name="widthNode" use="required" />
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="maxEdgeAngle" use="required" type="xs:integer" />
+                            <xs:attribute name="maxSlope" use="required" type="xs:integer" />
+                            <xs:attribute name="maxSmoothDistance" use="required" type="xs:integer" />
+                            <xs:attribute name="requireLeveling" use="required" type="xs:boolean" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="loadingStation">
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="loadTrigger">
+                                    <xs:attribute name="appearsOnPDA" use="required" type="xs:boolean" />
+                                    <xs:attribute name="fillSoundIdentifier" use="required" type="xs:NCName" />
+                                    <xs:attribute name="stationName" use="required" />
+                                    <xs:attribute name="storageRadius" use="required" type="xs:integer" />
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="sellingPoint">
+                        <xs:complexType>
+                            <xs:attribute name="iconNode" use="required" />
+                            <xs:attribute name="ownWorkshop" use="required" type="xs:boolean" />
+                            <xs:attribute name="playerTriggerNode" use="required" type="xs:integer" />
+                            <xs:attribute name="sellTriggerNode" use="required" type="xs:integer" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="storages">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="storage">
+                                    <xs:complexType>
+                                        <xs:attribute name="capacityPerFillType" use="required" type="xs:integer" />
+                                        <xs:attribute name="fillTypeCategories" type="xs:NCName" />
+                                        <xs:attribute name="fillTypes" />
+                                        <xs:attribute name="node" use="required" />
+                                    </xs:complexType>
+                                </xs:element>
+
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="tipOcclusionUpdateArea">
+                        <xs:complexType>
+                            <xs:attribute name="sizeX" use="required" type="xs:decimal" />
+                            <xs:attribute name="sizeZ" use="required" type="xs:integer" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="triggerMarkers">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="triggerMarker">
+                                    <xs:complexType>
+                                        <xs:attribute name="node" use="required" />
+                                    </xs:complexType>
+                                </xs:element>
+
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+
+                    <xs:element name="unloadingStation">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="unloadTrigger">
+                                    <xs:complexType>
+                                        <xs:attribute name="exactFillRootNode" use="required" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="appearsOnPDA" use="required" type="xs:boolean" />
+                            <xs:attribute name="stationName" use="required" />
+                            <xs:attribute name="storageRadius" use="required" type="xs:integer" />
+                        </xs:complexType>
+                    </xs:element>
+                </xs:choice>
+                <xs:choice minOccurs="0">
+                    <xs:element name="buyingStation">
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="loadTrigger">
+                                    <xs:sequence>
+                                        <xs:element name="fillType">
+                                            <xs:complexType>
+                                                <xs:attribute name="name" use="required" type="xs:NCName" />
+                                                <xs:attribute name="priceScale" use="required" type="xs:decimal" />
+                                            </xs:complexType>
+                                        </xs:element>
+
+                                    </xs:sequence>
+                                    <xs:attribute name="appearsOnPDA" use="required" type="xs:boolean" />
+                                    <xs:attribute name="fillSoundIdentifier" use="required" type="xs:NCName" />
+                                    <xs:attribute name="hotspotTextOffset" />
+                                    <xs:attribute name="stationName" use="required" />
+                                    <xs:attribute name="storageRadius" use="required" type="xs:integer" />
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+
+                    <xs:element name="trigger">
+                        <xs:complexType>
+                            <xs:attribute name="node" use="required" type="xs:integer" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:sequence>
+                        <xs:element name="activation">
+                            <xs:complexType>
+                                <xs:attribute name="endDistance" use="required" type="xs:integer" />
+                                <xs:attribute name="startDistance" use="required" type="xs:integer" />
+                            </xs:complexType>
+                        </xs:element>
+
+                        <xs:element name="gates">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element maxOccurs="unbounded" name="gate">
+                                        <xs:complexType>
+                                            <xs:attribute name="closingOffset" use="required" type="xs:decimal" />
+                                            <xs:attribute name="duration" use="required" type="xs:integer" />
+                                            <xs:attribute name="endRot" use="required" />
+                                            <xs:attribute name="node" use="required" />
+                                            <xs:attribute name="startRot" use="required" />
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="signals">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element maxOccurs="unbounded" name="signal">
+                                        <xs:complexType>
+                                            <xs:attribute name="alternatingLights" use="required" type="xs:boolean" />
+                                            <xs:attribute name="node" use="required" />
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="sounds">
+                            <xs:complexType>
+                                <xs:choice>
+                                    <xs:element name="crossing">
+                                        <xs:complexType>
+                                            <xs:attribute name="linkNode" use="required" />
+                                            <xs:attribute name="template" use="required" type="xs:NCName" />
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:sequence>
+                                        <xs:element name="moving">
+                                            <xs:complexType>
+                                                <xs:attribute name="fadeOut" use="required" type="xs:decimal" />
+                                                <xs:attribute name="file" use="required" />
+                                                <xs:attribute name="innerRadius" use="required" type="xs:integer" />
+                                                <xs:attribute name="linkNode" use="required" />
+                                                <xs:attribute name="loops" use="required" type="xs:integer" />
+                                                <xs:attribute name="radius" use="required" type="xs:integer" />
+                                                <xs:attribute name="volume" use="required" type="xs:decimal" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="posEnd">
+                                            <xs:complexType>
+                                                <xs:attribute name="file" use="required" />
+                                                <xs:attribute name="innerRadius" use="required" type="xs:integer" />
+                                                <xs:attribute name="linkNode" use="required" />
+                                                <xs:attribute name="radius" use="required" type="xs:integer" />
+                                                <xs:attribute name="volume" use="required" type="xs:decimal" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="negEnd">
+                                            <xs:complexType>
+                                                <xs:attribute name="file" use="required" />
+                                                <xs:attribute name="innerRadius" use="required" type="xs:integer" />
+                                                <xs:attribute name="linkNode" use="required" />
+                                                <xs:attribute name="radius" use="required" type="xs:integer" />
+                                                <xs:attribute name="volume" use="required" type="xs:decimal" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+
+    <xs:complexType name="loadTrigger">
         <xs:sequence>
-          <xs:element ref="moving"/>
-          <xs:element ref="posEnd"/>
-          <xs:element ref="negEnd"/>
+            <xs:element name="loadTrigger">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="unbounded" name="effectNode">
+                            <xs:complexType>
+                                <xs:attribute name="controlPoint" />
+                                <xs:attribute name="effectClass" type="xs:NCName" />
+                                <xs:attribute name="effectNode" use="required" />
+                                <xs:attribute name="fadeTime" use="required" type="xs:decimal" />
+                                <xs:attribute name="materialType" use="required" type="xs:NCName" />
+                                <xs:attribute name="materialTypeId" use="required" type="xs:integer" />
+                                <xs:attribute name="maxBending" type="xs:integer" />
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="autoStart" type="xs:boolean" />
+                    <xs:attribute name="dischargeNode" />
+                    <xs:attribute name="fillLitersPerSecond" use="required" type="xs:integer" />
+                    <xs:attribute name="infiniteCapacity" type="xs:boolean" />
+                    <xs:attribute name="triggerNode" use="required" />
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
-      </xs:choice>
     </xs:complexType>
-  </xs:element>
-  <xs:element name="crossing">
-    <xs:complexType>
-      <xs:attribute name="linkNode" use="required"/>
-      <xs:attribute name="template" use="required" type="xs:NCName"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="moving">
-    <xs:complexType>
-      <xs:attribute name="fadeOut" use="required" type="xs:decimal"/>
-      <xs:attribute name="file" use="required"/>
-      <xs:attribute name="innerRadius" use="required" type="xs:integer"/>
-      <xs:attribute name="linkNode" use="required"/>
-      <xs:attribute name="loops" use="required" type="xs:integer"/>
-      <xs:attribute name="radius" use="required" type="xs:integer"/>
-      <xs:attribute name="volume" use="required" type="xs:decimal"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="posEnd">
-    <xs:complexType>
-      <xs:attribute name="file" use="required"/>
-      <xs:attribute name="innerRadius" use="required" type="xs:integer"/>
-      <xs:attribute name="linkNode" use="required"/>
-      <xs:attribute name="radius" use="required" type="xs:integer"/>
-      <xs:attribute name="volume" use="required" type="xs:decimal"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="negEnd">
-    <xs:complexType>
-      <xs:attribute name="file" use="required"/>
-      <xs:attribute name="innerRadius" use="required" type="xs:integer"/>
-      <xs:attribute name="linkNode" use="required"/>
-      <xs:attribute name="radius" use="required" type="xs:integer"/>
-      <xs:attribute name="volume" use="required" type="xs:decimal"/>
-    </xs:complexType>
-  </xs:element>
+
+
+
+
 </xs:schema>
