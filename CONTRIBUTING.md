@@ -62,8 +62,8 @@ an xml file to properly reference the schema file. An example below is for a xml
 
 In the `<placeable>` xml tag at the beginning of the file, add these two options:
 
-`xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="path_to_schemas/placeable.xsd"`
+`xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="path_to_schemas/placeables.xsd"`
 
 This results in the tag now looking like:
 
-`<placeable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="placeable.xsd">`
+`<placeable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="placeables.xsd">`
