@@ -20,7 +20,7 @@ jobs:
       uses: actions/checkout@v2
       
     - name: Install Dependencies
-      run: python3 -m pip install -U -r requirements.txt
+      run: python3 -m pip install -U -r docs/requirements.txt
 
     - name: Sphinx Build
       uses: ammaraskar/sphinx-action@0.4
