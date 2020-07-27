@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="CustomShader">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="Parameters">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element minOccurs="0" maxOccurs="unbounded" name="Parameter">
+                                <xs:complexType>
+                                    <xs:attribute name="defaultValue" />
+                                    <xs:attribute name="group" type="xs:NCName" />
+                                    <xs:attribute name="maxValue" />
+                                    <xs:attribute name="minValue" />
+                                    <xs:attribute name="name" use="required" type="xs:NCName" />
+                                    <xs:attribute name="target" use="required" type="xs:NCName" />
+                                    <xs:attribute name="type" use="required" type="xs:NCName" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="Textures">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="Texture">
+                                    <xs:complexType>
+                                        <xs:attribute name="defaultColorProfile" type="xs:NCName" />
+                                        <xs:attribute name="defaultFilename" />
+                                        <xs:attribute name="defaultWrap" type="xs:boolean" />
+                                        <xs:attribute name="group" type="xs:NCName" />
+                                        <xs:attribute name="isOptional" type="xs:boolean" />
+                                        <xs:attribute name="name" use="required" type="xs:NCName" />
+                                        <xs:attribute name="type" type="xs:NMTOKEN" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="VertexAttributes">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element minOccurs="0" maxOccurs="unbounded" name="VertexAttribute">
+                                    <xs:complexType>
+                                        <xs:attribute name="group" type="xs:NCName" />
+                                        <xs:attribute name="name" use="required" type="xs:NCName" />
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="0" maxOccurs="unbounded" name="IgnoredVertexAttribute">
+                                    <xs:complexType>
+                                        <xs:attribute name="group" type="xs:NCName" />
+                                        <xs:attribute name="name" use="required" type="xs:NCName" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:choice>
+                <xs:element minOccurs="0" name="Variations">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element minOccurs="0" maxOccurs="unbounded" name="Variation">
+                                <xs:complexType mixed="true">
+                                    <xs:attribute name="groups" />
+                                    <xs:attribute name="name" use="required" type="xs:NCName" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element maxOccurs="unbounded" name="LodLevel">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="CodeInjections">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="CodeInjection">
+                                            <xs:complexType mixed="true">
+                                                <xs:attribute name="position" use="required" type="xs:NCName" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="LodVariation">
+                                <xs:complexType mixed="true">
+                                    <xs:attribute name="position" use="required" type="xs:NCName" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                        <xs:attribute name="alphaForceMode" type="xs:NCName" />
+                        <xs:attribute name="copyLastCodeInjections" type="xs:boolean" />
+                        <xs:attribute name="startDistance" use="required" type="xs:integer" />
+                        <xs:attribute name="subsequentPassForceMode" type="xs:NCName" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="version" use="required" type="xs:integer" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
