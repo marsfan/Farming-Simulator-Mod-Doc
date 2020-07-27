@@ -56,6 +56,9 @@ Python virtual environment (such as [venv](https://docs.python.org/3/library/ven
 requirements from breaking other projects you might have. Note that Python virtual environments are not complete
 virtual machines (like VirtualBox), but simply a special folder structure to keep each project's requirements seperate
 
+The same applies for if you want to modify/experiment with scriptsin the utils folder. In that folder is a requirements
+file with all of the requirements for the utilities.
+
 ### Testing Schemas
 If you want to test modifications you have made to a schema document (one that ends in `.xsd`), you will have to modify
 an xml file to properly reference the schema file. An example below is for a xml file for a placeable object.

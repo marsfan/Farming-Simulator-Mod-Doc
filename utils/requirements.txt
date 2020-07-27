@@ -1,0 +1,3 @@
+wheel
+lxml
+git+https://github.com/lxml/lxml-stubs.git
