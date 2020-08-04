@@ -25,10 +25,8 @@ def main() -> None:
     safeMakeDir("SortedXML")
     #safeMakeDir(Path("SortedXML") / "vehicle")
     xmlFiles = dataPath.glob('**/*.xml')
-    print(len(list(xmlFiles)))
 
     for xmlFile in xmlFiles:
-        break
         fileCount += 1
         with open(xmlFile) as fileObj:
             next(fileObj)
