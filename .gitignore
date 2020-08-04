@@ -141,3 +141,5 @@ schemas/**/*.xml
 
 # Ignore Sphinx builds
 docs/build
+
+utils/SortedXML
