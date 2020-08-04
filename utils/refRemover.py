@@ -1,8 +1,14 @@
 """Clean up refs.
 
-This absolutly awful looking piece of code will work its way through an xsd file and move all refs to be in-line.
+This absolutly awful looking piece of code will work its way through an xsd file and move single refs to be in-line
 it is needed because trang really likes using xml refs, even when something is a single occurance.
 It probably should be tidied up at some point.
+
+To use, call from the command line, with at least one argument, and at most 2.
+The first argument is the file to read in, the second is the file to write out to.
+If the second argument is not specified from the command line, the program will write back to the file it read from.
+
+It can also be called from another python file, by calling the processXSD function.
 """
 
 
@@ -11,8 +17,13 @@ import argparse
 
 
 def processXSD(infile: str, outfile: str) -> None:
-    """Remove the use of refs in a XSD file."""
+    """Remove single-use refs in xsd file.
 
+    Args:
+        infile: File to read in from
+        outfile: File to write out to
+
+    """
     schema: etree._ElementTree = etree.parse(infile)
     namespaces = {"xs": "http://www.w3.org/2001/XMLSchema"}
     children = list(schema.getroot())
