@@ -21,7 +21,7 @@ Contains yaml files for defineing GitHub Actions
 ## docs
 Contains the `rst` files that define the entire documentation site, as well as the configuration files for Sphinx (the documentation generation framework)
 
-# schemas
+## schemas
 Contains XML schema documents (`.xsd`), for validating your xml files against the documentation.
 
 The XML Schemas were generating with `trang -I xml -O xsd /path/to/xml/files/*.xml schemas/schemaName.xsd`. They were then manually edited to remove the large number of unnecessary references to xs:elements.
