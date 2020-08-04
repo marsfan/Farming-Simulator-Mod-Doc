@@ -21,18 +21,19 @@ def processXSD(infile: str, outfile: str) -> None:
     for ref in refs:
         name = ref.attrib['name']
         elementsToReplace = root.findall(f'.//xs:element[@ref="{name}"]', namespaces)
-        for element in elementsToReplace:
-            p = schema.getpath(element)
+
+        # Only replace references if they are only used once. If the reference is used more than once, it is actually
+        # saving space for us, and can be left in place.
+        if len(elementsToReplace) == 1:
+            p = schema.getpath(elementsToReplace[0])
             path = p.replace('/xs:schema/xs:element[1]/', '').replace('/xs:schema/xs:element/', '')
-            del element.attrib['ref']
-            attribsToAdd = element.attrib
+            del elementsToReplace[0].attrib['ref']
+            attribsToAdd = elementsToReplace[0].attrib
             elementToReplace = root.find(path, namespaces)
             elementToReplace.getparent().replace(elementToReplace, ref)
 
             root.find(path, namespaces).attrib.update(attribsToAdd)
 
-            pass
-    pass
 
     output = etree.tostring(schema, pretty_print=True)
     with open(outfile, 'wb') as f:
