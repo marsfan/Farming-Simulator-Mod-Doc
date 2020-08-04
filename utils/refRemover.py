@@ -40,15 +40,15 @@ def processXSD(infile: str, outfile: str) -> None:
         f.write(b'<?xml version="1.0" encoding="UTF-8"?>\n')
         f.write(output)
 
-
 def main():
     """Function to run when called directly from CLI."""
 
     parser = argparse.ArgumentParser(description='Get rid of local refs in schema file')
     parser.add_argument("infile", type=str, help="Path to the file to process")
-    parser.add_argument("outfile", type=str, help="Path to output result")
+    parser.add_argument("outfile", type=str, help="Path to output result. If not given, will overwrite input file", nargs="?")
     args = parser.parse_args()
-
+    if args.outfile is None:
+        args.outfile = args.infile
     processXSD(args.infile, args.outfile)
 
 
