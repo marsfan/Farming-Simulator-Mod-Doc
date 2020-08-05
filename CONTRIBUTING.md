@@ -45,6 +45,12 @@ Please look through the list of open issues, to add something that someone else 
 that you would like to assign to yourself, add a comment to the issue stating that you would like to take resonsibility
 for the suggestion.
 
+Anther way to find things that need to be worked on is to look at the Documentation TODOs page in the documentation.
+It lists every time that a `.. todo::` directive is used in the documentation.
+
+If you can partially improve something in the documentation, add a `.. todo::` directive to it afterwards, to flag it as
+needing work, so that other contributers can quickly find things to help out with.
+
 ## Python Config
 The actual documentation pages are built using [Sphinx](https://www.sphinx-doc.org/en/master/), which is written in
 [Python](https://www.python.org/). As such, it (and extensions used in the project), are installed using pip.
