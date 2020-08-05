@@ -23,7 +23,6 @@ def main() -> None:
     args = parser.parse_args()
     dataPath = Path(args.dataFolder)
     safeMakeDir("SortedXML")
-    #safeMakeDir(Path("SortedXML") / "vehicle")
     xmlFiles = dataPath.glob('**/*.xml')
 
     for xmlFile in xmlFiles:
@@ -36,10 +35,6 @@ def main() -> None:
                 fileData = next(fileObj)
             xmlType = xmlRegex.search(fileData).group(1)
             copyDest = Path("SortedXML") / xmlType
-       # print('------')
-       # print(copyDest)
-       # print(copyDest / xmlFile.name)
-       # print('--------')
         safeMakeDir(copyDest)
         copyfile(xmlFile, copyDest / xmlFile.name)
 
