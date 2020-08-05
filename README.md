@@ -33,4 +33,37 @@ They will likely not be needed as the processing has already been done, but may 
 documenting other Giants Software games. Further details are found in the utils folder readme.
 
 ## Helping Out
-If you want to help out with the documentation in any way, please read [CONTRIBUTING.md](CONTRIBUTING.md) first, as it outlines steps that should be taken.
+If you want to help out with the documentation in any way, please read [CONTRIBUTING.md](CONTRIBUTING.md) first,
+as it outlines steps that should be taken.
+
+## Using schemas
+The schema files are intended to help modders validate the configuration files in their mods. How they are used is up to
+individual modders, but some suggestions can be found below.
+
+The schema files are not hosted anywhere, so modders will need to download them and use them.
+This may change in the future.
+
+### Referencing schema in xml file
+Append these two attributes to the top level element in the XML file (such as `<placeable>` or `<vehicle>`):
+
+`xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"`
+`xsi:noNamespaceSchemaLocation="path_to_schemas/schema_to_use.xsd"`
+
+For example, this will result in a placeable object's XML file having top level element of:
+
+`<placeable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="placeables.xsd">`
+
+Some editors (such as Visual Studio Code with the Red Hat XML extension), will use this to automatically validate the
+file against the schema.
+
+### Using a tool
+A number of tools are available to validate files against a schema. Websites can be found simply by searching for
+"online xsd validator"
+
+On Linux, the command line tool `xmllint` can be used to quickly validate multiple XML files against a schema.
+As an example, to validate all files in the current directory against a schema file in the current directory, do
+`xmllint --noout --schema schema.xsd *.xml`.
+
+### Your preferred editor/tool
+If you already have a tool that you prefer for validating XML files, go ahead and use it, and add it to this readme
+so that others can learn abou it.
