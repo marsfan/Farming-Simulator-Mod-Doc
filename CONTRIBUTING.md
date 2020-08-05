@@ -76,3 +76,6 @@ In the `<placeable>` xml tag at the beginning of the file, add these two options
 This results in the tag now looking like:
 
 `<placeable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="placeables.xsd">`
+
+An alternative method to validating schema files is to use a seperate utitlity for checking files, such as `xmllint`
+
