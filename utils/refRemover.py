@@ -28,13 +28,6 @@ def processXSD(infile: str, outfile: str) -> None:
         outfile: File to write out to
 
     """
-    count = 0
-
-    # Set variable to a dummy value for now, so that the while loop runs properly on the first try.
-
-    # Keep going through the file untill all segments have been checked. This will allow us to remove refs that
-    # are used inside other refs that we decided to keep
-
     schema: etree._ElementTree = etree.parse(infile)
     namespaces = {"xs": "http://www.w3.org/2001/XMLSchema"}
     children = list(schema.getroot())
@@ -48,14 +41,12 @@ def processXSD(infile: str, outfile: str) -> None:
         if len(elementsToReplace) == 1:
             path = schema.getpath(elementsToReplace[0]).replace("xs:schema", '')
 
-            #path = p.replace('/xs:schema/xs:element[1]/', '').replace('/xs:schema/xs:element/', '')
             elementsToReplace[0].attrib['name'] = elementsToReplace[0].attrib['ref']
             del elementsToReplace[0].attrib['ref']
 
             attribsToAdd = elementsToReplace[0].attrib
             elementToReplace = schema.find(path, namespaces)
 
-            #if elementToReplace is not None:
             elementToReplace.getparent().replace(elementToReplace, ref)
 
             schema.find(path, namespaces).attrib.update(attribsToAdd)
@@ -64,7 +55,6 @@ def processXSD(infile: str, outfile: str) -> None:
     with open(outfile, 'wb') as f:
         f.write(b'<?xml version="1.0" encoding="UTF-8"?>\n')
         f.write(output)
-    count = count  + 1
 
 def main():
     """Function to run when called directly from CLI."""
