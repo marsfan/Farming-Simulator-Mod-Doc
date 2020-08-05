@@ -10,6 +10,9 @@ If the second argument is not specified from the command line, the program will 
 
 
 It can also be called from another python file, by calling the processXSD function.
+
+WARNING: If a element references a parent element in recursion--such as when trang is confused by multiple levels
+of elements having the same name--this script can enter an infinite loop.
 """
 
 
