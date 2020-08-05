@@ -3,10 +3,10 @@
     <xs:element name="CustomShader">
         <xs:complexType>
             <xs:sequence>
-                <xs:element minOccurs="0" name="Parameters">
+                <xs:element name="Parameters" minOccurs="0">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element minOccurs="0" maxOccurs="unbounded" name="Parameter">
+                            <xs:element name="Parameter" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:attribute name="defaultValue" />
                                     <xs:attribute name="group" type="xs:NCName" />
@@ -24,7 +24,7 @@
                     <xs:element name="Textures">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="Texture">
+                                <xs:element name="Texture" minOccurs="0" maxOccurs="unbounded">
                                     <xs:complexType>
                                         <xs:attribute name="defaultColorProfile" type="xs:NCName" />
                                         <xs:attribute name="defaultFilename" />
@@ -41,13 +41,13 @@
                     <xs:element name="VertexAttributes">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element minOccurs="0" maxOccurs="unbounded" name="VertexAttribute">
+                                <xs:element name="VertexAttribute" minOccurs="0" maxOccurs="unbounded">
                                     <xs:complexType>
                                         <xs:attribute name="group" type="xs:NCName" />
                                         <xs:attribute name="name" use="required" type="xs:NCName" />
                                     </xs:complexType>
                                 </xs:element>
-                                <xs:element minOccurs="0" maxOccurs="unbounded" name="IgnoredVertexAttribute">
+                                <xs:element name="IgnoredVertexAttribute" minOccurs="0" maxOccurs="unbounded">
                                     <xs:complexType>
                                         <xs:attribute name="group" type="xs:NCName" />
                                         <xs:attribute name="name" use="required" type="xs:NCName" />
@@ -57,10 +57,10 @@
                         </xs:complexType>
                     </xs:element>
                 </xs:choice>
-                <xs:element minOccurs="0" name="Variations">
+                <xs:element name="Variations" minOccurs="0">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element minOccurs="0" maxOccurs="unbounded" name="Variation">
+                            <xs:element name="Variation" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType mixed="true">
                                     <xs:attribute name="groups" />
                                     <xs:attribute name="name" use="required" type="xs:NCName" />
@@ -69,13 +69,13 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element maxOccurs="unbounded" name="LodLevel">
+                <xs:element name="LodLevel" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:choice>
                             <xs:element name="CodeInjections">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="CodeInjection">
+                                        <xs:element name="CodeInjection" maxOccurs="unbounded">
                                             <xs:complexType mixed="true">
                                                 <xs:attribute name="position" use="required" type="xs:NCName" />
                                             </xs:complexType>

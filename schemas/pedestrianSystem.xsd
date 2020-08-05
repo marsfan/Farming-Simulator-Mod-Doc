@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="pedestrianSystem">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="pedestrians">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="pedestrian" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="filename" use="required" />
+                                    <xs:attribute name="headAimPath" use="required" />
+                                    <xs:attribute name="soundGroup" use="required" type="xs:integer" />
+                                    <xs:attribute name="walk2ClipIndex" use="required" type="xs:integer" />
+                                    <xs:attribute name="walk2ClipSpeed" use="required" type="xs:decimal" />
+                                    <xs:attribute name="walk3ClipIndex" use="required" type="xs:integer" />
+                                    <xs:attribute name="walk3ClipSpeed" use="required" type="xs:decimal" />
+                                    <xs:attribute name="walkClipIndex" use="required" type="xs:integer" />
+                                    <xs:attribute name="walkClipSpeed" use="required" type="xs:decimal" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="sounds">
+                    <xs:complexType />
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="crawler">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="file">
+                    <xs:complexType>
+                        <xs:attribute name="leftNode" use="required" />
+                        <xs:attribute name="name" use="required" />
+                        <xs:attribute name="rightNode" use="required" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="scrollerNodes" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="scrollerNode" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="node" use="required" />
+                                    <xs:attribute name="scrollLength" use="required" type="xs:decimal" />
+                                    <xs:attribute name="scrollSpeed" use="required" type="xs:decimal" />
+                                    <xs:attribute name="shaderParameterComponent" use="required" />
+                                    <xs:attribute name="shaderParameterName" use="required" type="xs:NCName" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="rotatingParts" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="rotatingPart" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="node" use="required" />
+                                    <xs:attribute name="radius" type="xs:decimal" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="rimColorNodes" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="rimColorNode" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="node" use="required" />
+                                    <xs:attribute name="shaderParameter" use="required" type="xs:NCName" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="objectChange" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="node" use="required" />
+                        <xs:attribute name="visibilityActive" use="required" type="xs:boolean" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="light">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="filename" type="xs:string" />
+                <xs:element name="rootNode">
+                    <xs:complexType>
+                        <xs:attribute name="node" use="required" type="xs:integer" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="brakeLight">
+                        <xs:complexType>
+                            <xs:attribute name="intensity" type="xs:decimal" />
+                            <xs:attribute name="node" use="required" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="defaultLight">
+                        <xs:complexType>
+                            <xs:attribute name="intensity" type="xs:decimal" />
+                            <xs:attribute name="lightTypes" />
+                            <xs:attribute name="node" use="required" />
+                        </xs:complexType>
+                    </xs:element>
+                </xs:choice>
+                <xs:element name="reverseLight" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="intensity" type="xs:decimal" />
+                        <xs:attribute name="lightTypes" type="xs:integer" />
+                        <xs:attribute name="node" use="required" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="turnLightLeft" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="intensity" type="xs:decimal" />
+                        <xs:attribute name="node" use="required" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:choice>
+                    <xs:element name="rotationNode1">
+                        <xs:complexType>
+                            <xs:attribute name="node" use="required" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="turnLightRight" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                            <xs:attribute name="intensity" type="xs:decimal" />
+                            <xs:attribute name="node" use="required" />
+                        </xs:complexType>
+                    </xs:element>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

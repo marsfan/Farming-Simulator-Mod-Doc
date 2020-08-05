@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="sounds">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="motorStart">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element minOccurs="0" ref="volume" />
+                            <xs:element minOccurs="0" ref="pitch" />
+                            <xs:element minOccurs="0" ref="lowpassGain" />
+                        </xs:sequence>
+                        <xs:attribute name="file" use="required" />
+                        <xs:attribute name="innerRadius" type="xs:decimal" />
+                        <xs:attribute name="linkNode" use="required" />
+                        <xs:attribute name="outerRadius" type="xs:decimal" />
+                        <xs:attribute name="template" type="xs:NCName" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="motorStop">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element minOccurs="0" ref="volume" />
+                            <xs:element minOccurs="0" ref="pitch" />
+                            <xs:element minOccurs="0" ref="lowpassGain" />
+                        </xs:sequence>
+                        <xs:attribute name="file" use="required" />
+                        <xs:attribute name="innerRadius" type="xs:decimal" />
+                        <xs:attribute name="linkNode" use="required" />
+                        <xs:attribute name="outerRadius" type="xs:decimal" />
+                        <xs:attribute name="template" type="xs:NCName" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="motor" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element minOccurs="0" ref="volume" />
+                            <xs:choice minOccurs="0">
+                                <xs:element ref="lowpassGain" />
+                                <xs:element ref="pitch" />
+                            </xs:choice>
+                        </xs:sequence>
+                        <xs:attribute name="file" use="required" />
+                        <xs:attribute name="innerRadius" type="xs:decimal" />
+                        <xs:attribute name="linkNode" use="required" />
+                        <xs:attribute name="outerRadius" type="xs:decimal" />
+                        <xs:attribute name="template" type="xs:NCName" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="gearbox" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence minOccurs="0">
+                            <xs:element ref="volume" />
+                            <xs:element ref="pitch" />
+                            <xs:element ref="lowpassGain" />
+                        </xs:sequence>
+                        <xs:attribute name="file" use="required" />
+                        <xs:attribute name="innerRadius" type="xs:decimal" />
+                        <xs:attribute name="linkNode" use="required" />
+                        <xs:attribute name="outerRadius" type="xs:decimal" />
+                        <xs:attribute name="template" type="xs:NCName" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="retarder" minOccurs="0">
+                    <xs:complexType>
+                        <xs:attribute name="file" use="required" />
+                        <xs:attribute name="linkNode" use="required" />
+                        <xs:attribute name="template" use="required" type="xs:NCName" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:sequence minOccurs="0">
+                    <xs:element name="airCompressorStart">
+                        <xs:complexType>
+                            <xs:attribute name="linkNode" use="required" />
+                            <xs:attribute name="template" use="required" type="xs:NCName" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="airCompressorStop">
+                        <xs:complexType>
+                            <xs:attribute name="linkNode" use="required" />
+                            <xs:attribute name="template" use="required" type="xs:NCName" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="airCompressorRun">
+                        <xs:complexType>
+                            <xs:attribute name="linkNode" use="required" />
+                            <xs:attribute name="template" use="required" type="xs:NCName" />
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+                <xs:element name="brake" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="volume" />
+                            <xs:element ref="pitch" />
+                            <xs:element ref="lowpassGain" />
+                        </xs:sequence>
+                        <xs:attribute name="fadeOut" use="required" type="xs:decimal" />
+                        <xs:attribute name="file" use="required" />
+                        <xs:attribute name="innerRadius" use="required" type="xs:decimal" />
+                        <xs:attribute name="linkNode" use="required" />
+                        <xs:attribute name="outerRadius" use="required" type="xs:decimal" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="compressedAir" minOccurs="0">
+                    <xs:complexType>
+                        <xs:attribute name="linkNode" use="required" />
+                        <xs:attribute name="template" use="required" type="xs:NCName" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="airRelease" minOccurs="0">
+                    <xs:complexType>
+                        <xs:attribute name="linkNode" use="required" />
+                        <xs:attribute name="template" use="required" type="xs:NCName" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="reverseDrive" minOccurs="0">
+                    <xs:complexType>
+                        <xs:attribute name="linkNode" use="required" />
+                        <xs:attribute name="template" use="required" type="xs:NCName" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="volume">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" ref="modifier" />
+            </xs:sequence>
+            <xs:attribute name="indoor" use="required" type="xs:decimal" />
+            <xs:attribute name="outdoor" use="required" type="xs:decimal" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="pitch">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" ref="modifier" />
+            </xs:sequence>
+            <xs:attribute name="indoor" use="required" type="xs:decimal" />
+            <xs:attribute name="outdoor" use="required" type="xs:decimal" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="lowpassGain">
+        <xs:complexType>
+            <xs:attribute name="indoor" use="required" type="xs:decimal" />
+            <xs:attribute name="outdoor" use="required" type="xs:decimal" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="modifier">
+        <xs:complexType>
+            <xs:attribute name="modifiedValue" use="required" type="xs:decimal" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+            <xs:attribute name="value" use="required" type="xs:decimal" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

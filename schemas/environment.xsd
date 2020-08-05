@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="environment">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="envMap">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="timeProbe" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="timeHours" use="required" type="xs:decimal" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="basePath" use="required" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="autoExposure">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" ref="key" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="colorGradings">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="colorGrading" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="filename" use="required" />
+                                    <xs:attribute name="time" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="sunRotation">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" ref="key" />
+                        </xs:sequence>
+                        <xs:attribute name="heightAngleLimitRotation" use="required" type="xs:integer" />
+                        <xs:attribute name="heightAngleLimitRotationEnd" use="required" type="xs:integer" />
+                        <xs:attribute name="heightAngleLimitRotationStart" use="required" type="xs:integer" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="lightScatteringRotation">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" ref="key" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="primaryDynamicLightingScale">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" ref="key" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="primaryExtraterrestrialColor">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" ref="key" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="secondaryExtraterrestrialColor">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" ref="key" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="asymmetryFactor">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" ref="key" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="sunBrightnessScale">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" ref="key" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="sunSizeScale">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" ref="key" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="moonBrightnessScale">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" ref="key" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="moonSizeScale">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" ref="key" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="sunIsPrimary">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" ref="key" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="weather">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" ref="object" />
+                            <xs:element name="wind">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" ref="object" />
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="fog">
+                                <xs:complexType>
+                                    <xs:attribute name="endHour" use="required" type="xs:integer" />
+                                    <xs:attribute name="fadeIn" use="required" type="xs:integer" />
+                                    <xs:attribute name="fadeOut" use="required" type="xs:integer" />
+                                    <xs:attribute name="height" use="required" type="xs:integer" />
+                                    <xs:attribute name="maxMieScale" use="required" type="xs:integer" />
+                                    <xs:attribute name="minMieScale" use="required" type="xs:integer" />
+                                    <xs:attribute name="rainMieScale" use="required" type="xs:integer" />
+                                    <xs:attribute name="startHour" use="required" type="xs:integer" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="dayNightCycle" use="required" type="xs:boolean" />
+            <xs:attribute name="nightEnd" use="required" type="xs:integer" />
+            <xs:attribute name="nightStart" use="required" type="xs:decimal" />
+            <xs:attribute name="startHour" use="required" type="xs:decimal" />
+            <xs:attribute name="sunHeightAngle" use="required" type="xs:integer" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="key">
+        <xs:complexType>
+            <xs:attribute name="keyLuminance" type="xs:decimal" />
+            <xs:attribute name="maxExposure" type="xs:decimal" />
+            <xs:attribute name="minExposure" type="xs:decimal" />
+            <xs:attribute name="primary" type="xs:integer" />
+            <xs:attribute name="secondary" type="xs:integer" />
+            <xs:attribute name="time" use="required" />
+            <xs:attribute name="value" type="xs:decimal" />
+            <xs:attribute name="values" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="object">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="rain" />
+                <xs:element name="variation" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="cloudTypes">
+                                <xs:complexType>
+                                    <xs:attribute name="from" use="required" type="xs:decimal" />
+                                    <xs:attribute name="to" use="required" type="xs:decimal" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="clouds">
+                                <xs:complexType>
+                                    <xs:attribute name="densityScale" use="required" type="xs:decimal" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="cirrusClouds">
+                                <xs:complexType>
+                                    <xs:attribute name="densityScale" use="required" type="xs:decimal" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" ref="rain" />
+                        </xs:sequence>
+                        <xs:attribute name="maxHours" use="required" type="xs:integer" />
+                        <xs:attribute name="maxTemperature" use="required" type="xs:integer" />
+                        <xs:attribute name="minHours" use="required" type="xs:integer" />
+                        <xs:attribute name="minTemperature" use="required" type="xs:integer" />
+                        <xs:attribute name="weight" use="required" type="xs:integer" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="angle" type="xs:integer" />
+            <xs:attribute name="cirrusSpeedFactor" type="xs:decimal" />
+            <xs:attribute name="class" type="xs:NCName" />
+            <xs:attribute name="speed" type="xs:integer" />
+            <xs:attribute name="typeName" type="xs:NCName" />
+            <xs:attribute name="weight" type="xs:integer" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="rain">
+        <xs:complexType>
+            <xs:attribute name="dropScale" type="xs:decimal" />
+            <xs:attribute name="filename" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="vehicles">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="vehicle" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="fillUnit" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="unit">
+                                            <xs:complexType>
+                                                <xs:attribute name="fillLevel" use="required" type="xs:decimal" />
+                                                <xs:attribute name="fillType" use="required" type="xs:NCName" />
+                                                <xs:attribute name="index" use="required" type="xs:integer" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:choice minOccurs="0">
+                                <xs:element name="sowingMachine">
+                                    <xs:complexType>
+                                        <xs:attribute name="selectedSeedFruitType" use="required" type="xs:NCName" />
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:sequence>
+                                    <xs:element name="configuration" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                            <xs:attribute name="id" use="required" type="xs:integer" />
+                                            <xs:attribute name="name" use="required" type="xs:NCName" />
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="boughtConfiguration" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                            <xs:attribute name="id" use="required" type="xs:integer" />
+                                            <xs:attribute name="name" use="required" type="xs:NCName" />
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:choice>
+                        </xs:sequence>
+                        <xs:attribute name="defaultFarmProperty" use="required" type="xs:boolean" />
+                        <xs:attribute name="farmId" use="required" type="xs:integer" />
+                        <xs:attribute name="filename" use="required" />
+                        <xs:attribute name="propertyState" use="required" type="xs:integer" />
+                        <xs:attribute name="tourId" type="xs:NCName" />
+                        <xs:attribute name="xPosition" use="required" type="xs:decimal" />
+                        <xs:attribute name="yOffset" use="required" type="xs:decimal" />
+                        <xs:attribute name="yRotation" use="required" type="xs:integer" />
+                        <xs:attribute name="zPosition" use="required" type="xs:decimal" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

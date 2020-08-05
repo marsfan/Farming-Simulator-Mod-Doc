@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="trafficSystem">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="vehicles">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="vehicle" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="assets">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="wheels">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="wheel" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="distToRotCenter" use="required" type="xs:decimal" />
+                                                                        <xs:attribute name="radius" use="required" type="xs:decimal" />
+                                                                        <xs:attribute name="xRotNode" use="required" />
+                                                                        <xs:attribute name="yRotNode" use="required" />
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="lights">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="light">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="decoration" use="required" />
+                                                                        <xs:attribute name="highProfile" use="required" />
+                                                                        <xs:attribute name="index" use="required" type="xs:integer" />
+                                                                        <xs:attribute name="intensity" use="required" type="xs:integer" />
+                                                                        <xs:attribute name="lowProfile" use="required" />
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="brake">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="decoration" use="required" />
+                                                                        <xs:attribute name="intensity" use="required" type="xs:integer" />
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="turnLeft">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="decoration" use="required" />
+                                                                        <xs:attribute name="intensity" use="required" type="xs:integer" />
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="turnRight">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="decoration" use="required" />
+                                                                        <xs:attribute name="intensity" use="required" type="xs:integer" />
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="colors">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="color" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="rgb" use="required" />
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                            <xs:attribute name="index" use="required" type="xs:integer" />
+                                                            <xs:attribute name="indexParked" use="required" type="xs:integer" />
+                                                            <xs:attribute name="maxDirt" use="required" type="xs:decimal" />
+                                                            <xs:attribute name="minDirt" use="required" type="xs:integer" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="sounds">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="motor">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="filename" use="required" />
+                                                                        <xs:attribute name="indoor" use="required" type="xs:decimal" />
+                                                                        <xs:attribute name="indoorLowpassGain" use="required" type="xs:decimal" />
+                                                                        <xs:attribute name="innerRange" use="required" type="xs:integer" />
+                                                                        <xs:attribute name="outdoor" use="required" type="xs:decimal" />
+                                                                        <xs:attribute name="outdoorLowpassGain" use="required" type="xs:decimal" />
+                                                                        <xs:attribute name="pitchMax" use="required" type="xs:decimal" />
+                                                                        <xs:attribute name="pitchMin" use="required" type="xs:decimal" />
+                                                                        <xs:attribute name="pitchOffset" use="required" type="xs:integer" />
+                                                                        <xs:attribute name="pitchScale" use="required" type="xs:decimal" />
+                                                                        <xs:attribute name="range" use="required" type="xs:integer" />
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="honk">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="filename" use="required" />
+                                                                        <xs:attribute name="indoor" use="required" type="xs:decimal" />
+                                                                        <xs:attribute name="indoorLowpassGain" use="required" type="xs:decimal" />
+                                                                        <xs:attribute name="innerRange" use="required" type="xs:integer" />
+                                                                        <xs:attribute name="outdoor" use="required" type="xs:decimal" />
+                                                                        <xs:attribute name="outdoorLowpassGain" use="required" type="xs:decimal" />
+                                                                        <xs:attribute name="range" use="required" type="xs:integer" />
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="driverIndex" use="required" type="xs:integer" />
+                                                <xs:attribute name="filename" use="required" />
+                                                <xs:attribute name="filenameParked" />
+                                                <xs:attribute name="lightsIndex" use="required" type="xs:integer" />
+                                                <xs:attribute name="triggerIndex" use="required" type="xs:integer" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="accel" use="required" type="xs:decimal" />
+                                    <xs:attribute name="probability" use="required" type="xs:decimal" />
+                                    <xs:attribute name="probabilityParked" type="xs:decimal" />
+                                    <xs:attribute name="topSpeed" use="required" type="xs:decimal" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

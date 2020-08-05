@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="wheel">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="default">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="physics">
+                                <xs:complexType>
+                                    <xs:attribute name="frictionScale" use="required" type="xs:decimal" />
+                                    <xs:attribute name="mass" use="required" type="xs:decimal" />
+                                    <xs:attribute name="maxLatStiffness" use="required" type="xs:integer" />
+                                    <xs:attribute name="maxLatStiffnessLoad" use="required" type="xs:integer" />
+                                    <xs:attribute name="maxLongStiffness" use="required" type="xs:integer" />
+                                    <xs:attribute name="radius" use="required" type="xs:decimal" />
+                                    <xs:attribute name="tireType" use="required" type="xs:NCName" />
+                                    <xs:attribute name="width" use="required" type="xs:decimal" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element ref="tire" />
+                            <xs:element ref="outerRim" />
+                            <xs:element ref="innerRim" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="configurations" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="configuration" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element minOccurs="0" ref="tire" />
+                                        <xs:element minOccurs="0" ref="outerRim" />
+                                        <xs:element minOccurs="0" ref="innerRim" />
+                                        <xs:element name="additional" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="filename" use="required" />
+                                                <xs:attribute name="mass" type="xs:decimal" />
+                                                <xs:attribute name="nodeLeft" use="required" />
+                                                <xs:attribute name="nodeRight" use="required" />
+                                                <xs:attribute name="offset" type="xs:decimal" />
+                                                <xs:attribute name="scale" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="id" use="required" type="xs:NCName" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="tire">
+        <xs:complexType>
+            <xs:attribute name="filename" />
+            <xs:attribute name="isCareWheel" type="xs:boolean" />
+            <xs:attribute name="maxDeformation" type="xs:decimal" />
+            <xs:attribute name="nodeLeft" />
+            <xs:attribute name="nodeRight" />
+            <xs:attribute name="tireTrackAtlasIndex" type="xs:integer" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="outerRim">
+        <xs:complexType>
+            <xs:attribute name="filename" />
+            <xs:attribute name="node" />
+            <xs:attribute name="scale" />
+            <xs:attribute name="widthAndDiam" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="innerRim">
+        <xs:complexType>
+            <xs:attribute name="filename" />
+            <xs:attribute name="nodeLeft" />
+            <xs:attribute name="nodeRight" />
+            <xs:attribute name="offset" type="xs:NMTOKEN" />
+            <xs:attribute name="scale" />
+            <xs:attribute name="widthAndDiam" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

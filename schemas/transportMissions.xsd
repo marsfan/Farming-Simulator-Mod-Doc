@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="transportMissions">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="mission" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="pickupTrigger" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="index" use="required" type="xs:NCName" />
+                                    <xs:attribute name="rewardScale" type="xs:decimal" />
+                                    <xs:attribute name="title" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="dropoffTrigger" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="index" use="required" type="xs:NCName" />
+                                    <xs:attribute name="rewardScale" type="xs:decimal" />
+                                    <xs:attribute name="title" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="object" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="filename" use="required" />
+                                    <xs:attribute name="max" use="required" type="xs:integer" />
+                                    <xs:attribute name="min" use="required" type="xs:integer" />
+                                    <xs:attribute name="offset" use="required" />
+                                    <xs:attribute name="size" use="required" />
+                                    <xs:attribute name="title" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="name" use="required" />
+                        <xs:attribute name="npcIndex" type="xs:integer" />
+                        <xs:attribute name="npcName" type="xs:NCName" />
+                        <xs:attribute name="rewardScale" type="xs:decimal" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

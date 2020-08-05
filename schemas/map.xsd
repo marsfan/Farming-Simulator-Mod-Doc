@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="map">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="0">
+                    <xs:element name="densityMapHeightTypes">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="densityMapHeightType" maxOccurs="unbounded">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="collision">
+                                                <xs:complexType>
+                                                    <xs:attribute name="baseOffset" use="required" type="xs:decimal" />
+                                                    <xs:attribute name="maxOffset" use="required" type="xs:decimal" />
+                                                    <xs:attribute name="minOffset" use="required" type="xs:decimal" />
+                                                    <xs:attribute name="scale" use="required" type="xs:decimal" />
+                                                </xs:complexType>
+                                            </xs:element>
+                                            <xs:element name="textures">
+                                                <xs:complexType>
+                                                    <xs:attribute name="diffuse" use="required" />
+                                                    <xs:attribute name="distance" use="required" />
+                                                    <xs:attribute name="normal" use="required" />
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                        <xs:attribute name="allowsSmoothing" use="required" type="xs:boolean" />
+                                        <xs:attribute name="fillToGroundScale" use="required" type="xs:decimal" />
+                                        <xs:attribute name="fillTypeName" use="required" type="xs:NCName" />
+                                        <xs:attribute name="maxSurfaceAngle" use="required" type="xs:integer" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:sequence>
+                        <xs:element name="fruitTypes">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="fruitType" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="general">
+                                                    <xs:complexType>
+                                                        <xs:attribute name="numStateChannels" use="required" type="xs:integer" />
+                                                        <xs:attribute name="startStateChannel" use="required" type="xs:integer" />
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element name="cultivation">
+                                                    <xs:complexType>
+                                                        <xs:attribute name="alignsToSun" use="required" type="xs:boolean" />
+                                                        <xs:attribute name="allowsSeeding" use="required" type="xs:boolean" />
+                                                        <xs:attribute name="directionSnapAngle" use="required" type="xs:integer" />
+                                                        <xs:attribute name="needsSeeding" use="required" type="xs:boolean" />
+                                                        <xs:attribute name="plantsWeed" type="xs:boolean" />
+                                                        <xs:attribute name="seedUsagePerSqm" use="required" type="xs:decimal" />
+                                                        <xs:attribute name="useSeedingWidth" use="required" type="xs:boolean" />
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:sequence minOccurs="0">
+                                                    <xs:element name="harvest">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="allowsPartialGrowthState" use="required" type="xs:boolean" />
+                                                            <xs:attribute name="cutState" use="required" type="xs:integer" />
+                                                            <xs:attribute name="literPerSqm" use="required" type="xs:decimal" />
+                                                            <xs:attribute name="maxHarvestingGrowthState" use="required" type="xs:integer" />
+                                                            <xs:attribute name="minForageGrowthState" type="xs:integer" />
+                                                            <xs:attribute name="minHarvestingGrowthState" use="required" type="xs:integer" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="growth">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="firstRegrowthState" type="xs:integer" />
+                                                            <xs:attribute name="groundTypeChangeGrowthState" use="required" type="xs:integer" />
+                                                            <xs:attribute name="groundTypeChangeMask" />
+                                                            <xs:attribute name="groundTypeChanged" use="required" type="xs:NCName" />
+                                                            <xs:attribute name="growthRequiresLime" use="required" type="xs:boolean" />
+                                                            <xs:attribute name="growthStateTime" use="required" type="xs:integer" />
+                                                            <xs:attribute name="numGrowthStates" use="required" type="xs:integer" />
+                                                            <xs:attribute name="regrows" type="xs:boolean" />
+                                                            <xs:attribute name="resetsSpray" use="required" type="xs:boolean" />
+                                                            <xs:attribute name="witheringNumGrowthStates" use="required" type="xs:integer" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:choice minOccurs="0">
+                                                    <xs:element name="preparing">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="maxGrowthState" use="required" type="xs:integer" />
+                                                            <xs:attribute name="minGrowthState" use="required" type="xs:integer" />
+                                                            <xs:attribute name="outputName" use="required" type="xs:NCName" />
+                                                            <xs:attribute name="preparedGrowthState" use="required" type="xs:integer" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="weedGrowth">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="growthStateTime" use="required" type="xs:integer" />
+                                                            <xs:attribute name="maxGrowthState" use="required" type="xs:integer" />
+                                                            <xs:attribute name="minGrowthState" use="required" type="xs:integer" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="windrow">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="litersPerSqm" use="required" type="xs:decimal" />
+                                                            <xs:attribute name="name" use="required" type="xs:NCName" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                                <xs:element name="options">
+                                                    <xs:complexType>
+                                                        <xs:attribute name="consumesLime" use="required" type="xs:boolean" />
+                                                        <xs:attribute name="destroyedByRoller" type="xs:boolean" />
+                                                        <xs:attribute name="increasesSoilDensity" use="required" type="xs:boolean" />
+                                                        <xs:attribute name="lowSoilDensityRequired" use="required" type="xs:boolean" />
+                                                        <xs:attribute name="startSprayState" use="required" type="xs:integer" />
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:choice>
+                                                    <xs:element name="destruction">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="filterEnd" use="required" type="xs:integer" />
+                                                            <xs:attribute name="filterStart" use="required" type="xs:integer" />
+                                                            <xs:attribute name="state" use="required" type="xs:integer" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="herbicideReplace" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="source" use="required" type="xs:integer" />
+                                                            <xs:attribute name="target" use="required" type="xs:integer" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                                <xs:element name="mapColors">
+                                                    <xs:complexType>
+                                                        <xs:attribute name="colorBlind" use="required" />
+                                                        <xs:attribute name="default" use="required" />
+                                                    </xs:complexType>
+                                                </xs:element>
+                                            </xs:sequence>
+                                            <xs:attribute name="name" use="required" type="xs:NCName" />
+                                            <xs:attribute name="showOnPriceTable" type="xs:boolean" />
+                                            <xs:attribute name="shownOnMap" use="required" type="xs:boolean" />
+                                            <xs:attribute name="title" />
+                                            <xs:attribute name="useForFieldJob" use="required" type="xs:boolean" />
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="fruitTypeCategories">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="fruitTypeCategory" maxOccurs="unbounded">
+                                        <xs:complexType mixed="true">
+                                            <xs:attribute name="name" use="required" type="xs:NCName" />
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="fruitTypeConverters">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="fruitTypeConverter" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element maxOccurs="unbounded" ref="converter" />
+                                            </xs:sequence>
+                                            <xs:attribute name="name" use="required" type="xs:NCName" />
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:choice>
+                <xs:sequence minOccurs="0">
+                    <xs:element name="filename" type="xs:string" />
+                    <xs:element name="shop">
+                        <xs:complexType>
+                            <xs:attribute name="filename" use="required" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="colorGrading">
+                        <xs:complexType>
+                            <xs:attribute name="filename" use="required" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="storeItems">
+                        <xs:complexType>
+                            <xs:attribute name="filename" use="required" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="sounds">
+                        <xs:complexType>
+                            <xs:attribute name="filename" use="required" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="environment">
+                        <xs:complexType>
+                            <xs:attribute name="filename" use="required" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="wildlife">
+                        <xs:complexType>
+                            <xs:attribute name="filename" use="required" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="helpline">
+                        <xs:complexType>
+                            <xs:attribute name="filename" use="required" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="gameplayHints">
+                        <xs:complexType>
+                            <xs:attribute name="filename" use="required" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="husbandryAnimals">
+                        <xs:complexType>
+                            <xs:attribute name="filename" use="required" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:element name="animalNames">
+                            <xs:complexType>
+                                <xs:attribute name="filename" use="required" />
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="husbandryFood">
+                            <xs:complexType>
+                                <xs:attribute name="filename" use="required" />
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:element name="transportMissions">
+                        <xs:complexType>
+                            <xs:attribute name="filename" use="required" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="missionVehicles">
+                        <xs:complexType>
+                            <xs:attribute name="filename" use="required" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="vertexBufferMemoryUsage" type="xs:integer" />
+                    <xs:element name="indexBufferMemoryUsage" type="xs:integer" />
+                    <xs:element name="textureMemoryUsage" type="xs:integer" />
+                    <xs:element name="culling">
+                        <xs:complexType>
+                            <xs:attribute name="xzOffset" use="required" type="xs:integer" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="densityMap">
+                        <xs:complexType>
+                            <xs:attribute name="revision" use="required" type="xs:integer" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="terrainLodTexture">
+                        <xs:complexType>
+                            <xs:attribute name="revision" use="required" type="xs:integer" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="splitShapes">
+                        <xs:complexType>
+                            <xs:attribute name="revision" use="required" type="xs:integer" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="tipCollision">
+                        <xs:complexType>
+                            <xs:attribute name="revision" use="required" type="xs:integer" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="hotspots">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="hotspot">
+                                    <xs:complexType>
+                                        <xs:attribute name="blinking" use="required" type="xs:boolean" />
+                                        <xs:attribute name="category" use="required" type="xs:NCName" />
+                                        <xs:attribute name="fullName" use="required" />
+                                        <xs:attribute name="hidable" use="required" type="xs:boolean" />
+                                        <xs:attribute name="imageUVs" use="required" />
+                                        <xs:attribute name="name" use="required" type="xs:NCName" />
+                                        <xs:attribute name="persistent" use="required" type="xs:boolean" />
+                                        <xs:attribute name="renderLast" use="required" type="xs:boolean" />
+                                        <xs:attribute name="showName" use="required" type="xs:boolean" />
+                                        <xs:attribute name="xMapPos" use="required" type="xs:integer" />
+                                        <xs:attribute name="zMapPos" use="required" type="xs:integer" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="additionalFiles">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="additionalFile" maxOccurs="unbounded">
+                                    <xs:complexType>
+                                        <xs:attribute name="filename" use="required" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="groundTypeMappings">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="groundTypeMapping" maxOccurs="unbounded">
+                                    <xs:complexType>
+                                        <xs:attribute name="layer" use="required" type="xs:NCName" />
+                                        <xs:attribute name="paintableFoliageId" type="xs:integer" />
+                                        <xs:attribute name="type" use="required" type="xs:NCName" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="paintableFoliages">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="paintableFoliage">
+                                    <xs:complexType>
+                                        <xs:attribute name="firstDensityMapChannel" use="required" type="xs:integer" />
+                                        <xs:attribute name="id" use="required" type="xs:integer" />
+                                        <xs:attribute name="layerName" use="required" type="xs:NCName" />
+                                        <xs:attribute name="numDensityMapChannels" use="required" type="xs:integer" />
+                                        <xs:attribute name="value" use="required" type="xs:integer" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+                <xs:element name="npcs" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="npc" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="category" use="required" type="xs:NCName" />
+                                    <xs:attribute name="imageFilename" use="required" />
+                                    <xs:attribute name="name" use="required" type="xs:NCName" />
+                                    <xs:attribute name="title" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="filename" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:choice minOccurs="0">
+                    <xs:element name="baleTypes">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="baleType" maxOccurs="unbounded">
+                                    <xs:complexType>
+                                        <xs:attribute name="diameter" type="xs:decimal" />
+                                        <xs:attribute name="filename" use="required" />
+                                        <xs:attribute name="fillType" use="required" type="xs:NCName" />
+                                        <xs:attribute name="height" type="xs:decimal" />
+                                        <xs:attribute name="isRoundbale" use="required" type="xs:boolean" />
+                                        <xs:attribute name="length" type="xs:decimal" />
+                                        <xs:attribute name="width" use="required" type="xs:decimal" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="farmlands">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="farmland" minOccurs="0" maxOccurs="unbounded">
+                                    <xs:complexType>
+                                        <xs:attribute name="defaultFarmProperty" type="xs:boolean" />
+                                        <xs:attribute name="id" use="required" type="xs:integer" />
+                                        <xs:attribute name="npcName" use="required" type="xs:NCName" />
+                                        <xs:attribute name="priceScale" use="required" type="xs:decimal" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                            <xs:attribute name="densityMapFilename" />
+                            <xs:attribute name="filename" />
+                            <xs:attribute name="numChannels" type="xs:integer" />
+                            <xs:attribute name="pricePerHa" type="xs:integer" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="helpers">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="helper" maxOccurs="unbounded">
+                                    <xs:complexType>
+                                        <xs:attribute name="filename" use="required" />
+                                        <xs:attribute name="name" use="required" type="xs:NCName" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="sprayTypes">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="sprayType" maxOccurs="unbounded">
+                                    <xs:complexType>
+                                        <xs:attribute name="groundType" use="required" type="xs:integer" />
+                                        <xs:attribute name="litersPerSecond" use="required" type="xs:decimal" />
+                                        <xs:attribute name="name" use="required" type="xs:NCName" />
+                                        <xs:attribute name="type" use="required" type="xs:NCName" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="treeTypes">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="treeType">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="stage" maxOccurs="unbounded">
+                                                <xs:complexType>
+                                                    <xs:attribute name="filename" use="required" />
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                        <xs:attribute name="growthTimeHours" use="required" type="xs:integer" />
+                                        <xs:attribute name="name" use="required" type="xs:NCName" />
+                                        <xs:attribute name="nameI18N" use="required" type="xs:NCName" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:sequence>
+                        <xs:element name="fillTypeConverters">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="fillTypeConverter">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element maxOccurs="unbounded" ref="converter" />
+                                            </xs:sequence>
+                                            <xs:attribute name="name" use="required" type="xs:NCName" />
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="fillTypes">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="fillType" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="image">
+                                                    <xs:complexType>
+                                                        <xs:attribute name="hud" use="required" />
+                                                        <xs:attribute name="hudSmall" use="required" />
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element name="physics">
+                                                    <xs:complexType>
+                                                        <xs:attribute name="massPerLiter" use="required" type="xs:decimal" />
+                                                        <xs:attribute name="maxPhysicalSurfaceAngle" use="required" type="xs:decimal" />
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element name="pallet" minOccurs="0">
+                                                    <xs:complexType>
+                                                        <xs:attribute name="filename" use="required" />
+                                                    </xs:complexType>
+                                                </xs:element>
+                                            </xs:sequence>
+                                            <xs:attribute name="fillPlaneColors" />
+                                            <xs:attribute name="name" use="required" type="xs:NCName" />
+                                            <xs:attribute name="pricePerLiter" use="required" type="xs:decimal" />
+                                            <xs:attribute name="showOnPriceTable" use="required" type="xs:boolean" />
+                                            <xs:attribute name="title" use="required" />
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="fillTypeCategories">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="fillTypeCategory" maxOccurs="unbounded">
+                                        <xs:complexType mixed="true">
+                                            <xs:attribute name="name" use="required" type="xs:NCName" />
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="fillTypeSounds">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="fillTypeSound" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="sound">
+                                                    <xs:complexType>
+                                                        <xs:attribute name="template" use="required" type="xs:NCName" />
+                                                    </xs:complexType>
+                                                </xs:element>
+                                            </xs:sequence>
+                                            <xs:attribute name="fillTypes" />
+                                            <xs:attribute name="isDefault" type="xs:boolean" />
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="height" type="xs:integer" />
+            <xs:attribute name="imageFilename" />
+            <xs:attribute name="width" type="xs:integer" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="converter">
+        <xs:complexType>
+            <xs:attribute name="factor" use="required" type="xs:decimal" />
+            <xs:attribute name="from" use="required" type="xs:NCName" />
+            <xs:attribute name="to" use="required" type="xs:NCName" />
+            <xs:attribute name="windrowFactor" type="xs:decimal" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

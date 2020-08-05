@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="sound">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ambient3d">
+                    <xs:complexType>
+                        <xs:attribute name="filename" use="required" />
+                        <xs:attribute name="indoorLowpassGainFactor" use="required" type="xs:decimal" />
+                        <xs:attribute name="indoorVolumeFactor" use="required" type="xs:decimal" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ambient">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" ref="sample" />
+                        </xs:sequence>
+                        <xs:attribute name="indoorFlag" use="required" type="xs:integer" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="surface">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="material" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="loopCount" use="required" type="xs:integer" />
+                                    <xs:attribute name="materialId" use="required" type="xs:integer" />
+                                    <xs:attribute name="name" use="required" type="xs:NCName" />
+                                    <xs:attribute name="template" use="required" type="xs:NCName" />
+                                    <xs:attribute name="type" use="required" type="xs:NCName" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="cutting">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="sample" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="object">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="fillSound01">
+                                <xs:complexType>
+                                    <xs:attribute name="linkNode" use="required" type="xs:integer" />
+                                    <xs:attribute name="template" use="required" type="xs:NCName" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="sample">
+        <xs:complexType>
+            <xs:attribute name="file" use="required" />
+            <xs:attribute name="flags" type="xs:integer" />
+            <xs:attribute name="indoorVolumeFactor" type="xs:decimal" />
+            <xs:attribute name="mask" type="xs:integer" />
+            <xs:attribute name="name" type="xs:NCName" />
+            <xs:attribute name="type" type="xs:NCName" />
+            <xs:attribute name="volume" type="xs:decimal" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

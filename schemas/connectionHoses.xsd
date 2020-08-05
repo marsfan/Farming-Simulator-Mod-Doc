@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="connectionHoses">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="basicHoses">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="basicHose" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="diameter" use="required" type="xs:decimal" />
+                                    <xs:attribute name="endStraightening" use="required" type="xs:decimal" />
+                                    <xs:attribute name="filename" use="required" />
+                                    <xs:attribute name="length" use="required" type="xs:decimal" />
+                                    <xs:attribute name="minCenterPointAngle" use="required" type="xs:integer" />
+                                    <xs:attribute name="node" use="required" />
+                                    <xs:attribute name="realLength" use="required" type="xs:integer" />
+                                    <xs:attribute name="startStraightening" use="required" type="xs:decimal" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="connectionHoseTypes">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="connectionHoseType" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="adapter" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="filename" use="required" />
+                                                <xs:attribute name="name" use="required" type="xs:NCName" />
+                                                <xs:attribute name="node" use="required" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="material">
+                                            <xs:complexType>
+                                                <xs:attribute name="defaultColor" use="required" />
+                                                <xs:attribute name="filename" use="required" />
+                                                <xs:attribute name="materialNode" use="required" type="xs:integer" />
+                                                <xs:attribute name="name" use="required" type="xs:NCName" />
+                                                <xs:attribute name="uvOffset" use="required" />
+                                                <xs:attribute name="uvScale" use="required" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="name" use="required" type="xs:NCName" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="sockets">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="socket" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="cab" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="closedRotation" />
+                                                <xs:attribute name="closedVisibility" type="xs:boolean" />
+                                                <xs:attribute name="node" use="required" type="xs:integer" />
+                                                <xs:attribute name="openedRotation" />
+                                                <xs:attribute name="openedVisibility" type="xs:boolean" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="filename" use="required" />
+                                    <xs:attribute name="name" use="required" type="xs:NCName" />
+                                    <xs:attribute name="node" use="required" />
+                                    <xs:attribute name="referenceNode" use="required" type="xs:integer" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
