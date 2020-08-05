@@ -35,16 +35,7 @@ def main() -> None:
             if fileData == '\n':
                 fileData = next(fileObj)
             xmlType = xmlRegex.search(fileData).group(1)
-
-            if xmlType == 'vehicle':
-                vehicleType = typeRegex.search(fileData)
-                if vehicleType is None:
-                    copyDest = Path("SortedXML") / xmlType
-                else:
-                    vehicleType = vehicleType.group(1)
-                    copyDest = Path("SortedXML") / xmlType / vehicleType
-            else:
-                copyDest = Path("SortedXML") / xmlType
+            copyDest = Path("SortedXML") / xmlType
        # print('------')
        # print(copyDest)
        # print(copyDest / xmlFile.name)
@@ -52,7 +43,7 @@ def main() -> None:
         safeMakeDir(copyDest)
         copyfile(xmlFile, copyDest / xmlFile.name)
 
-    print(fileCount)
+    print(f'Total Files Sorted: {fileCount}')
 
 
 def safeMakeDir(dirToMake: Union[Path, str]) -> None:

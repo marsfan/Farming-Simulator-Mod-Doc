@@ -6,15 +6,3 @@ for dir in ./SortedXML/*; do
 
     trang -I xml -O xsd "$dir"/*.xml ../schemas/"$dirName".xsd
 done
-
-mkdir -p ../schemas/vehicle/
-
-
-for dir in SortedXML/vehicle/*; do
-    dirName="${dir%"${dir##*[!/]}"}" # extglob-free multi-trailing-/ trim
-    dirName="${dirName##*/}"
-
-
-    trang -I xml -O xsd "$dir"/*.xml ../schemas/vehicle/"$dirName".xsd
-
-done
