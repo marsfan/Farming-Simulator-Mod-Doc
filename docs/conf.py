@@ -13,8 +13,6 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-
-
 # -- Project information -----------------------------------------------------
 
 project = 'Farming Simulator Modding Documentation'
@@ -29,6 +27,7 @@ author = 'marsfan'
 # ones.
 extensions = [
     "sphinx_rtd_theme",
+    "sphinx.ext.todo"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -51,3 +50,15 @@ html_theme = 'sphinx_rtd_theme'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+
+# -- Configuration options for sphinx.ext.todo--------------------------------
+todo_include_todos = True
+
+# Create custom directives for the XML documentation.
+# In the future, we could use this to extend our layout. Not sure how to do that though.
+import sphinx.domains.python
+
+def setup(app):
+    app.add_directive('element', sphinx.domains.python.PyClasslike)
+

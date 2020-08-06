@@ -10,6 +10,9 @@ Welcome to Farming Simulator Modding Documentation's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   xml
+   todo
+
 
 
 Indices and tables
