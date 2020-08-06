@@ -14,8 +14,8 @@ Configuration file for wheel hubs.
 
       Nodes for aligning the hub.
 
-      :param left: Left side alignment node.
-      :param right: Right side alignment node.
+      :attrib left: Left side alignment node.
+      :attrib right: Right side alignment node.
 
    .. element:: color0
 

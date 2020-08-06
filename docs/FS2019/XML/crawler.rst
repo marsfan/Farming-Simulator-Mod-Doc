@@ -10,9 +10,9 @@ This file defines the parameters for vehicle tracks.
 
       File information for the track
 
-      :param leftnode: Node for left side mounting
-      :param rightnode: Node for right side mounting
-      :param name: The path to the track's i3d file
+      :attrib leftnode: Node for left side mounting
+      :attrib rightnode: Node for right side mounting
+      :attrib name: The path to the track's i3d file
 
    .. element:: scrollerNodes
 
@@ -20,11 +20,11 @@ This file defines the parameters for vehicle tracks.
 
          .. todo:: This section need to be completed
 
-         :param node:
-         :param scrollLength:
-         :param scrollSpeed:
-         :param shaderParameterComponent:
-         :param shaderParameterName:
+         :attrib node:
+         :attrib scrollLength:
+         :attrib scrollSpeed:
+         :attrib shaderParameterComponent:
+         :attrib shaderParameterName:
 
    .. element:: rotatingParts
 
@@ -32,8 +32,8 @@ This file defines the parameters for vehicle tracks.
 
          .. todo:: This section needs to be completed
 
-         :param node:
-         :param radius:
+         :attrib node:
+         :attrib radius:
 
    .. element:: rimColorNodes
 
@@ -41,14 +41,14 @@ This file defines the parameters for vehicle tracks.
 
          .. todo:: This section needs to be completed
 
-         :param node:
-         :param shaderParameter:
+         :attrib node:
+         :attrib shaderParameter:
 
    .. objectChange
 
       .. todo:: This section needs to be completed
 
-      :param node:
-      :param visibilityActive:
+      :attrib node:
+      :attrib visibilityActive:
 
 

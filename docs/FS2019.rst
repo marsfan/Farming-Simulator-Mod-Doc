@@ -1,0 +1,12 @@
+======================
+Farming Simulator 2019
+======================
+
+These pages contain documentation about Farming Simulator 2019
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents:
+
+   FS2019/xml
+

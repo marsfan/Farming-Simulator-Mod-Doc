@@ -14,13 +14,22 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 # -- Project information -----------------------------------------------------
+import sphinx.domains.python
+from sphinx.locale import _, __
+
+
+
 
 project = 'Farming Simulator Modding Documentation'
 copyright = '2020, marsfan'
 author = 'marsfan'
 
 
+
 # -- General configuration ---------------------------------------------------
+
+# Main page for the documentation
+master_doc = 'index'
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
@@ -45,6 +54,12 @@ exclude_patterns = ['build', 'Thumbs.db', '.DS_Store']
 # a list of builtin themes.
 #
 html_theme = 'sphinx_rtd_theme'
+html_theme_options = {
+    'sticky_navigation': True,
+    'navigation_depth': -1,
+    'titles_only': True,
+    'collapse_navigation': False
+}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -56,9 +71,24 @@ html_static_path = ['_static']
 todo_include_todos = True
 
 # Create custom directives for the XML documentation.
-# In the future, we could use this to extend our layout. Not sure how to do that though.
-import sphinx.domains.python
+# This will allow us to use the terms that XML files use. Specifically element and attribute.
+# Ideally I would write an whole new custom domain just for XML and XSD files, but I don't know how to do that
+# So instead I just inherited from PyClassLike from the default Python domain
+
+
+
+class element(sphinx.domains.python.PyClasslike):
+    pass
+
+element.doc_field_types.append(
+    sphinx.domains.python.PyTypedField('attribute', label=_('Attributes'),
+                 names=('attrib', 'attr', 'attribute'),
+                 typerolename='class', typenames=('attribtype'),
+                 can_collapse=True),
+)
+
+
 
 def setup(app):
-    app.add_directive('element', sphinx.domains.python.PyClasslike)
+    app.add_directive('element', element)
 

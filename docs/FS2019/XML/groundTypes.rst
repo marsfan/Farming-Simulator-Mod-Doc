@@ -8,6 +8,6 @@ Used to configure the different types of ground on a map.
 
    .. element:: groundType
 
-      :param name: The name of the specific ground type.
-      :param fallbacks: .. todo:: This attribute needs documenting.
+      :attrib name: The name of the specific ground type.
+      :attrib fallbacks: .. todo:: This attribute needs documenting.
 
