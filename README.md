@@ -19,7 +19,9 @@ Contains templates for issues  in github
 Contains yaml files for defineing GitHub Actions
 
 ### docs
-Contains the `rst` files that define the entire documentation site, as well as the configuration files for Sphinx (the documentation generation framework)
+Contains the `rst` files that define the entire documentation site, as well as the configuration files for Sphinx (the documentation generation framework).
+
+For more information about the layout of the documentation folder, see [docs/readme.md](docs/README.md).
 
 ### schemas
 Contains XML schema documents (`.xsd`), for validating your xml files against the documentation.
