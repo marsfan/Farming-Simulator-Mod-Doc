@@ -5,6 +5,8 @@ Make sure there is not already a pull request, or an issue with someone assigned
 * [ ] All relevant documentation files updated.
 * [ ] XML Schema updated
 * [ ] .gitignore file updated (if needed)
+* [ ] Empty parts of documentation flagged with `.. todo::` directive.
+* [ ] Proof that changes are correct provided below.
 
 
 ## Summary
