@@ -1,0 +1,8 @@
+schema:
+  - schema/**
+
+documentation:
+  - docs/**
+
+backend:
+  - ./**/*.py
