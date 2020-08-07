@@ -24,12 +24,14 @@ jobs:
 
     - name: Count Todo
       id: count
-      run: echo "::set-output name=todoCount::$(python3 utils/countTodo.py)\n"
+      run: echo "##[set-output name=todoCount;]$(python3 utils/countTodo.py)"
+      #run: echo "::set-output name=todoCount::$(python3 utils/countTodo.py)\n"
+
 
     - name: Make Badge
       uses: RubbaBoy/BYOB@v1.1.0
       with:
-        NAME: todos
+        NAME: todoCount
         LABEL: 'Sphinx TODOs'
         STATUS: ${{ steps.count.outputs.todoCount }}
         COLOR: GREEN
