@@ -1,7 +1,7 @@
 
 # FS2019-Mod-Doc
 
-![](https://byob.yarr.is/Marsfan/Farming-Simulator-Mod-Doc/todoCount) 
+[![](https://byob.yarr.is/Marsfan/Farming-Simulator-Mod-Doc/todoCount)](https://farming-simulator-mod-doc.readthedocs.io/en/latest/todo.html)
 
 Documentation on everything to do with modding Farming Simulator.
 
