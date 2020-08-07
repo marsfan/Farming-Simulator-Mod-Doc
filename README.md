@@ -1,8 +1,14 @@
+
 # FS2019-Mod-Doc
+
+![](https://byob.yarr.is/Marsfan/Farming-Simulator-Mod-Doc/todoCount) 
+
 Documentation on everything to do with modding Farming Simulator.
 
 This project aims to eventually have complete documentation of all of XML elements used for modding Farming Simulator 2019. \
 Stretch goals include adding documentation for all prior version of Farming Simulator, and adding documentation regarding other parts of modding Farming Simulator (textures, animations, lua, etc)
+
+
 
 ## Repository Structure
 
