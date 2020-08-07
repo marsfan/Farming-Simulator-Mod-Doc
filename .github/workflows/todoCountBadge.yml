@@ -34,7 +34,7 @@ jobs:
         NAME: todoCount
         LABEL: 'Sphinx TODOs'
         STATUS: ${{ steps.count.outputs.todoCount }}
-        COLOR: green
+        COLOR: 00FF00
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
