@@ -24,7 +24,7 @@ jobs:
 
     - name: Count Todo
       id: count
-      run: "::set-output name=todoCount::$(python3 utils/countTodo.py)\n"
+      run: echo "::set-output name=todoCount::$(python3 utils/countTodo.py)\n"
 
     - name: Make Badge
       uses: RubbaBoy/BYOB@v1.1.0
