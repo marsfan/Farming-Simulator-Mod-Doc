@@ -577,7 +577,13 @@
                                     </xs:complexType>
                                 </xs:element>
                                 <xs:element name="railroadCallers">
-                                    <xs:complexType />
+                                    <!-- FIXME: This is likely wrong, but neither base maps have anythingin the 
+                                        <railroadCallers> element, so using this as the argument is good for now -->
+                                    <xs:complexType>
+                                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                                            <xs:element name="railroadCaller" />
+                                        </xs:sequence>
+                                    </xs:complexType>
                                 </xs:element>
                                 <xs:element name="railroadCrossings">
                                     <xs:complexType>
