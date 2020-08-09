@@ -23,7 +23,17 @@
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="sounds">
-                    <xs:complexType />
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="sound" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="filename" use="required" />
+                                    <xs:attribute name="group" use="required" type="xs:integer" />
+                                    <xs:attribute name="volume" use="required" type="xs:decimal" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
                 </xs:element>
             </xs:sequence>
         </xs:complexType>
