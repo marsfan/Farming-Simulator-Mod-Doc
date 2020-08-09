@@ -53,7 +53,7 @@ Because this project is hosted on GitHub, schema files can be used without havin
 two attributes to the top level element in the XML file to be validated (such as `<placeable>` or `<vehicle>`):
 
 <code>
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://github.com/Marsfan/Farming-Simulator-Mod-Doc/blob/master/schemas/<i>version</i>/<i>schema.xsd</i>"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Marsfan/Farming-Simulator-Mod-Doc/master/schemas/<i>version</i>/<i>schema.xsd</i>"
 </code>
 
 Replacing *version* with the version of Farming Simulator that is in use (e.g `FS2019`)
@@ -63,7 +63,7 @@ For example, if writing an XML file for a placeable to be added to Farming Simul
 
 `<placeable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:noNamespaceSchemaLocation=
-"https://github.com/Marsfan/Farming-Simulator-Mod-Doc/blob/master/schemas/FS2019/placeable.xsd">`
+"https://raw.githubusercontent.com/Marsfan/Farming-Simulator-Mod-Doc/master/schemas/FS2019/placeable.xsd">`
 
 Some editors (such as Visual Studio Code with the Red Hat XML extension), will use this to automatically validate the
 file against the schema.
