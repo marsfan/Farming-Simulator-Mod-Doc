@@ -71,11 +71,13 @@ an xml file to properly reference the schema file. An example below is for a xml
 
 In the `<placeable>` xml tag at the beginning of the file, add these two options:
 
-`xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="path_to_schemas/placeables.xsd"`
+`xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="path_to_schemas/schema.xsd"`
 
 This results in the tag now looking like:
 
-`<placeable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="placeables.xsd">`
+`<placeable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="placeable.xsd">`
+
+_Note: When testing modifications that you have made to a schema, do not reference the schema files with the GitHub URL
+(as in the readme), as that will validate using the existing schema on the repository, not your modified schema._
 
 An alternative method to validating schema files is to use a seperate utitlity for checking files, such as `xmllint`
-

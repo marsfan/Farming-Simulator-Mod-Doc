@@ -30,7 +30,7 @@ Contains the `rst` files that define the entire documentation site, as well as t
 For more information about the layout of the documentation folder, see [docs/readme.md](docs/README.md).
 
 ### schemas
-Contains XML schema documents (`.xsd`), for validating your xml files against the documentation.
+Contains XML schema documents (`.xsd`), for validating XML files against the documentation.
 
 The XML Schemas were generating with `trang -I xml -O xsd /path/to/xml/files/*.xml schemas/schemaName.xsd`.
 They were then processed with `refRemover.py` unnecessary references to xs:elements that trang creates.
@@ -41,33 +41,38 @@ They will likely not be needed as the processing has already been done, but may 
 documenting other Giants Software games. Further details are found in the utils folder readme.
 
 ## Helping Out
-If you want to help out with the documentation in any way, please read [CONTRIBUTING.md](CONTRIBUTING.md) first,
+To help out with the documentation in any way, please read [CONTRIBUTING.md](CONTRIBUTING.md) first,
 as it outlines steps that should be taken.
 
 ## Using schemas
 The schema files are intended to help modders validate the configuration files in their mods. How they are used is up to
 individual modders, but some suggestions can be found below.
 
-The schema files are not hosted anywhere, so modders will need to download them and use them.
-This may change in the future.
+### Referencing schema in XML file
+Because this project is hosted on GitHub, schema files can be used without having to download them. Simply append these
+two attributes to the top level element in the XML file to be validated (such as `<placeable>` or `<vehicle>`):
 
-### Referencing schema in xml file
-Append these two attributes to the top level element in the XML file (such as `<placeable>` or `<vehicle>`):
+<code>
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://github.com/Marsfan/Farming-Simulator-Mod-Doc/blob/master/schemas/<i>version</i>/<i>schema.xsd</i>"
+</code>
 
-`xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"`
-`xsi:noNamespaceSchemaLocation="path_to_schemas/schema_to_use.xsd"`
+Replacing *version* with the version of Farming Simulator that is in use (e.g `FS2019`)
+and *schema.xsd* with the schema files that are desired (e.g. `placeable.xsd`)
 
-For example, this will result in a placeable object's XML file having top level element of:
+For example, if writing an XML file for a placeable to be added to Farming Simulator 2019, the first line should be:
 
-`<placeable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="placeables.xsd">`
+`<placeable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation=
+"https://github.com/Marsfan/Farming-Simulator-Mod-Doc/blob/master/schemas/FS2019/placeable.xsd">`
 
 Some editors (such as Visual Studio Code with the Red Hat XML extension), will use this to automatically validate the
 file against the schema.
 
-### Using a tool
+### Using an online tool
 A number of tools are available to validate files against a schema. Websites can be found simply by searching for
 "online xsd validator"
 
+### Using an command line tool
 On Linux, the command line tool `xmllint` can be used to quickly validate multiple XML files against a schema.
 As an example, to validate all files in the current directory against a schema file in the current directory, do
 `xmllint --noout --schema schema.xsd *.xml`.
