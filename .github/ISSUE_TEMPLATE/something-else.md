@@ -13,8 +13,8 @@ Check all of the open and closed issues to see if someone else has already repor
 ## Summary
 What is your issue
 
-## Details
+## Details (if needed)
 Detailed information about your issue
 
-## Additional Context
+## Additional Context (if needed)
 Add any other context or screenshots should go here.
