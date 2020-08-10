@@ -14,7 +14,7 @@
                             <xs:element name="functions">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="function" />
+                                        <xs:element name="function" type="xs:string" />
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
@@ -62,17 +62,20 @@
                     </xs:complexType>
                 </xs:element>
                 <xs:choice minOccurs="0">
-                    <xs:element ref="trigger" />
+                    <xs:element name="trigger">
+                        <xs:complexType>
+                            <xs:attribute name="node" use="required" />
+                        </xs:complexType>
+                    </xs:element>
                     <xs:element ref="vehicle" />
                 </xs:choice>
                 <xs:element name="woodCrusher" minOccurs="0">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="moveTriggers">
+                            <xs:element name="idle" minOccurs="0">
                                 <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element ref="trigger" />
-                                    </xs:sequence>
+                                    <xs:attribute name="linkNode" use="required" type="xs:integer" />
+                                    <xs:attribute name="template" use="required" type="xs:NCName" />
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="moveCollisions">
@@ -313,7 +316,12 @@
                     <xs:element name="dogHouse">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="function" type="xs:string" />
+                                <xs:element name="dog">
+                                    <xs:complexType>
+                                        <xs:attribute name="node" use="required" type="xs:integer" />
+                                        <xs:attribute name="xmlFilename" use="required" />
+                                    </xs:complexType>
+                                </xs:element>
                                 <xs:element name="ball">
                                     <xs:complexType>
                                         <xs:attribute name="filename" use="required" />
@@ -342,10 +350,15 @@
                     <xs:element name="farmhouse">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="sleeping">
+                                <xs:element name="gate" maxOccurs="unbounded">
                                     <xs:complexType>
-                                        <xs:attribute name="cameraNode" use="required" type="xs:integer" />
-                                        <xs:attribute name="triggerNode" use="required" type="xs:integer" />
+                                        <xs:attribute name="closingOffset" type="xs:decimal" />
+                                        <xs:attribute name="duration" use="required" type="xs:integer" />
+                                        <xs:attribute name="endRot" />
+                                        <xs:attribute name="endTrans" />
+                                        <xs:attribute name="node" use="required" />
+                                        <xs:attribute name="startRot" />
+                                        <xs:attribute name="startTrans" />
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
@@ -355,10 +368,10 @@
                     <xs:element name="foliageAreas">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="foliageArea" minOccurs="0">
+                                <xs:element name="signal" maxOccurs="unbounded">
                                     <xs:complexType>
-                                        <xs:attribute name="fruitType" use="required" type="xs:NCName" />
-                                        <xs:attribute name="rootNode" use="required" />
+                                        <xs:attribute name="alternatingLights" use="required" type="xs:boolean" />
+                                        <xs:attribute name="node" use="required" />
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
@@ -564,7 +577,13 @@
                                     </xs:complexType>
                                 </xs:element>
                                 <xs:element name="railroadCallers">
-                                    <xs:complexType />
+                                    <!-- FIXME: This is likely wrong, but neither base maps have anythingin the 
+                                        <railroadCallers> element, so using this as the argument is good for now -->
+                                    <xs:complexType>
+                                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                                            <xs:element name="railroadCaller" />
+                                        </xs:sequence>
+                                    </xs:complexType>
                                 </xs:element>
                                 <xs:element name="railroadCrossings">
                                     <xs:complexType>
@@ -588,11 +607,6 @@
                     </xs:element>
                 </xs:choice>
             </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="trigger">
-        <xs:complexType>
-            <xs:attribute name="node" use="required" />
         </xs:complexType>
     </xs:element>
     <xs:element name="vehicle">
@@ -646,12 +660,7 @@
                         </xs:complexType>
                     </xs:element>
                 </xs:sequence>
-                <xs:element name="idle" minOccurs="0">
-                    <xs:complexType>
-                        <xs:attribute name="linkNode" use="required" type="xs:integer" />
-                        <xs:attribute name="template" use="required" type="xs:NCName" />
-                    </xs:complexType>
-                </xs:element>
+                <xs:element minOccurs="0" name="idle" />
                 <xs:choice minOccurs="0">
                     <xs:element name="crossing">
                         <xs:complexType>
@@ -715,29 +724,14 @@
     <xs:element name="gates">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="gate" maxOccurs="unbounded">
-                    <xs:complexType>
-                        <xs:attribute name="closingOffset" type="xs:decimal" />
-                        <xs:attribute name="duration" use="required" type="xs:integer" />
-                        <xs:attribute name="endRot" />
-                        <xs:attribute name="endTrans" />
-                        <xs:attribute name="node" use="required" />
-                        <xs:attribute name="startRot" />
-                        <xs:attribute name="startTrans" />
-                    </xs:complexType>
-                </xs:element>
+                <xs:element maxOccurs="unbounded" name="gate" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>
     <xs:element name="signals">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="signal" maxOccurs="unbounded">
-                    <xs:complexType>
-                        <xs:attribute name="alternatingLights" use="required" type="xs:boolean" />
-                        <xs:attribute name="node" use="required" />
-                    </xs:complexType>
-                </xs:element>
+                <xs:element maxOccurs="unbounded" name="signal" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>

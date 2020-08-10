@@ -35,7 +35,7 @@ def processXSD(infile: str, outfile: str) -> None:
     namespaces = {"xs": "http://www.w3.org/2001/XMLSchema"}
     children = list(schema.getroot())
     refs = children
-    for ref in refs:
+    for ref in reversed(refs):
         name = ref.attrib['name']
         elementsToReplace = schema.findall(f'.//xs:element[@ref="{name}"]', namespaces)
 
