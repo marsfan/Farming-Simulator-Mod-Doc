@@ -313,7 +313,12 @@
                     <xs:element name="dogHouse">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="function" type="xs:string" />
+                                <xs:element name="dog">
+                                    <xs:complexType>
+                                        <xs:attribute name="node" use="required" type="xs:integer" />
+                                        <xs:attribute name="xmlFilename" use="required" />
+                                    </xs:complexType>
+                                </xs:element>
                                 <xs:element name="ball">
                                     <xs:complexType>
                                         <xs:attribute name="filename" use="required" />
@@ -564,7 +569,13 @@
                                     </xs:complexType>
                                 </xs:element>
                                 <xs:element name="railroadCallers">
-                                    <xs:complexType />
+                                    <!-- FIXME: This is likely wrong, but neither base maps have anythingin the 
+                                        <railroadCallers> element, so using this as the argument is good for now -->
+                                    <xs:complexType>
+                                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                                            <xs:element name="railroadCaller" />
+                                        </xs:sequence>
+                                    </xs:complexType>
                                 </xs:element>
                                 <xs:element name="railroadCrossings">
                                     <xs:complexType>
