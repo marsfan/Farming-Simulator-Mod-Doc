@@ -12,13 +12,16 @@ If the second argument is not specified from the command line, the program will 
 It can also be called from another python file, by calling the processXSD function.
 
 WARNING: If a element references a parent element in recursion--such as when trang is confused by multiple levels
-of elements having the same name--this script can enter an infinite loop.
+of elements having the same name--this script can enter an infinite loop. With the base game files, this happens with
+objects.xsd, so edit that one manually instead of with this script
 """
 
 
 from lxml import etree
 import argparse
 import re
+import os
+from pathlib import Path
 
 replaceRegex = re.compile(r'/xs:schema/xs:element\[.\]/')
 
@@ -41,14 +44,12 @@ def processXSD(infile: str, outfile: str) -> None:
         # Also make sure to include the xs namespace.
         return schema.xpath(elementPath, namespaces={"xs": "http://www.w3.org/2001/XMLSchema"})[0]
 
-    count = 0   # Variable to keep track of how many replacements are made.
 
     # Load in the XSD file and then get the root elements.
     schema: etree._ElementTree = etree.parse(infile)
     rootElements = list(schema.getroot())
     # Iterate backwards through all root element. (Backwards works better for some reason. )
     for rootElement in reversed(rootElements):
-        count += 1  # Increment replacement counts
         name = rootElement.attrib['name']  # Get the name of the root element
 
         # Find all elements that reference this root element
@@ -86,7 +87,6 @@ def processXSD(infile: str, outfile: str) -> None:
     with open(outfile, 'wb') as f:
         f.write(b'<?xml version="1.0" encoding="UTF-8"?>\n')
         f.write(output)
-    print(count)  # Print out total number of replacements
 
 
 def main():
@@ -103,8 +103,22 @@ def main():
     if args.outfile is None:
         args.outfile = args.infile
 
-    # Call the XSD processing function.
-    processXSD(args.infile, args.outfile)
+    # If the path the user supplies for the input is a directory, run on all XSD files in that directory.
+    if os.path.isdir(args.infile):
+        if not os.path.isdir(args.outfile):
+            TypeError("If input is a folder, output should be too")
+        else:
+            for file in Path(args.infile).glob(r"*.xsd"):
+                print(f"Processing {file.name}")
+                processXSD(str(file), str(Path(args.outfile) / file.name))
+    else:
+        # Call the XSD processing function.
+        processXSD(args.infile, args.outfile)
+
+
+
+
+
 
 
 if __name__ == "__main__":
