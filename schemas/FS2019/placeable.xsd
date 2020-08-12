@@ -14,7 +14,7 @@
                             <xs:element name="functions">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="function" />
+                                        <xs:element name="function" type="xs:string" />
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>

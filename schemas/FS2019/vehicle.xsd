@@ -580,11 +580,12 @@
                     <xs:element name="baseMaterialConfigurations">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="shaderParameter" minOccurs="0" maxOccurs="unbounded">
+                                <xs:element name="baseMaterialConfiguration" minOccurs="0" maxOccurs="unbounded">
                                     <xs:complexType>
+                                        <xs:attribute name="color" use="required" />
                                         <xs:attribute name="material" type="xs:integer" />
-                                        <xs:attribute name="name" use="required" type="xs:NCName" />
-                                        <xs:attribute name="value" use="required" />
+                                        <xs:attribute name="name" />
+                                        <xs:attribute name="price" type="xs:integer" />
                                     </xs:complexType>
                                 </xs:element>
                                 <xs:element minOccurs="0" maxOccurs="unbounded" ref="material" />
@@ -738,24 +739,7 @@
                         <xs:complexType>
                             <xs:choice maxOccurs="unbounded">
                                 <xs:element ref="directionNode" />
-                                <xs:element name="foldingConfigurations">
-                                    <xs:complexType>
-                                        <xs:sequence>
-                                            <xs:element name="foldingConfiguration" maxOccurs="unbounded">
-                                                <xs:complexType>
-                                                    <xs:sequence>
-                                                        <xs:element minOccurs="0" ref="foldingParts" />
-                                                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="objectChange" />
-                                                    </xs:sequence>
-                                                    <xs:attribute name="name" />
-                                                    <xs:attribute name="price" type="xs:integer" />
-                                                    <xs:attribute name="workingWidth" type="xs:integer" />
-                                                </xs:complexType>
-                                            </xs:element>
-                                        </xs:sequence>
-                                        <xs:attribute name="title" />
-                                    </xs:complexType>
-                                </xs:element>
+                                <xs:element ref="onlyActiveWhenLowered" />
                                 <xs:element ref="sounds" />
                             </xs:choice>
                             <xs:attribute name="isSubsoiler" type="xs:boolean" />
@@ -765,49 +749,7 @@
                         <xs:complexType>
                             <xs:choice minOccurs="0" maxOccurs="unbounded">
                                 <xs:element ref="animationNodes" />
-                                <xs:element name="part">
-                                    <xs:complexType>
-                                        <xs:attribute name="animationClip" type="xs:NCName" />
-                                        <xs:attribute name="clipEndTime" type="xs:integer" />
-                                        <xs:attribute name="clipStartTime" type="xs:integer" />
-                                        <xs:attribute name="componentJointIndex" type="xs:integer" />
-                                        <xs:attribute name="dependentAnimation" type="xs:NCName" />
-                                        <xs:attribute name="dependentAnimationEndTime" type="xs:decimal" />
-                                        <xs:attribute name="dependentAnimationStartTime" type="xs:decimal" />
-                                        <xs:attribute name="direction" type="xs:integer" />
-                                        <xs:attribute name="duration" type="xs:decimal" />
-                                        <xs:attribute name="endRot" />
-                                        <xs:attribute name="endRotLimit" />
-                                        <xs:attribute name="endRotMaxLimit" />
-                                        <xs:attribute name="endRotMinLimit" />
-                                        <xs:attribute name="endScale" />
-                                        <xs:attribute name="endTime" type="xs:NMTOKEN" />
-                                        <xs:attribute name="endTipSideEmptyFactor" type="xs:integer" />
-                                        <xs:attribute name="endTrans" />
-                                        <xs:attribute name="endTransLimit" />
-                                        <xs:attribute name="endTransMaxLimit" />
-                                        <xs:attribute name="endTransMinLimit" />
-                                        <xs:attribute name="node" />
-                                        <xs:attribute name="requiredAnimation" type="xs:NCName" />
-                                        <xs:attribute name="requiredAnimationRange" />
-                                        <xs:attribute name="shaderEndValues" />
-                                        <xs:attribute name="shaderParameter" type="xs:NCName" />
-                                        <xs:attribute name="shaderStartValues" />
-                                        <xs:attribute name="startRot" />
-                                        <xs:attribute name="startRotLimit" />
-                                        <xs:attribute name="startRotMaxLimit" />
-                                        <xs:attribute name="startRotMinLimit" />
-                                        <xs:attribute name="startScale" />
-                                        <xs:attribute name="startTime" use="required" type="xs:decimal" />
-                                        <xs:attribute name="startTipSideEmptyFactor" type="xs:integer" />
-                                        <xs:attribute name="startTrans" />
-                                        <xs:attribute name="startTransLimit" />
-                                        <xs:attribute name="startTransMaxLimit" />
-                                        <xs:attribute name="startTransMinLimit" />
-                                        <xs:attribute name="visbility" type="xs:boolean" />
-                                        <xs:attribute name="visibility" type="xs:boolean" />
-                                    </xs:complexType>
-                                </xs:element>
+                                <xs:element ref="effect" />
                                 <xs:element ref="fillEffect" />
                                 <xs:element name="fruitExtraObjects">
                                     <xs:complexType>
@@ -1143,27 +1085,9 @@
                                             <xs:attribute name="node" use="required" />
                                         </xs:complexType>
                                     </xs:element>
-                                    <xs:element name="rakes">
+                                    <xs:element name="exitPoint">
                                         <xs:complexType>
-                                            <xs:sequence>
-                                                <xs:element name="rake" maxOccurs="unbounded">
-                                                    <xs:complexType>
-                                                        <xs:sequence>
-                                                            <xs:element name="spike" maxOccurs="unbounded">
-                                                                <xs:complexType>
-                                                                    <xs:attribute name="dir" type="xs:integer" />
-                                                                    <xs:attribute name="node" use="required" type="xs:NCName" />
-                                                                </xs:complexType>
-                                                            </xs:element>
-                                                        </xs:sequence>
-                                                        <xs:attribute name="dir" use="required" type="xs:integer" />
-                                                        <xs:attribute name="moveDownRange" use="required" />
-                                                        <xs:attribute name="moveUpRange" use="required" />
-                                                        <xs:attribute name="node" use="required" type="xs:NCName" />
-                                                        <xs:attribute name="spikeMaxRotZ" use="required" type="xs:integer" />
-                                                    </xs:complexType>
-                                                </xs:element>
-                                            </xs:sequence>
+                                            <xs:attribute name="node" use="required" type="xs:NCName" />
                                         </xs:complexType>
                                     </xs:element>
                                 </xs:choice>
@@ -1310,13 +1234,7 @@
                                     </xs:complexType>
                                 </xs:element>
                                 <xs:choice minOccurs="0" maxOccurs="unbounded">
-                                    <xs:element name="dischargeInfos">
-                                        <xs:complexType>
-                                            <xs:sequence>
-                                                <xs:element maxOccurs="unbounded" ref="dischargeInfo" />
-                                            </xs:sequence>
-                                        </xs:complexType>
-                                    </xs:element>
+                                    <xs:element ref="dischargeInfos" />
                                     <xs:element name="loadInfos">
                                         <xs:complexType>
                                             <xs:sequence>
@@ -1359,11 +1277,7 @@
                     <xs:element name="fillVolumes">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="interiorLight" minOccurs="0" maxOccurs="unbounded">
-                                    <xs:complexType>
-                                        <xs:attribute name="node" use="required" type="xs:NCName" />
-                                    </xs:complexType>
-                                </xs:element>
+                                <xs:element ref="dischargeInfos" />
                             </xs:sequence>
                         </xs:complexType>
                     </xs:element>
@@ -1446,20 +1360,15 @@
                     <xs:element name="jigglingParts">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="exhaustEffect" maxOccurs="unbounded">
+                                <xs:element name="jigglingPart" maxOccurs="unbounded">
                                     <xs:complexType>
-                                        <xs:attribute name="filename" use="required" />
-                                        <xs:attribute name="index" type="xs:NCName" />
-                                        <xs:attribute name="maxRpmColor" use="required" />
-                                        <xs:attribute name="maxRpmScale" use="required" type="xs:decimal" />
-                                        <xs:attribute name="minRpmColor" use="required" />
-                                        <xs:attribute name="minRpmScale" use="required" type="xs:decimal" />
-                                        <xs:attribute name="node" type="xs:NCName" />
-                                        <xs:attribute name="xzRotationsBackward" />
-                                        <xs:attribute name="xzRotationsForward" />
-                                        <xs:attribute name="xzRotationsLeft" />
-                                        <xs:attribute name="xzRotationsOffset" />
-                                        <xs:attribute name="xzRotationsRight" />
+                                        <xs:attribute name="amplitudeScale" use="required" type="xs:integer" />
+                                        <xs:attribute name="node" use="required" type="xs:NCName" />
+                                        <xs:attribute name="refNodeIndex" use="required" type="xs:integer" />
+                                        <xs:attribute name="shaderParameter" use="required" type="xs:NCName" />
+                                        <xs:attribute name="shaderParameterComponentAmplitude" use="required" type="xs:integer" />
+                                        <xs:attribute name="shaderParameterComponentSpeed" use="required" type="xs:integer" />
+                                        <xs:attribute name="speedScale" use="required" type="xs:integer" />
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
@@ -1468,10 +1377,18 @@
                     <xs:element name="leveler">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="unloadingTrigger" maxOccurs="unbounded">
+                                <xs:element name="levelerNode">
                                     <xs:complexType>
+                                        <xs:attribute name="foldMaxLimit" type="xs:decimal" />
+                                        <xs:attribute name="foldMinLimit" type="xs:integer" />
+                                        <xs:attribute name="maxDropDirOffset" use="required" type="xs:decimal" />
+                                        <xs:attribute name="maxDropHeight" use="required" type="xs:decimal" />
+                                        <xs:attribute name="maxDropWidth" use="required" type="xs:decimal" />
+                                        <xs:attribute name="minDropDirOffset" use="required" type="xs:decimal" />
+                                        <xs:attribute name="minDropHeight" use="required" type="xs:decimal" />
+                                        <xs:attribute name="minDropWidth" use="required" type="xs:decimal" />
                                         <xs:attribute name="node" use="required" type="xs:NCName" />
-                                        <xs:attribute name="pipeState" type="xs:integer" />
+                                        <xs:attribute name="width" use="required" type="xs:decimal" />
                                     </xs:complexType>
                                 </xs:element>
                                 <xs:element name="pickUpDirection" type="xs:integer" />
@@ -1501,36 +1418,12 @@
                                         </xs:complexType>
                                     </xs:element>
                                 </xs:choice>
-                                <xs:element name="pipeNode" maxOccurs="unbounded">
+                                <xs:element name="realLights" minOccurs="0">
                                     <xs:complexType>
                                         <xs:sequence>
-                                            <xs:element name="state1">
-                                                <xs:complexType>
-                                                    <xs:attribute name="rotation" use="required" />
-                                                </xs:complexType>
-                                            </xs:element>
-                                            <xs:element name="state2">
-                                                <xs:complexType>
-                                                    <xs:attribute name="rotation" use="required" />
-                                                </xs:complexType>
-                                            </xs:element>
-                                            <xs:element name="bendingRegulationNode" minOccurs="0">
-                                                <xs:complexType>
-                                                    <xs:attribute name="axis" use="required" type="xs:integer" />
-                                                    <xs:attribute name="direction" use="required" type="xs:integer" />
-                                                    <xs:attribute name="node" use="required" type="xs:NCName" />
-                                                </xs:complexType>
-                                            </xs:element>
+                                            <xs:element minOccurs="0" ref="low" />
+                                            <xs:element ref="high" />
                                         </xs:sequence>
-                                        <xs:attribute name="autoAimInvertZ" type="xs:boolean" />
-                                        <xs:attribute name="autoAimXRotation" type="xs:boolean" />
-                                        <xs:attribute name="autoAimYRotation" type="xs:boolean" />
-                                        <xs:attribute name="bendingRegulation" type="xs:decimal" />
-                                        <xs:attribute name="foldPriority" type="xs:integer" />
-                                        <xs:attribute name="maxRotationLimits" />
-                                        <xs:attribute name="minRotationLimits" />
-                                        <xs:attribute name="node" use="required" type="xs:NCName" />
-                                        <xs:attribute name="rotationSpeeds" use="required" />
                                     </xs:complexType>
                                 </xs:element>
                                 <xs:choice minOccurs="0" maxOccurs="unbounded">
@@ -1633,12 +1526,24 @@
                     <xs:element name="mixerWagon">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="grabParticleSystem" minOccurs="0">
+                                <xs:element name="mixerWagonFillTypes">
                                     <xs:complexType>
-                                        <xs:attribute name="disableDuration" use="required" type="xs:decimal" />
-                                        <xs:attribute name="file" use="required" />
-                                        <xs:attribute name="position" use="required" />
-                                        <xs:attribute name="rotation" use="required" />
+                                        <xs:sequence>
+                                            <xs:element name="mixerWagonFillType" maxOccurs="unbounded">
+                                                <xs:complexType>
+                                                    <xs:sequence>
+                                                        <xs:element name="fillType">
+                                                            <xs:complexType>
+                                                                <xs:attribute name="fillType" use="required" type="xs:NCName" />
+                                                            </xs:complexType>
+                                                        </xs:element>
+                                                    </xs:sequence>
+                                                    <xs:attribute name="maxPercentage" use="required" type="xs:integer" />
+                                                    <xs:attribute name="minPercentage" use="required" type="xs:integer" />
+                                                    <xs:attribute name="name" use="required" type="xs:NCName" />
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
                                     </xs:complexType>
                                 </xs:element>
                                 <xs:element ref="baleTrigger" />
@@ -1663,23 +1568,26 @@
                     <xs:element name="motorized">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="baleType">
+                                <xs:element name="consumerConfigurations" minOccurs="0">
                                     <xs:complexType>
-                                        <xs:attribute name="diameter" type="xs:decimal" />
-                                        <xs:attribute name="fillType" type="xs:NCName" />
-                                        <xs:attribute name="height" type="xs:decimal" />
-                                        <xs:attribute name="isRoundBale" type="xs:boolean" />
-                                        <xs:attribute name="length" type="xs:decimal" />
-                                        <xs:attribute name="maxBaleDiameter" type="xs:decimal" />
-                                        <xs:attribute name="maxBaleHeight" type="xs:decimal" />
-                                        <xs:attribute name="maxBaleLength" type="xs:decimal" />
-                                        <xs:attribute name="maxBaleWidth" type="xs:decimal" />
-                                        <xs:attribute name="minBaleDiameter" type="xs:decimal" />
-                                        <xs:attribute name="minBaleHeight" type="xs:decimal" />
-                                        <xs:attribute name="minBaleLength" type="xs:decimal" />
-                                        <xs:attribute name="minBaleWidth" type="xs:decimal" />
-                                        <xs:attribute name="width" type="xs:decimal" />
-                                        <xs:attribute name="wrapperBaleFilename" />
+                                        <xs:sequence>
+                                            <xs:element name="consumerConfiguration">
+                                                <xs:complexType>
+                                                    <xs:sequence>
+                                                        <xs:element name="consumer" maxOccurs="unbounded">
+                                                            <xs:complexType>
+                                                                <xs:attribute name="fillType" use="required" type="xs:NCName" />
+                                                                <xs:attribute name="fillUnitIndex" use="required" type="xs:integer" />
+                                                                <xs:attribute name="permanentConsumption" type="xs:boolean" />
+                                                                <xs:attribute name="refillCapacityPercentage" type="xs:decimal" />
+                                                                <xs:attribute name="refillLitersPerSecond" type="xs:integer" />
+                                                                <xs:attribute name="usage" use="required" type="xs:decimal" />
+                                                            </xs:complexType>
+                                                        </xs:element>
+                                                    </xs:sequence>
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
                                     </xs:complexType>
                                 </xs:element>
                                 <xs:choice maxOccurs="unbounded">
@@ -1927,43 +1835,8 @@
                     <xs:element name="reverseDriving">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="rimcolor" type="xs:NCName" minOccurs="0" />
-                                <xs:element name="wheelConfigurations" minOccurs="0">
-                                    <xs:complexType>
-                                        <xs:sequence>
-                                            <xs:element name="wheelConfiguration" maxOccurs="unbounded">
-                                                <xs:complexType>
-                                                    <xs:sequence>
-                                                        <xs:element ref="wheels" />
-                                                        <xs:element name="crawlers" minOccurs="0">
-                                                            <xs:complexType>
-                                                                <xs:sequence>
-                                                                    <xs:element name="crawler" maxOccurs="unbounded">
-                                                                        <xs:complexType>
-                                                                            <xs:attribute name="filename" use="required" />
-                                                                            <xs:attribute name="isLeft" use="required" type="xs:boolean" />
-                                                                            <xs:attribute name="linkNode" use="required" type="xs:NCName" />
-                                                                            <xs:attribute name="trackWidth" type="xs:decimal" />
-                                                                            <xs:attribute name="wheelIndex" use="required" type="xs:integer" />
-                                                                        </xs:complexType>
-                                                                    </xs:element>
-                                                                </xs:sequence>
-                                                            </xs:complexType>
-                                                        </xs:element>
-                                                        <xs:choice minOccurs="0" maxOccurs="unbounded">
-                                                            <xs:element ref="objectChange" />
-                                                            <xs:element ref="size" />
-                                                        </xs:choice>
-                                                    </xs:sequence>
-                                                    <xs:attribute name="brand" type="xs:NCName" />
-                                                    <xs:attribute name="isDefault" type="xs:boolean" />
-                                                    <xs:attribute name="name" />
-                                                    <xs:attribute name="price" type="xs:integer" />
-                                                </xs:complexType>
-                                            </xs:element>
-                                        </xs:sequence>
-                                    </xs:complexType>
-                                </xs:element>
+                                <xs:element maxOccurs="unbounded" ref="target" />
+                                <xs:element minOccurs="0" ref="steeringWheel" />
                             </xs:sequence>
                             <xs:attribute name="animationName" use="required" type="xs:NCName" />
                         </xs:complexType>
@@ -1971,11 +1844,10 @@
                     <xs:element name="ridgeMarker">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="rotatingPart" minOccurs="0">
+                                <xs:element name="marker" maxOccurs="unbounded">
                                     <xs:complexType>
-                                        <xs:attribute name="negRot" use="required" />
-                                        <xs:attribute name="node" use="required" type="xs:NCName" />
-                                        <xs:attribute name="posRot" use="required" />
+                                        <xs:attribute name="animName" use="required" type="xs:NCName" />
+                                        <xs:attribute name="workAreaIndex" use="required" type="xs:integer" />
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
@@ -1987,13 +1859,12 @@
                     <xs:element name="rimColorConfigurations">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="additional" minOccurs="0">
+                                <xs:element name="rimColorConfiguration" minOccurs="0" maxOccurs="unbounded">
                                     <xs:complexType>
-                                        <xs:attribute name="filename" use="required" />
-                                        <xs:attribute name="mass" use="required" type="xs:decimal" />
-                                        <xs:attribute name="node" use="required" />
-                                        <xs:attribute name="offset" use="required" type="xs:decimal" />
-                                        <xs:attribute name="scale" use="required" />
+                                        <xs:attribute name="color" use="required" />
+                                        <xs:attribute name="material" type="xs:integer" />
+                                        <xs:attribute name="name" />
+                                        <xs:attribute name="price" type="xs:integer" />
                                     </xs:complexType>
                                 </xs:element>
                                 <xs:element minOccurs="0" ref="colorNode" />
@@ -2047,9 +1918,23 @@
                     <xs:element name="shovel">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="refNode" minOccurs="0" maxOccurs="unbounded">
+                                <xs:element name="shovelNode" minOccurs="0" maxOccurs="unbounded">
                                     <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element minOccurs="0" ref="movingToolActivation" />
+                                        </xs:sequence>
+                                        <xs:attribute name="fillLitersPerSecond" type="xs:integer" />
+                                        <xs:attribute name="fillUnitIndex" use="required" type="xs:integer" />
+                                        <xs:attribute name="length" use="required" type="xs:decimal" />
+                                        <xs:attribute name="loadInfoIndex" type="xs:integer" />
+                                        <xs:attribute name="maxPickupAngle" type="xs:integer" />
+                                        <xs:attribute name="needsActivation" type="xs:boolean" />
+                                        <xs:attribute name="needsAttacherVehicle" type="xs:boolean" />
+                                        <xs:attribute name="needsMovement" type="xs:boolean" />
                                         <xs:attribute name="node" use="required" type="xs:NCName" />
+                                        <xs:attribute name="width" use="required" type="xs:decimal" />
+                                        <xs:attribute name="yOffset" type="xs:decimal" />
+                                        <xs:attribute name="zOffset" type="xs:integer" />
                                     </xs:complexType>
                                 </xs:element>
                                 <xs:choice minOccurs="0">
@@ -2063,22 +1948,13 @@
                     <xs:element name="slopeCompensation">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="coverConfigurations" minOccurs="0">
+                                <xs:element name="compensationNode" maxOccurs="unbounded">
                                     <xs:complexType>
-                                        <xs:sequence>
-                                            <xs:element name="coverConfiguration" maxOccurs="unbounded">
-                                                <xs:complexType>
-                                                    <xs:sequence>
-                                                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="cover" />
-                                                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="objectChange" />
-                                                    </xs:sequence>
-                                                    <xs:attribute name="closeCoverIfNotAllowed" type="xs:boolean" />
-                                                    <xs:attribute name="name" />
-                                                    <xs:attribute name="openCoverWhileTipping" type="xs:boolean" />
-                                                    <xs:attribute name="price" type="xs:integer" />
-                                                </xs:complexType>
-                                            </xs:element>
-                                        </xs:sequence>
+                                        <xs:attribute name="animationName" use="required" type="xs:NCName" />
+                                        <xs:attribute name="foldAngleScale" use="required" type="xs:integer" />
+                                        <xs:attribute name="maxAngle" use="required" type="xs:integer" />
+                                        <xs:attribute name="wheel1" use="required" type="xs:integer" />
+                                        <xs:attribute name="wheel2" use="required" type="xs:integer" />
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
@@ -2099,43 +1975,12 @@
                                         </xs:complexType>
                                     </xs:element>
                                 </xs:choice>
-                                <xs:element name="trailerConfigurations" minOccurs="0">
-                                    <xs:complexType>
-                                        <xs:sequence>
-                                            <xs:element name="trailerConfiguration" maxOccurs="unbounded">
-                                                <xs:complexType>
-                                                    <xs:sequence>
-                                                        <xs:element minOccurs="0" ref="trailer" />
-                                                    </xs:sequence>
-                                                    <xs:attribute name="name" />
-                                                    <xs:attribute name="price" type="xs:integer" />
-                                                </xs:complexType>
-                                            </xs:element>
-                                        </xs:sequence>
-                                    </xs:complexType>
-                                </xs:element>
+                                <xs:element minOccurs="0" ref="onlyActiveWhenLowered" />
                                 <xs:choice minOccurs="0" maxOccurs="unbounded">
                                     <xs:element ref="animationNodes" />
                                     <xs:element ref="sounds" />
                                 </xs:choice>
-                                <xs:element name="tipSide" minOccurs="0" maxOccurs="unbounded">
-                                    <xs:complexType>
-                                        <xs:sequence>
-                                            <xs:element maxOccurs="unbounded" ref="animation" />
-                                            <xs:element name="doorAnimation" minOccurs="0">
-                                                <xs:complexType>
-                                                    <xs:attribute name="name" use="required" type="xs:NCName" />
-                                                    <xs:attribute name="speedScale" use="required" type="xs:decimal" />
-                                                    <xs:attribute name="startTipTime" type="xs:decimal" />
-                                                </xs:complexType>
-                                            </xs:element>
-                                            <xs:element minOccurs="0" ref="animationNodes" />
-                                        </xs:sequence>
-                                        <xs:attribute name="dischargeNodeIndex" use="required" type="xs:integer" />
-                                        <xs:attribute name="name" use="required" />
-                                        <xs:attribute name="unloadInfoIndex" type="xs:integer" />
-                                    </xs:complexType>
-                                </xs:element>
+                                <xs:element minOccurs="0" ref="effects" />
                             </xs:sequence>
                             <xs:attribute name="fillUnitIndex" type="xs:integer" />
                             <xs:attribute name="isTank" type="xs:boolean" />
@@ -2205,34 +2050,8 @@
                     <xs:element name="sprayer">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="tensionBeltsConfigurations">
-                                    <xs:complexType>
-                                        <xs:sequence>
-                                            <xs:element name="tensionBeltsConfiguration" maxOccurs="unbounded">
-                                                <xs:complexType>
-                                                    <xs:sequence>
-                                                        <xs:element minOccurs="0" ref="tensionBelts" />
-                                                    </xs:sequence>
-                                                </xs:complexType>
-                                            </xs:element>
-                                        </xs:sequence>
-                                    </xs:complexType>
-                                </xs:element>
-                                <xs:element name="tensionBelt" maxOccurs="unbounded">
-                                    <xs:complexType>
-                                        <xs:sequence>
-                                            <xs:element name="intersectionNode" minOccurs="0" maxOccurs="unbounded">
-                                                <xs:complexType>
-                                                    <xs:attribute name="node" use="required" type="xs:NCName" />
-                                                </xs:complexType>
-                                            </xs:element>
-                                        </xs:sequence>
-                                        <xs:attribute name="endNode" use="required" type="xs:NCName" />
-                                        <xs:attribute name="offsetLeft" type="xs:decimal" />
-                                        <xs:attribute name="offsetRight" type="xs:decimal" />
-                                        <xs:attribute name="startNode" use="required" type="xs:NCName" />
-                                    </xs:complexType>
-                                </xs:element>
+                                <xs:element minOccurs="0" ref="usageScales" />
+                                <xs:element minOccurs="0" ref="needsActivation" />
                                 <xs:element minOccurs="0" ref="effects" />
                                 <xs:element minOccurs="0" ref="animationNodes" />
                                 <xs:element minOccurs="0" ref="sounds" />
@@ -2362,13 +2181,7 @@
                     <xs:element name="treeSaw">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="foldingPart" maxOccurs="unbounded">
-                                    <xs:complexType>
-                                        <xs:attribute name="animStartTime" type="xs:decimal" />
-                                        <xs:attribute name="animationName" use="required" type="xs:NCName" />
-                                        <xs:attribute name="speedScale" use="required" type="xs:decimal" />
-                                    </xs:complexType>
-                                </xs:element>
+                                <xs:element ref="cutNode" />
                                 <xs:element ref="effects" />
                                 <xs:element ref="animationNodes" />
                                 <xs:element ref="sounds" />
@@ -3490,7 +3303,13 @@
     <xs:element name="material">
         <xs:complexType>
             <xs:sequence>
-                <xs:element minOccurs="0" maxOccurs="unbounded" name="shaderParameter" />
+                <xs:element name="shaderParameter" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="material" type="xs:integer" />
+                        <xs:attribute name="name" use="required" type="xs:NCName" />
+                        <xs:attribute name="value" use="required" />
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
             <xs:attribute name="baseNode" type="xs:NCName" />
             <xs:attribute name="contrastThreshold" type="xs:decimal" />
@@ -3711,7 +3530,24 @@
         <xs:complexType>
             <xs:choice minOccurs="0">
                 <xs:element ref="foldingParts" />
-                <xs:element name="foldingConfigurations" />
+                <xs:element name="foldingConfigurations">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="foldingConfiguration" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element minOccurs="0" ref="foldingParts" />
+                                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="objectChange" />
+                                    </xs:sequence>
+                                    <xs:attribute name="name" />
+                                    <xs:attribute name="price" type="xs:integer" />
+                                    <xs:attribute name="workingWidth" type="xs:integer" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="title" />
+                    </xs:complexType>
+                </xs:element>
             </xs:choice>
             <xs:attribute name="maxLimit" type="xs:integer" />
             <xs:attribute name="minLimit" type="xs:integer" />
@@ -3721,7 +3557,49 @@
         <xs:complexType mixed="true">
             <xs:choice minOccurs="0" maxOccurs="unbounded">
                 <xs:element ref="sound" />
-                <xs:element name="part" />
+                <xs:element name="part">
+                    <xs:complexType>
+                        <xs:attribute name="animationClip" type="xs:NCName" />
+                        <xs:attribute name="clipEndTime" type="xs:integer" />
+                        <xs:attribute name="clipStartTime" type="xs:integer" />
+                        <xs:attribute name="componentJointIndex" type="xs:integer" />
+                        <xs:attribute name="dependentAnimation" type="xs:NCName" />
+                        <xs:attribute name="dependentAnimationEndTime" type="xs:decimal" />
+                        <xs:attribute name="dependentAnimationStartTime" type="xs:decimal" />
+                        <xs:attribute name="direction" type="xs:integer" />
+                        <xs:attribute name="duration" type="xs:decimal" />
+                        <xs:attribute name="endRot" />
+                        <xs:attribute name="endRotLimit" />
+                        <xs:attribute name="endRotMaxLimit" />
+                        <xs:attribute name="endRotMinLimit" />
+                        <xs:attribute name="endScale" />
+                        <xs:attribute name="endTime" type="xs:NMTOKEN" />
+                        <xs:attribute name="endTipSideEmptyFactor" type="xs:integer" />
+                        <xs:attribute name="endTrans" />
+                        <xs:attribute name="endTransLimit" />
+                        <xs:attribute name="endTransMaxLimit" />
+                        <xs:attribute name="endTransMinLimit" />
+                        <xs:attribute name="node" />
+                        <xs:attribute name="requiredAnimation" type="xs:NCName" />
+                        <xs:attribute name="requiredAnimationRange" />
+                        <xs:attribute name="shaderEndValues" />
+                        <xs:attribute name="shaderParameter" type="xs:NCName" />
+                        <xs:attribute name="shaderStartValues" />
+                        <xs:attribute name="startRot" />
+                        <xs:attribute name="startRotLimit" />
+                        <xs:attribute name="startRotMaxLimit" />
+                        <xs:attribute name="startRotMinLimit" />
+                        <xs:attribute name="startScale" />
+                        <xs:attribute name="startTime" use="required" type="xs:decimal" />
+                        <xs:attribute name="startTipSideEmptyFactor" type="xs:integer" />
+                        <xs:attribute name="startTrans" />
+                        <xs:attribute name="startTransLimit" />
+                        <xs:attribute name="startTransMaxLimit" />
+                        <xs:attribute name="startTransMinLimit" />
+                        <xs:attribute name="visbility" type="xs:boolean" />
+                        <xs:attribute name="visibility" type="xs:boolean" />
+                    </xs:complexType>
+                </xs:element>
             </xs:choice>
             <xs:attribute name="animAcceleration" type="xs:decimal" />
             <xs:attribute name="animName" type="xs:NCName" />
@@ -3883,7 +3761,29 @@
                 <xs:element minOccurs="0" ref="animationNodes" />
                 <xs:choice minOccurs="0" maxOccurs="unbounded">
                     <xs:element ref="effects" />
-                    <xs:element name="rakes" />
+                    <xs:element name="rakes">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="rake" maxOccurs="unbounded">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="spike" maxOccurs="unbounded">
+                                                <xs:complexType>
+                                                    <xs:attribute name="dir" type="xs:integer" />
+                                                    <xs:attribute name="node" use="required" type="xs:NCName" />
+                                                </xs:complexType>
+                                            </xs:element>
+                                        </xs:sequence>
+                                        <xs:attribute name="dir" use="required" type="xs:integer" />
+                                        <xs:attribute name="moveDownRange" use="required" />
+                                        <xs:attribute name="moveUpRange" use="required" />
+                                        <xs:attribute name="node" use="required" type="xs:NCName" />
+                                        <xs:attribute name="spikeMaxRotZ" use="required" type="xs:integer" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
                 </xs:choice>
                 <xs:element minOccurs="0" ref="sounds" />
             </xs:sequence>
@@ -3943,7 +3843,11 @@
                     <xs:element ref="turnLightLeft" />
                     <xs:element ref="turnLightRight" />
                 </xs:choice>
-                <xs:element minOccurs="0" maxOccurs="unbounded" name="interiorLight" />
+                <xs:element name="interiorLight" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="node" use="required" type="xs:NCName" />
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -4004,21 +3908,72 @@
     <xs:element name="exhaustEffects">
         <xs:complexType>
             <xs:sequence>
-                <xs:element maxOccurs="unbounded" name="exhaustEffect" />
+                <xs:element name="exhaustEffect" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="filename" use="required" />
+                        <xs:attribute name="index" type="xs:NCName" />
+                        <xs:attribute name="maxRpmColor" use="required" />
+                        <xs:attribute name="maxRpmScale" use="required" type="xs:decimal" />
+                        <xs:attribute name="minRpmColor" use="required" />
+                        <xs:attribute name="minRpmScale" use="required" type="xs:decimal" />
+                        <xs:attribute name="node" type="xs:NCName" />
+                        <xs:attribute name="xzRotationsBackward" />
+                        <xs:attribute name="xzRotationsForward" />
+                        <xs:attribute name="xzRotationsLeft" />
+                        <xs:attribute name="xzRotationsOffset" />
+                        <xs:attribute name="xzRotationsRight" />
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
     <xs:element name="unloadingTriggers">
         <xs:complexType>
             <xs:sequence>
-                <xs:element maxOccurs="unbounded" name="unloadingTrigger" />
+                <xs:element name="unloadingTrigger" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="node" use="required" type="xs:NCName" />
+                        <xs:attribute name="pipeState" type="xs:integer" />
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
     <xs:element name="pipeNodes">
         <xs:complexType>
             <xs:sequence>
-                <xs:element maxOccurs="unbounded" name="pipeNode" />
+                <xs:element name="pipeNode" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="state1">
+                                <xs:complexType>
+                                    <xs:attribute name="rotation" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="state2">
+                                <xs:complexType>
+                                    <xs:attribute name="rotation" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="bendingRegulationNode" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:attribute name="axis" use="required" type="xs:integer" />
+                                    <xs:attribute name="direction" use="required" type="xs:integer" />
+                                    <xs:attribute name="node" use="required" type="xs:NCName" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="autoAimInvertZ" type="xs:boolean" />
+                        <xs:attribute name="autoAimXRotation" type="xs:boolean" />
+                        <xs:attribute name="autoAimYRotation" type="xs:boolean" />
+                        <xs:attribute name="bendingRegulation" type="xs:decimal" />
+                        <xs:attribute name="foldPriority" type="xs:integer" />
+                        <xs:attribute name="maxRotationLimits" />
+                        <xs:attribute name="minRotationLimits" />
+                        <xs:attribute name="node" use="required" type="xs:NCName" />
+                        <xs:attribute name="rotationSpeeds" use="required" />
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -4066,7 +4021,14 @@
     <xs:element name="grabber">
         <xs:complexType>
             <xs:sequence>
-                <xs:element minOccurs="0" name="grabParticleSystem" />
+                <xs:element name="grabParticleSystem" minOccurs="0">
+                    <xs:complexType>
+                        <xs:attribute name="disableDuration" use="required" type="xs:decimal" />
+                        <xs:attribute name="file" use="required" />
+                        <xs:attribute name="position" use="required" />
+                        <xs:attribute name="rotation" use="required" />
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
             <xs:attribute name="grabNode" type="xs:NCName" />
             <xs:attribute name="nearestDistance" type="xs:decimal" />
@@ -4078,7 +4040,25 @@
     <xs:element name="baleTypes">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="baleType" />
+                <xs:element name="baleType">
+                    <xs:complexType>
+                        <xs:attribute name="diameter" type="xs:decimal" />
+                        <xs:attribute name="fillType" type="xs:NCName" />
+                        <xs:attribute name="height" type="xs:decimal" />
+                        <xs:attribute name="isRoundBale" type="xs:boolean" />
+                        <xs:attribute name="length" type="xs:decimal" />
+                        <xs:attribute name="maxBaleDiameter" type="xs:decimal" />
+                        <xs:attribute name="maxBaleHeight" type="xs:decimal" />
+                        <xs:attribute name="maxBaleLength" type="xs:decimal" />
+                        <xs:attribute name="maxBaleWidth" type="xs:decimal" />
+                        <xs:attribute name="minBaleDiameter" type="xs:decimal" />
+                        <xs:attribute name="minBaleHeight" type="xs:decimal" />
+                        <xs:attribute name="minBaleLength" type="xs:decimal" />
+                        <xs:attribute name="minBaleWidth" type="xs:decimal" />
+                        <xs:attribute name="width" type="xs:decimal" />
+                        <xs:attribute name="wrapperBaleFilename" />
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -4133,7 +4113,7 @@
     <xs:element name="wheels">
         <xs:complexType>
             <xs:sequence>
-                <xs:element minOccurs="0" name="rimcolor" />
+                <xs:element name="rimcolor" type="xs:NCName" minOccurs="0" />
                 <xs:choice minOccurs="0" maxOccurs="unbounded">
                     <xs:element name="ackermannSteeringConfigurations">
                         <xs:complexType>
@@ -4183,7 +4163,42 @@
                         </xs:complexType>
                     </xs:element>
                 </xs:choice>
-                <xs:element minOccurs="0" name="wheelConfigurations" />
+                <xs:element name="wheelConfigurations" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="wheelConfiguration" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element ref="wheels" />
+                                        <xs:element name="crawlers" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="crawler" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="filename" use="required" />
+                                                            <xs:attribute name="isLeft" use="required" type="xs:boolean" />
+                                                            <xs:attribute name="linkNode" use="required" type="xs:NCName" />
+                                                            <xs:attribute name="trackWidth" type="xs:decimal" />
+                                                            <xs:attribute name="wheelIndex" use="required" type="xs:integer" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                            <xs:element ref="objectChange" />
+                                            <xs:element ref="size" />
+                                        </xs:choice>
+                                    </xs:sequence>
+                                    <xs:attribute name="brand" type="xs:NCName" />
+                                    <xs:attribute name="isDefault" type="xs:boolean" />
+                                    <xs:attribute name="name" />
+                                    <xs:attribute name="price" type="xs:integer" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element minOccurs="0" maxOccurs="unbounded" ref="wheel" />
                 <xs:element name="foliageBendingModifier" minOccurs="0" maxOccurs="unbounded">
                     <xs:complexType>
@@ -4206,7 +4221,13 @@
     <xs:element name="articulatedAxis">
         <xs:complexType>
             <xs:sequence>
-                <xs:element minOccurs="0" name="rotatingPart" />
+                <xs:element name="rotatingPart" minOccurs="0">
+                    <xs:complexType>
+                        <xs:attribute name="negRot" use="required" />
+                        <xs:attribute name="node" use="required" type="xs:NCName" />
+                        <xs:attribute name="posRot" use="required" />
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
             <xs:attribute name="aiRevereserNode" type="xs:NCName" />
             <xs:attribute name="anchorActor" type="xs:integer" />
@@ -4337,7 +4358,15 @@
                         </xs:complexType>
                     </xs:element>
                 </xs:choice>
-                <xs:element minOccurs="0" name="additional" />
+                <xs:element name="additional" minOccurs="0">
+                    <xs:complexType>
+                        <xs:attribute name="filename" use="required" />
+                        <xs:attribute name="mass" use="required" type="xs:decimal" />
+                        <xs:attribute name="node" use="required" />
+                        <xs:attribute name="offset" use="required" type="xs:decimal" />
+                        <xs:attribute name="scale" use="required" />
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
             <xs:attribute name="additionalColor" />
             <xs:attribute name="brand" type="xs:NCName" />
@@ -4400,10 +4429,21 @@
             <xs:attribute name="worldSpace" type="xs:boolean" />
         </xs:complexType>
     </xs:element>
+    <xs:element name="dischargeInfos">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="dischargeInfo" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
     <xs:element name="heightNode">
         <xs:complexType>
             <xs:sequence>
-                <xs:element minOccurs="0" maxOccurs="unbounded" name="refNode" />
+                <xs:element name="refNode" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="node" use="required" type="xs:NCName" />
+                    </xs:complexType>
+                </xs:element>
                 <xs:element minOccurs="0" maxOccurs="unbounded" ref="node" />
             </xs:sequence>
             <xs:attribute name="fillVolumeIndex" type="xs:integer" />
@@ -4413,7 +4453,24 @@
     <xs:element name="cover">
         <xs:complexType>
             <xs:sequence>
-                <xs:element minOccurs="0" name="coverConfigurations" />
+                <xs:element name="coverConfigurations" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="coverConfiguration" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="cover" />
+                                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="objectChange" />
+                                    </xs:sequence>
+                                    <xs:attribute name="closeCoverIfNotAllowed" type="xs:boolean" />
+                                    <xs:attribute name="name" />
+                                    <xs:attribute name="openCoverWhileTipping" type="xs:boolean" />
+                                    <xs:attribute name="price" type="xs:integer" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
             <xs:attribute name="blockedToolTypes" type="xs:NCName" />
             <xs:attribute name="closeAnimation" type="xs:NCName" />
@@ -4429,8 +4486,39 @@
     <xs:element name="trailer">
         <xs:complexType>
             <xs:sequence>
-                <xs:element minOccurs="0" name="trailerConfigurations" />
-                <xs:element minOccurs="0" maxOccurs="unbounded" name="tipSide" />
+                <xs:element name="trailerConfigurations" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="trailerConfiguration" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element minOccurs="0" ref="trailer" />
+                                    </xs:sequence>
+                                    <xs:attribute name="name" />
+                                    <xs:attribute name="price" type="xs:integer" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="tipSide" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" ref="animation" />
+                            <xs:element name="doorAnimation" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:attribute name="name" use="required" type="xs:NCName" />
+                                    <xs:attribute name="speedScale" use="required" type="xs:decimal" />
+                                    <xs:attribute name="startTipTime" type="xs:decimal" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" ref="animationNodes" />
+                        </xs:sequence>
+                        <xs:attribute name="dischargeNodeIndex" use="required" type="xs:integer" />
+                        <xs:attribute name="name" use="required" />
+                        <xs:attribute name="unloadInfoIndex" type="xs:integer" />
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -4452,8 +4540,34 @@
     <xs:element name="tensionBelts">
         <xs:complexType>
             <xs:sequence minOccurs="0">
-                <xs:element name="tensionBeltsConfigurations" />
-                <xs:element maxOccurs="unbounded" name="tensionBelt" />
+                <xs:element name="tensionBeltsConfigurations">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="tensionBeltsConfiguration" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element minOccurs="0" ref="tensionBelts" />
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="tensionBelt" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="intersectionNode" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="node" use="required" type="xs:NCName" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="endNode" use="required" type="xs:NCName" />
+                        <xs:attribute name="offsetLeft" type="xs:decimal" />
+                        <xs:attribute name="offsetRight" type="xs:decimal" />
+                        <xs:attribute name="startNode" use="required" type="xs:NCName" />
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
             <xs:attribute name="activationTrigger" type="xs:NCName" />
             <xs:attribute name="defaultHeight" type="xs:decimal" />
@@ -4518,8 +4632,6 @@
                                     <xs:attribute name="workAreaIndex" type="xs:integer" />
                                 </xs:complexType>
                             </xs:element>
-
-
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
@@ -4529,6 +4641,17 @@
             <xs:attribute name="fruitTypeConverter" type="xs:NCName" />
         </xs:complexType>
     </xs:element>
+    <xs:complexType name="collision">
+        <xs:sequence>
+            <xs:element name="collision">
+                <xs:complexType>
+                    <xs:attribute name="activeCollisionMask" type="xs:integer" />
+                    <xs:attribute name="inActiveCollisionMask" type="xs:integer" />
+                    <xs:attribute name="node" use="required" type="xs:NCName" />
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
     <xs:element name="distanceToGround">
         <xs:complexType>
             <xs:attribute name="lower" use="required" type="xs:decimal" />
@@ -4538,7 +4661,13 @@
     <xs:element name="foldingParts">
         <xs:complexType>
             <xs:sequence>
-                <xs:element maxOccurs="unbounded" name="foldingPart" />
+                <xs:element name="foldingPart" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="animStartTime" type="xs:decimal" />
+                        <xs:attribute name="animationName" use="required" type="xs:NCName" />
+                        <xs:attribute name="speedScale" use="required" type="xs:decimal" />
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
             <xs:attribute name="allowUnfoldingByAI" type="xs:boolean" />
             <xs:attribute name="detachingMaxLimit" type="xs:integer" />
@@ -4623,15 +4752,4 @@
             <xs:attribute name="scale" use="required" />
         </xs:complexType>
     </xs:element>
-    <xs:complexType name="collision">
-        <xs:sequence>
-            <xs:element name="collision">
-                <xs:complexType>
-                    <xs:attribute name="activeCollisionMask" type="xs:integer" />
-                    <xs:attribute name="inActiveCollisionMask" type="xs:integer" />
-                    <xs:attribute name="node" use="required" type="xs:NCName" />
-                </xs:complexType>
-            </xs:element>
-        </xs:sequence>
-    </xs:complexType>
 </xs:schema>
