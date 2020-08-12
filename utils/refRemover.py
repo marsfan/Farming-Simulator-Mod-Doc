@@ -31,43 +31,79 @@ def processXSD(infile: str, outfile: str) -> None:
         outfile: File to write out to
 
     """
+
+    def getEl(elementPath: str) -> etree._Element:
+        """Get an element in the XML tree from its path.
+
+        This is needed to make sure we are editing the item in the schema, instead of a copy
+        """
+        # Make sure to remove "xs:schema" as for some reason find does not work if we have it.
+        # Also make sure to include the xs namespace.
+        return schema.xpath(elementPath, namespaces={"xs": "http://www.w3.org/2001/XMLSchema"})[0]
+
+    count = 0   # Variable to keep track of how many replacements are made.
+
+    # Load in the XSD file and then get the root elements.
     schema: etree._ElementTree = etree.parse(infile)
-    namespaces = {"xs": "http://www.w3.org/2001/XMLSchema"}
-    children = list(schema.getroot())
-    refs = children
-    for ref in reversed(refs):
-        name = ref.attrib['name']
-        elementsToReplace = schema.findall(f'.//xs:element[@ref="{name}"]', namespaces)
+    rootElements = list(schema.getroot())
+    # Iterate backwards through all root element. (Backwards works better for some reason. )
+    for rootElement in reversed(rootElements):
+        count += 1  # Increment replacement counts
+        name = rootElement.attrib['name']  # Get the name of the root element
+
+        # Find all elements that reference this root element
+        elementsToReplace = schema.xpath(
+            f'.//xs:element[@ref="{name}"]', namespaces={"xs": "http://www.w3.org/2001/XMLSchema"})
 
         # Only replace references if they are only used once. If the reference is used more than once, it is actually
         # saving space for us, and can be left in place.
         if len(elementsToReplace) == 1:
-            path = schema.getpath(elementsToReplace[0]).replace("xs:schema", '')
+            # Move single element out of list for ease of use.
 
-            elementsToReplace[0].attrib['name'] = elementsToReplace[0].attrib['ref']
-            del elementsToReplace[0].attrib['ref']
+            # Since writing to the elementsToReplace variable will not replace it in the actual schema, we need to
+            # get the actual path to it, and use that to resolve the actual element.
+            # We also need to stripe the "xs:schema" part of the path for some reason I don't really get.
+            path = schema.getpath(elementsToReplace[0])
+            elementToReplace = getEl(path)
 
-            attribsToAdd = elementsToReplace[0].attrib
-            elementToReplace = schema.find(path, namespaces)
+            # Store the attribs that the the element has, so we can put them back in after replacing it
+            oldAttribs = elementToReplace.attrib
+            # Replace the element with the root element it references
+            getEl(path).getparent().replace(elementToReplace, rootElement)
+            # Add proper name attribute to the element.
+            getEl(path).attrib['name'] = name
 
-            elementToReplace.getparent().replace(elementToReplace, ref)
+            # Add old attribs back in
+            getEl(path).attrib.update(oldAttribs)
 
-            schema.find(path, namespaces).attrib.update(attribsToAdd)
+            # Remove ref attribute.
+            del getEl(path).attrib['ref']
 
+    # Convert the XSD into a string for exporting.
     output = etree.tostring(schema, pretty_print=True)
+
+    # Write the XSD to the output file.
     with open(outfile, 'wb') as f:
         f.write(b'<?xml version="1.0" encoding="UTF-8"?>\n')
         f.write(output)
+    print(count)  # Print out total number of replacements
+
 
 def main():
     """Function to run when called directly from CLI."""
 
+    # Use the argparse library to process arguments from the command line.
     parser = argparse.ArgumentParser(description='Get rid of local refs in schema file')
     parser.add_argument("infile", type=str, help="Path to the file to process")
-    parser.add_argument("outfile", type=str, help="Path to output result. If not given, will overwrite input file", nargs="?")
+    parser.add_argument("outfile", type=str,
+                        help="Path to output result. If not given, will overwrite input file", nargs="?")
     args = parser.parse_args()
+
+    # If user does not supply an output file, output to the file that was originally read from.
     if args.outfile is None:
         args.outfile = args.infile
+
+    # Call the XSD processing function.
     processXSD(args.infile, args.outfile)
 
 

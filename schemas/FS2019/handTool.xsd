@@ -33,10 +33,11 @@
                 <xs:element name="handNode">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="loadModifier" minOccurs="0" maxOccurs="unbounded">
+                            <xs:element name="firstPerson">
                                 <xs:complexType>
-                                    <xs:attribute name="load" use="required" type="xs:decimal" />
-                                    <xs:attribute name="percentage" use="required" type="xs:decimal" />
+                                    <xs:attribute name="node" />
+                                    <xs:attribute name="position" use="required" />
+                                    <xs:attribute name="rotation" use="required" />
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="thirdPerson">
@@ -82,10 +83,11 @@
                                 <xs:element name="particleSystems">
                                     <xs:complexType>
                                         <xs:sequence>
-                                            <xs:element name="speedModifier" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:element name="emitterShape" maxOccurs="unbounded">
                                                 <xs:complexType>
-                                                    <xs:attribute name="percentage" use="required" type="xs:decimal" />
-                                                    <xs:attribute name="speed" use="required" type="xs:decimal" />
+                                                    <xs:attribute name="emitCountScale" use="required" type="xs:integer" />
+                                                    <xs:attribute name="node" use="required" />
+                                                    <xs:attribute name="particleType" use="required" type="xs:NCName" />
                                                 </xs:complexType>
                                             </xs:element>
                                         </xs:sequence>
@@ -377,7 +379,12 @@
     <xs:element name="volume">
         <xs:complexType>
             <xs:sequence>
-                <xs:element minOccurs="0" maxOccurs="unbounded" name="speedModifier" />
+                <xs:element name="speedModifier" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="percentage" use="required" type="xs:decimal" />
+                        <xs:attribute name="speed" use="required" type="xs:decimal" />
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
             <xs:attribute name="indoor" use="required" type="xs:decimal" />
             <xs:attribute name="outdoor" use="required" type="xs:decimal" />
@@ -386,7 +393,12 @@
     <xs:element name="pitch">
         <xs:complexType>
             <xs:sequence>
-                <xs:element minOccurs="0" maxOccurs="unbounded" name="loadModifier" />
+                <xs:element name="loadModifier" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="load" use="required" type="xs:decimal" />
+                        <xs:attribute name="percentage" use="required" type="xs:decimal" />
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
             <xs:attribute name="indoor" use="required" type="xs:decimal" />
             <xs:attribute name="outdoor" use="required" type="xs:decimal" />
