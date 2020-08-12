@@ -143,3 +143,4 @@ schemas/**/*.xml
 docs/build
 
 utils/SortedXML
+utils/GeneratedXSD
