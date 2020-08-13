@@ -23,6 +23,8 @@ import re
 import os
 from pathlib import Path
 
+from lxml.etree import XMLParser
+
 replaceRegex = re.compile(r'/xs:schema/xs:element\[.\]/')
 
 
@@ -46,12 +48,15 @@ def processXSD(infile: str, outfile: str) -> None:
 
 
     # Load in the XSD file and then get the root elements.
+    # Make sure the parser know to remove comments so they do not cause glitches
     schema: etree._ElementTree = etree.parse(infile)
     rootElements = list(schema.getroot())
     # Iterate backwards through all root element. (Backwards works better for some reason. )
     for rootElement in reversed(rootElements):
-        name = rootElement.attrib['name']  # Get the name of the root element
-
+        try:
+            name = rootElement.attrib['name']  # Get the name of the root element
+        except KeyError:
+            continue
         # Find all elements that reference this root element
         elementsToReplace = schema.xpath(
             f'.//xs:element[@ref="{name}"]', namespaces={"xs": "http://www.w3.org/2001/XMLSchema"})
