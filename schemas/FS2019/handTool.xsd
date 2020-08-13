@@ -33,24 +33,15 @@
                 <xs:element name="handNode">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="firstPerson">
-                                <xs:complexType>
-                                    <xs:attribute name="node" />
-                                    <xs:attribute name="position" use="required" />
-                                    <xs:attribute name="rotation" use="required" />
-                                </xs:complexType>
-                            </xs:element>
-                            <xs:element name="thirdPerson">
-                                <xs:complexType>
-                                    <xs:attribute name="node" />
-                                    <xs:attribute name="position" use="required" />
-                                    <xs:attribute name="rotation" use="required" />
-                                </xs:complexType>
-                            </xs:element>
+                            <xs:element name="firstPerson" type="viewType"/>
+                            <xs:element name="thirdPerson" type="viewType"/>
                             <xs:element name="thirdPersonCutting" minOccurs="0">
                                 <xs:complexType>
-                                    <xs:attribute name="position" use="required" />
-                                    <xs:attribute name="rotation" use="required" />
+                                    <xs:complexContent>
+                                        <xs:restriction base="viewType">
+                                            <xs:attribute name="node" use="prohibited"/>
+                                        </xs:restriction>
+                                    </xs:complexContent>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -103,51 +94,15 @@
                                 <xs:element name="branchSounds">
                                     <xs:complexType>
                                         <xs:sequence>
-                                            <xs:element name="branch" maxOccurs="unbounded">
-                                                <xs:complexType>
-                                                    <xs:sequence>
-                                                        <xs:element ref="volume" />
-                                                        <xs:element ref="pitch" />
-                                                        <xs:element ref="lowpassGain" />
-                                                    </xs:sequence>
-                                                    <xs:attribute name="file" use="required" />
-                                                    <xs:attribute name="innerRadius" use="required" type="xs:decimal" />
-                                                    <xs:attribute name="linkNode" use="required" />
-                                                    <xs:attribute name="outerRadius" use="required" type="xs:decimal" />
-                                                </xs:complexType>
-                                            </xs:element>
+                                            <xs:element name="branch" maxOccurs="unbounded" type="soundType" />
                                         </xs:sequence>
                                     </xs:complexType>
                                 </xs:element>
                                 <xs:element name="treeSounds">
                                     <xs:complexType>
                                         <xs:choice>
-                                            <xs:element name="cutted" maxOccurs="unbounded">
-                                                <xs:complexType>
-                                                    <xs:sequence>
-                                                        <xs:element ref="volume" />
-                                                        <xs:element ref="pitch" />
-                                                        <xs:element ref="lowpassGain" />
-                                                    </xs:sequence>
-                                                    <xs:attribute name="file" use="required" />
-                                                    <xs:attribute name="innerRadius" use="required" type="xs:decimal" />
-                                                    <xs:attribute name="linkNode" use="required" />
-                                                    <xs:attribute name="outerRadius" use="required" type="xs:decimal" />
-                                                </xs:complexType>
-                                            </xs:element>
-                                            <xs:element name="cut" maxOccurs="unbounded">
-                                                <xs:complexType>
-                                                    <xs:sequence>
-                                                        <xs:element ref="volume" />
-                                                        <xs:element ref="pitch" />
-                                                        <xs:element ref="lowpassGain" />
-                                                    </xs:sequence>
-                                                    <xs:attribute name="file" use="required" />
-                                                    <xs:attribute name="innerRadius" use="required" type="xs:decimal" />
-                                                    <xs:attribute name="linkNode" use="required" />
-                                                    <xs:attribute name="outerRadius" use="required" type="xs:decimal" />
-                                                </xs:complexType>
-                                            </xs:element>
+                                            <xs:element name="cutted" maxOccurs="unbounded" type="soundType" />
+                                            <xs:element name="cut" maxOccurs="unbounded" type="soundType" />
                                         </xs:choice>
                                     </xs:complexType>
                                 </xs:element>
@@ -234,180 +189,87 @@
                     </xs:complexType>
                 </xs:element>
                 <xs:sequence>
-                    <xs:element name="start">
-                        <xs:complexType>
-                            <xs:sequence>
-                                <xs:element ref="volume" />
-                                <xs:element ref="pitch" />
-                                <xs:element ref="lowpassGain" />
-                            </xs:sequence>
-                            <xs:attribute name="file" use="required" />
-                            <xs:attribute name="innerRadius" use="required" type="xs:decimal" />
-                            <xs:attribute name="linkNode" use="required" />
-                            <xs:attribute name="outerRadius" use="required" type="xs:decimal" />
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="stop">
-                        <xs:complexType>
-                            <xs:sequence>
-                                <xs:element ref="volume" />
-                                <xs:element ref="pitch" />
-                                <xs:element ref="lowpassGain" />
-                            </xs:sequence>
-                            <xs:attribute name="file" use="required" />
-                            <xs:attribute name="innerRadius" use="required" type="xs:decimal" />
-                            <xs:attribute name="linkNode" use="required" />
-                            <xs:attribute name="outerRadius" use="required" type="xs:decimal" />
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="idle">
-                        <xs:complexType>
-                            <xs:sequence>
-                                <xs:element ref="volume" />
-                                <xs:element ref="pitch" />
-                                <xs:element ref="lowpassGain" />
-                            </xs:sequence>
-                            <xs:attribute name="file" use="required" />
-                            <xs:attribute name="innerRadius" use="required" type="xs:decimal" />
-                            <xs:attribute name="linkNode" use="required" />
-                            <xs:attribute name="outerRadius" use="required" type="xs:decimal" />
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="cutStart">
-                        <xs:complexType>
-                            <xs:sequence>
-                                <xs:element ref="volume" />
-                                <xs:element ref="pitch" />
-                                <xs:element ref="lowpassGain" />
-                            </xs:sequence>
-                            <xs:attribute name="file" use="required" />
-                            <xs:attribute name="innerRadius" use="required" type="xs:decimal" />
-                            <xs:attribute name="linkNode" use="required" />
-                            <xs:attribute name="outerRadius" use="required" type="xs:decimal" />
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="cutStop">
-                        <xs:complexType>
-                            <xs:sequence>
-                                <xs:element ref="volume" />
-                                <xs:element ref="pitch" />
-                                <xs:element ref="lowpassGain" />
-                            </xs:sequence>
-                            <xs:attribute name="file" use="required" />
-                            <xs:attribute name="innerRadius" use="required" type="xs:decimal" />
-                            <xs:attribute name="linkNode" use="required" />
-                            <xs:attribute name="outerRadius" use="required" type="xs:decimal" />
-                        </xs:complexType>
-                    </xs:element>
+                    <xs:element name="start" type="soundType" />
+                    <xs:element name="stop" type="soundType" />
+                    <xs:element name="idle" type="soundType" />
+                    <xs:element name="cutStart" type="soundType" />
+                    <xs:element name="cutStop" type="soundType" />
                     <xs:element name="cutLoop">
                         <xs:complexType>
-                            <xs:sequence>
-                                <xs:element ref="volume" />
-                                <xs:element ref="pitch" />
-                                <xs:element ref="lowpassGain" />
-                            </xs:sequence>
-                            <xs:attribute name="fadeOut" type="xs:decimal" />
-                            <xs:attribute name="file" use="required" />
-                            <xs:attribute name="innerRadius" use="required" type="xs:decimal" />
-                            <xs:attribute name="linkNode" use="required" />
-                            <xs:attribute name="outerRadius" use="required" type="xs:decimal" />
+                            <xs:complexContent>
+                                <xs:extension base="soundType">
+                                    <xs:attribute name="fadeOut" type="xs:decimal" />
+                                </xs:extension>
+                            </xs:complexContent>
                         </xs:complexType>
                     </xs:element>
                     <xs:element name="quickTapSounds">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="quickTap" maxOccurs="unbounded">
-                                    <xs:complexType>
-                                        <xs:sequence>
-                                            <xs:element ref="volume" />
-                                            <xs:element ref="pitch" />
-                                            <xs:element ref="lowpassGain" />
-                                        </xs:sequence>
-                                        <xs:attribute name="file" use="required" />
-                                        <xs:attribute name="innerRadius" use="required" type="xs:decimal" />
-                                        <xs:attribute name="linkNode" use="required" />
-                                        <xs:attribute name="outerRadius" use="required" type="xs:decimal" />
-                                    </xs:complexType>
-                                </xs:element>
+                                <xs:element name="quickTap" maxOccurs="unbounded" type="soundType" />
                             </xs:sequence>
                         </xs:complexType>
                     </xs:element>
-                    <xs:element name="activeStart">
-                        <xs:complexType>
-                            <xs:sequence>
-                                <xs:element ref="volume" />
-                                <xs:element ref="pitch" />
-                                <xs:element ref="lowpassGain" />
-                            </xs:sequence>
-                            <xs:attribute name="file" use="required" />
-                            <xs:attribute name="innerRadius" use="required" type="xs:decimal" />
-                            <xs:attribute name="linkNode" use="required" />
-                            <xs:attribute name="outerRadius" use="required" type="xs:decimal" />
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="activeStop">
-                        <xs:complexType>
-                            <xs:sequence>
-                                <xs:element ref="volume" />
-                                <xs:element ref="pitch" />
-                                <xs:element ref="lowpassGain" />
-                            </xs:sequence>
-                            <xs:attribute name="file" use="required" />
-                            <xs:attribute name="innerRadius" use="required" type="xs:decimal" />
-                            <xs:attribute name="linkNode" use="required" />
-                            <xs:attribute name="outerRadius" use="required" type="xs:decimal" />
-                        </xs:complexType>
-                    </xs:element>
+                    <xs:element name="activeStart" type="soundType" />
+                    <xs:element name="activeStop" type="soundType" />
                     <xs:element name="activeLoop">
                         <xs:complexType>
-                            <xs:sequence>
-                                <xs:element ref="volume" />
-                                <xs:element ref="pitch" />
-                                <xs:element ref="lowpassGain" />
-                            </xs:sequence>
-                            <xs:attribute name="fadeOut" use="required" type="xs:decimal" />
-                            <xs:attribute name="file" use="required" />
-                            <xs:attribute name="innerRadius" use="required" type="xs:decimal" />
-                            <xs:attribute name="linkNode" use="required" />
-                            <xs:attribute name="outerRadius" use="required" type="xs:decimal" />
+                            <xs:complexContent>
+                                <xs:extension base="soundType">
+                                    <xs:attribute name="fadeOut" use="required" type="xs:decimal" />
+                                </xs:extension>
+                            </xs:complexContent>
                         </xs:complexType>
                     </xs:element>
                 </xs:sequence>
             </xs:choice>
         </xs:complexType>
     </xs:element>
-    <xs:element name="volume">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="speedModifier" minOccurs="0" maxOccurs="unbounded">
-                    <xs:complexType>
-                        <xs:attribute name="percentage" use="required" type="xs:decimal" />
-                        <xs:attribute name="speed" use="required" type="xs:decimal" />
-                    </xs:complexType>
-                </xs:element>
-            </xs:sequence>
-            <xs:attribute name="indoor" use="required" type="xs:decimal" />
-            <xs:attribute name="outdoor" use="required" type="xs:decimal" />
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="pitch">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="loadModifier" minOccurs="0" maxOccurs="unbounded">
-                    <xs:complexType>
-                        <xs:attribute name="load" use="required" type="xs:decimal" />
-                        <xs:attribute name="percentage" use="required" type="xs:decimal" />
-                    </xs:complexType>
-                </xs:element>
-            </xs:sequence>
-            <xs:attribute name="indoor" use="required" type="xs:decimal" />
-            <xs:attribute name="outdoor" use="required" type="xs:decimal" />
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="lowpassGain">
-        <xs:complexType>
-            <xs:attribute name="indoor" use="required" type="xs:decimal" />
-            <xs:attribute name="outdoor" use="required" type="xs:decimal" />
-        </xs:complexType>
-    </xs:element>
+    <xs:complexType name="soundType">
+        <xs:sequence>
+            <xs:element name="volume">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="speedModifier" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="percentage" use="required" type="xs:decimal" />
+                                <xs:attribute name="speed" use="required" type="xs:decimal" />
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="indoor" use="required" type="xs:decimal" />
+                    <xs:attribute name="outdoor" use="required" type="xs:decimal" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="pitch">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="loadModifier" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="load" use="required" type="xs:decimal" />
+                                <xs:attribute name="percentage" use="required" type="xs:decimal" />
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="indoor" use="required" type="xs:decimal" />
+                    <xs:attribute name="outdoor" use="required" type="xs:decimal" />
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="lowpassGain">
+                <xs:complexType>
+                    <xs:attribute name="indoor" use="required" type="xs:decimal" />
+                    <xs:attribute name="outdoor" use="required" type="xs:decimal" />
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="file" use="required" />
+        <xs:attribute name="innerRadius" use="required" type="xs:decimal" />
+        <xs:attribute name="linkNode" use="required" />
+        <xs:attribute name="outerRadius" use="required" type="xs:decimal" />
+    </xs:complexType>
+    <xs:complexType name="viewType">
+        <xs:attribute name="node" />
+        <xs:attribute name="position" use="required" />
+        <xs:attribute name="rotation" use="required" />
+    </xs:complexType>
 </xs:schema>
