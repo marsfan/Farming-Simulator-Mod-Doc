@@ -108,11 +108,7 @@
                                     <xs:attribute name="to" use="required" type="xs:decimal" />
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="clouds">
-                                <xs:complexType>
-                                    <xs:attribute name="densityScale" use="required" type="xs:decimal" />
-                                </xs:complexType>
-                            </xs:element>
+                            <xs:element name="clouds" type="densityScaleType"/>
                             <xs:element name="cirrusClouds" type="densityScaleType"/>
                             <xs:element minOccurs="0" ref="rain" />
                         </xs:sequence>
