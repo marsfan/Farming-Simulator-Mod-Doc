@@ -15,12 +15,7 @@
                         <xs:attribute name="basePath" use="required" />
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="autoExposure">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
+                <xs:element name="autoExposure" type="keyType">
                 </xs:element>
                 <xs:element name="colorGradings">
                     <xs:complexType>
@@ -44,76 +39,16 @@
                         <xs:attribute name="heightAngleLimitRotationStart" use="required" type="xs:integer" />
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="lightScatteringRotation">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="primaryDynamicLightingScale">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="primaryExtraterrestrialColor">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="secondaryExtraterrestrialColor">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="asymmetryFactor">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="sunBrightnessScale">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="sunSizeScale">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="moonBrightnessScale">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="moonSizeScale">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="sunIsPrimary">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
+                <xs:element name="lightScatteringRotation" type="keyType"/>
+                <xs:element name="primaryDynamicLightingScale" type="keyType"/>
+                <xs:element name="primaryExtraterrestrialColor" type="keyType"/>
+                <xs:element name="secondaryExtraterrestrialColor" type="keyType"/>
+                <xs:element name="asymmetryFactor" type="keyType"/>
+                <xs:element name="sunBrightnessScale" type="keyType"/>
+                <xs:element name="sunSizeScale" type="keyType"/>
+                <xs:element name="moonBrightnessScale" type="keyType"/>
+                <xs:element name="moonSizeScale" type="keyType"/>
+                <xs:element name="sunIsPrimary" type="keyType"/>
                 <xs:element name="weather">
                     <xs:complexType>
                         <xs:sequence>
@@ -178,11 +113,7 @@
                                     <xs:attribute name="densityScale" use="required" type="xs:decimal" />
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="cirrusClouds">
-                                <xs:complexType>
-                                    <xs:attribute name="densityScale" use="required" type="xs:decimal" />
-                                </xs:complexType>
-                            </xs:element>
+                            <xs:element name="cirrusClouds" type="densityScaleType"/>
                             <xs:element minOccurs="0" ref="rain" />
                         </xs:sequence>
                         <xs:attribute name="maxHours" use="required" type="xs:integer" />
@@ -207,4 +138,12 @@
             <xs:attribute name="filename" />
         </xs:complexType>
     </xs:element>
+    <xs:complexType name="keyType">
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="key" />
+            </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="densityScaleType">
+        <xs:attribute name="densityScale" use="required" type="xs:decimal" />
+    </xs:complexType>
 </xs:schema>
