@@ -30,6 +30,7 @@
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="sunRotation">
+                    <!-- See if we can simplify this further with the keyType?-->
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element maxOccurs="unbounded" ref="key" />
