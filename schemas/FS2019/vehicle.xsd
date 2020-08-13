@@ -2695,7 +2695,7 @@
     <xs:element name="fillUnit">
         <xs:complexType>
             <xs:sequence>
-                <xs:element minOccurs="0" ref="sounds" />
+
                 <xs:element name="fillUnitConfigurations" minOccurs="0">
                     <xs:complexType>
                         <xs:sequence>
@@ -2744,6 +2744,7 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
+                <xs:element minOccurs="0" ref="sounds" />
                 <xs:choice minOccurs="0" maxOccurs="unbounded">
                     <xs:element ref="dashboard" />
                     <xs:element name="alarmTriggers">
@@ -2886,7 +2887,7 @@
                     </xs:element>
                 </xs:choice>
                 <xs:element minOccurs="0" ref="movingToolActivation" />
-                <xs:element minOccurs="0" ref="effects" />
+                <xs:element minOccurs="0" maxOccurs="unbounded" ref="effects" />
                 <xs:element minOccurs="0" ref="animationNodes" />
                 <xs:element minOccurs="0" ref="trigger" />
                 <xs:element name="dischargeSound" minOccurs="0">
@@ -3623,7 +3624,8 @@
     <xs:element name="effectNode">
         <xs:complexType>
             <xs:choice minOccurs="0">
-                <xs:element ref="effectNode" />
+                <!-- Circular Referece. Some poorly written scripts could break when they see this-->
+                <xs:element maxOccurs="unbounded" ref="effectNode" />
                 <xs:sequence>
                     <xs:element maxOccurs="unbounded" ref="testArea" />
                     <xs:element name="particleSystem" maxOccurs="unbounded">
@@ -4113,7 +4115,6 @@
     <xs:element name="wheels">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="rimcolor" type="xs:NCName" minOccurs="0" />
                 <xs:choice minOccurs="0" maxOccurs="unbounded">
                     <xs:element name="ackermannSteeringConfigurations">
                         <xs:complexType>
@@ -4162,53 +4163,56 @@
                             <xs:attribute name="material" type="xs:integer" />
                         </xs:complexType>
                     </xs:element>
+                    <xs:element name="wheelConfigurations" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="wheelConfiguration" maxOccurs="unbounded">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element ref="wheels" />
+                                            <xs:element name="crawlers" minOccurs="0">
+                                                <xs:complexType>
+                                                    <xs:sequence>
+                                                        <xs:element name="crawler" maxOccurs="unbounded">
+                                                            <xs:complexType>
+                                                                <xs:attribute name="filename" use="required" />
+                                                                <xs:attribute name="isLeft" use="required" type="xs:boolean" />
+                                                                <xs:attribute name="linkNode" use="required" type="xs:NCName" />
+                                                                <xs:attribute name="trackWidth" type="xs:decimal" />
+                                                                <xs:attribute name="wheelIndex" use="required" type="xs:integer" />
+                                                            </xs:complexType>
+                                                        </xs:element>
+                                                    </xs:sequence>
+                                                </xs:complexType>
+                                            </xs:element>
+                                            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                                <xs:element ref="objectChange" />
+                                                <xs:element ref="size" />
+                                            </xs:choice>
+                                        </xs:sequence>
+                                        <xs:attribute name="brand" type="xs:NCName" />
+                                        <xs:attribute name="isDefault" type="xs:boolean" />
+                                        <xs:attribute name="name" />
+                                        <xs:attribute name="price" type="xs:integer" />
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" ref="wheel" />
+                    <xs:element name="foliageBendingModifier" minOccurs="0" maxOccurs="unbounded">
+                        <xs:complexType>
+                            <xs:attribute name="index" use="required" type="xs:integer" />
+                            <xs:attribute name="maxX" type="xs:decimal" />
+                            <xs:attribute name="maxZ" type="xs:decimal" />
+                            <xs:attribute name="minX" type="xs:decimal" />
+                            <xs:attribute name="minZ" type="xs:decimal" />
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="rimcolor" type="xs:NCName" minOccurs="0" />
+
                 </xs:choice>
-                <xs:element name="wheelConfigurations" minOccurs="0">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="wheelConfiguration" maxOccurs="unbounded">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element ref="wheels" />
-                                        <xs:element name="crawlers" minOccurs="0">
-                                            <xs:complexType>
-                                                <xs:sequence>
-                                                    <xs:element name="crawler" maxOccurs="unbounded">
-                                                        <xs:complexType>
-                                                            <xs:attribute name="filename" use="required" />
-                                                            <xs:attribute name="isLeft" use="required" type="xs:boolean" />
-                                                            <xs:attribute name="linkNode" use="required" type="xs:NCName" />
-                                                            <xs:attribute name="trackWidth" type="xs:decimal" />
-                                                            <xs:attribute name="wheelIndex" use="required" type="xs:integer" />
-                                                        </xs:complexType>
-                                                    </xs:element>
-                                                </xs:sequence>
-                                            </xs:complexType>
-                                        </xs:element>
-                                        <xs:choice minOccurs="0" maxOccurs="unbounded">
-                                            <xs:element ref="objectChange" />
-                                            <xs:element ref="size" />
-                                        </xs:choice>
-                                    </xs:sequence>
-                                    <xs:attribute name="brand" type="xs:NCName" />
-                                    <xs:attribute name="isDefault" type="xs:boolean" />
-                                    <xs:attribute name="name" />
-                                    <xs:attribute name="price" type="xs:integer" />
-                                </xs:complexType>
-                            </xs:element>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element minOccurs="0" maxOccurs="unbounded" ref="wheel" />
-                <xs:element name="foliageBendingModifier" minOccurs="0" maxOccurs="unbounded">
-                    <xs:complexType>
-                        <xs:attribute name="index" use="required" type="xs:integer" />
-                        <xs:attribute name="maxX" type="xs:decimal" />
-                        <xs:attribute name="maxZ" type="xs:decimal" />
-                        <xs:attribute name="minX" type="xs:decimal" />
-                        <xs:attribute name="minZ" type="xs:decimal" />
-                    </xs:complexType>
-                </xs:element>
+
             </xs:sequence>
             <xs:attribute name="ackermannSteeringIndex" type="xs:integer" />
             <xs:attribute name="autoRotateBackSpeed" type="xs:decimal" />
@@ -4546,42 +4550,48 @@
                             <xs:element name="tensionBeltsConfiguration" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element minOccurs="0" ref="tensionBelts" />
+                                        <xs:element minOccurs="0" maxOccurs="unbounded" name="tensionBelts">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="tensionBelt" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="intersectionNode" minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="node" use="required" type="xs:NCName" />
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                            <xs:attribute name="endNode" use="required" type="xs:NCName" />
+                                                            <xs:attribute name="offsetLeft" type="xs:decimal" />
+                                                            <xs:attribute name="offsetRight" type="xs:decimal" />
+                                                            <xs:attribute name="startNode" use="required" type="xs:NCName" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="activationTrigger" type="xs:NCName" />
+                                                <xs:attribute name="defaultHeight" type="xs:decimal" />
+                                                <xs:attribute name="defaultOffset" type="xs:decimal" />
+                                                <xs:attribute name="defaultOffsetSide" type="xs:decimal" />
+                                                <xs:attribute name="geometryBias" type="xs:decimal" />
+                                                <xs:attribute name="interactionRadius" type="xs:decimal" />
+                                                <xs:attribute name="jointNode" />
+                                                <xs:attribute name="linkNode" type="xs:NCName" />
+                                                <xs:attribute name="maxEdgeLength" type="xs:decimal" />
+                                                <xs:attribute name="ratchetPosition" type="xs:decimal" />
+                                                <xs:attribute name="rootNode" type="xs:NCName" />
+                                                <xs:attribute name="totalInteractionRadius" type="xs:decimal" />
+                                                <xs:attribute name="width" type="xs:decimal" />
+                                            </xs:complexType>
+                                        </xs:element>
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="tensionBelt" maxOccurs="unbounded">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="intersectionNode" minOccurs="0" maxOccurs="unbounded">
-                                <xs:complexType>
-                                    <xs:attribute name="node" use="required" type="xs:NCName" />
-                                </xs:complexType>
-                            </xs:element>
-                        </xs:sequence>
-                        <xs:attribute name="endNode" use="required" type="xs:NCName" />
-                        <xs:attribute name="offsetLeft" type="xs:decimal" />
-                        <xs:attribute name="offsetRight" type="xs:decimal" />
-                        <xs:attribute name="startNode" use="required" type="xs:NCName" />
-                    </xs:complexType>
-                </xs:element>
+
             </xs:sequence>
-            <xs:attribute name="activationTrigger" type="xs:NCName" />
-            <xs:attribute name="defaultHeight" type="xs:decimal" />
-            <xs:attribute name="defaultOffset" type="xs:decimal" />
-            <xs:attribute name="defaultOffsetSide" type="xs:decimal" />
-            <xs:attribute name="geometryBias" type="xs:decimal" />
-            <xs:attribute name="interactionRadius" type="xs:decimal" />
-            <xs:attribute name="jointNode" />
-            <xs:attribute name="linkNode" type="xs:NCName" />
-            <xs:attribute name="maxEdgeLength" type="xs:decimal" />
-            <xs:attribute name="ratchetPosition" type="xs:decimal" />
-            <xs:attribute name="rootNode" type="xs:NCName" />
-            <xs:attribute name="totalInteractionRadius" type="xs:decimal" />
-            <xs:attribute name="width" type="xs:decimal" />
         </xs:complexType>
     </xs:element>
     <xs:element name="trigger">
