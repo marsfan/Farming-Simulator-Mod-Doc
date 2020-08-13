@@ -78,11 +78,7 @@
                             <xs:element name="moveCollisions">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="collision" maxOccurs="unbounded">
-                                            <xs:complexType>
-                                                <xs:attribute name="node" use="required" />
-                                            </xs:complexType>
-                                        </xs:element>
+                                        <xs:element name="collision" maxOccurs="unbounded" type="nodeType" />
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
@@ -197,11 +193,7 @@
                                     <xs:complexType>
                                         <xs:sequence>
                                             <xs:element ref="area" />
-                                            <xs:element name="interactionTrigger">
-                                                <xs:complexType>
-                                                    <xs:attribute name="node" use="required" />
-                                                </xs:complexType>
-                                            </xs:element>
+                                            <xs:element name="interactionTrigger" type="nodeType" />
                                         </xs:sequence>
                                         <xs:attribute name="acceptedFillTypes" use="required" />
                                         <xs:attribute name="distanceToCompactedFillLevel" use="required" type="xs:integer" />
@@ -222,11 +214,7 @@
                                         <xs:attribute name="filename" use="required" />
                                     </xs:complexType>
                                 </xs:element>
-                                <xs:element name="lance">
-                                    <xs:complexType>
-                                        <xs:attribute name="node" use="required" />
-                                    </xs:complexType>
-                                </xs:element>
+                                <xs:element name="lance" type="nodeType" />
                                 <xs:element ref="sounds" />
                             </xs:sequence>
                         </xs:complexType>
@@ -325,22 +313,14 @@
                                         <xs:attribute name="node" use="required" type="xs:integer" />
                                     </xs:complexType>
                                 </xs:element>
-                                <xs:element name="playerInteractionTrigger">
-                                    <xs:complexType>
-                                        <xs:attribute name="node" use="required" type="xs:integer" />
-                                    </xs:complexType>
-                                </xs:element>
+                                <xs:element name="playerInteractionTrigger" type="nodeType"></xs:element>
                                 <xs:element name="bowl">
                                     <xs:complexType>
                                         <xs:attribute name="eatLocationNode" use="required" type="xs:integer" />
                                         <xs:attribute name="foodNode" use="required" />
                                     </xs:complexType>
                                 </xs:element>
-                                <xs:element name="nameplate">
-                                    <xs:complexType>
-                                        <xs:attribute name="node" use="required" type="xs:integer" />
-                                    </xs:complexType>
-                                </xs:element>
+                                <xs:element name="nameplate" type="nodeType"></xs:element>
                             </xs:sequence>
                         </xs:complexType>
                     </xs:element>
@@ -507,11 +487,7 @@
                     <xs:element name="triggerMarkers">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="triggerMarker">
-                                    <xs:complexType>
-                                        <xs:attribute name="node" use="required" />
-                                    </xs:complexType>
-                                </xs:element>
+                                <xs:element name="triggerMarker" type="nodeType" />
                             </xs:sequence>
                         </xs:complexType>
                     </xs:element>
@@ -569,7 +545,7 @@
                                     </xs:complexType>
                                 </xs:element>
                                 <xs:element name="railroadCallers">
-                                    <!-- FIXME: This is likely wrong, but neither base maps have anythingin the 
+                                    <!-- FIXME: This is likely wrong, but neither base maps have anything the 
                                         <railroadCallers> element, so using this as the argument is good for now -->
                                     <xs:complexType>
                                         <xs:sequence minOccurs="0" maxOccurs="unbounded">
@@ -601,11 +577,7 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="trigger">
-        <xs:complexType>
-            <xs:attribute name="node" use="required" />
-        </xs:complexType>
-    </xs:element>
+    <xs:element name="trigger" type="nodeType" />
     <xs:element name="vehicle">
         <xs:complexType>
             <xs:attribute name="xmlFilename" use="required" />
@@ -812,4 +784,7 @@
             <xs:attribute name="triggerNode" use="required" />
         </xs:complexType>
     </xs:element>
+    <xs:complexType name="nodeType">
+        <xs:attribute name="node" use="required" type="xs:integer" />
+    </xs:complexType>
 </xs:schema>
