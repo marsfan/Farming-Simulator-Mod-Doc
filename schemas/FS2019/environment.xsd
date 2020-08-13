@@ -15,8 +15,7 @@
                         <xs:attribute name="basePath" use="required" />
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="autoExposure" type="keyType">
-                </xs:element>
+                <xs:element name="autoExposure" type="keyType"></xs:element>
                 <xs:element name="colorGradings">
                     <xs:complexType>
                         <xs:sequence>
@@ -30,26 +29,26 @@
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="sunRotation">
-                    <!-- See if we can simplify this further with the keyType?-->
                     <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                        <xs:attribute name="heightAngleLimitRotation" use="required" type="xs:integer" />
-                        <xs:attribute name="heightAngleLimitRotationEnd" use="required" type="xs:integer" />
-                        <xs:attribute name="heightAngleLimitRotationStart" use="required" type="xs:integer" />
+                        <xs:complexContent>
+                            <xs:extension base="keyType">
+                                <xs:attribute name="heightAngleLimitRotation" use="required" type="xs:integer" />
+                                <xs:attribute name="heightAngleLimitRotationEnd" use="required" type="xs:integer" />
+                                <xs:attribute name="heightAngleLimitRotationStart" use="required" type="xs:integer" />
+                            </xs:extension>
+                        </xs:complexContent>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="lightScatteringRotation" type="keyType"/>
-                <xs:element name="primaryDynamicLightingScale" type="keyType"/>
-                <xs:element name="primaryExtraterrestrialColor" type="keyType"/>
-                <xs:element name="secondaryExtraterrestrialColor" type="keyType"/>
-                <xs:element name="asymmetryFactor" type="keyType"/>
-                <xs:element name="sunBrightnessScale" type="keyType"/>
-                <xs:element name="sunSizeScale" type="keyType"/>
-                <xs:element name="moonBrightnessScale" type="keyType"/>
-                <xs:element name="moonSizeScale" type="keyType"/>
-                <xs:element name="sunIsPrimary" type="keyType"/>
+                <xs:element name="lightScatteringRotation" type="keyType" />
+                <xs:element name="primaryDynamicLightingScale" type="keyType" />
+                <xs:element name="primaryExtraterrestrialColor" type="keyType" />
+                <xs:element name="secondaryExtraterrestrialColor" type="keyType" />
+                <xs:element name="asymmetryFactor" type="keyType" />
+                <xs:element name="sunBrightnessScale" type="keyType" />
+                <xs:element name="sunSizeScale" type="keyType" />
+                <xs:element name="moonBrightnessScale" type="keyType" />
+                <xs:element name="moonSizeScale" type="keyType" />
+                <xs:element name="sunIsPrimary" type="keyType" />
                 <xs:element name="weather">
                     <xs:complexType>
                         <xs:sequence>
@@ -84,18 +83,6 @@
             <xs:attribute name="sunHeightAngle" use="required" type="xs:integer" />
         </xs:complexType>
     </xs:element>
-    <xs:element name="key">
-        <xs:complexType>
-            <xs:attribute name="keyLuminance" type="xs:decimal" />
-            <xs:attribute name="maxExposure" type="xs:decimal" />
-            <xs:attribute name="minExposure" type="xs:decimal" />
-            <xs:attribute name="primary" type="xs:integer" />
-            <xs:attribute name="secondary" type="xs:integer" />
-            <xs:attribute name="time" use="required" />
-            <xs:attribute name="value" type="xs:decimal" />
-            <xs:attribute name="values" />
-        </xs:complexType>
-    </xs:element>
     <xs:element name="object">
         <xs:complexType>
             <xs:sequence>
@@ -109,8 +96,8 @@
                                     <xs:attribute name="to" use="required" type="xs:decimal" />
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="clouds" type="densityScaleType"/>
-                            <xs:element name="cirrusClouds" type="densityScaleType"/>
+                            <xs:element name="clouds" type="densityScaleType" />
+                            <xs:element name="cirrusClouds" type="densityScaleType" />
                             <xs:element minOccurs="0" ref="rain" />
                         </xs:sequence>
                         <xs:attribute name="maxHours" use="required" type="xs:integer" />
@@ -136,9 +123,20 @@
         </xs:complexType>
     </xs:element>
     <xs:complexType name="keyType">
-            <xs:sequence>
-                <xs:element maxOccurs="unbounded" ref="key" />
-            </xs:sequence>
+        <xs:sequence>
+            <xs:element name="key" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:attribute name="keyLuminance" type="xs:decimal" />
+                    <xs:attribute name="maxExposure" type="xs:decimal" />
+                    <xs:attribute name="minExposure" type="xs:decimal" />
+                    <xs:attribute name="primary" type="xs:integer" />
+                    <xs:attribute name="secondary" type="xs:integer" />
+                    <xs:attribute name="time" use="required" />
+                    <xs:attribute name="value" type="xs:decimal" />
+                    <xs:attribute name="values" />
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
     </xs:complexType>
     <xs:complexType name="densityScaleType">
         <xs:attribute name="densityScale" use="required" type="xs:decimal" />
