@@ -178,73 +178,21 @@
                 </xs:choice>
                 <xs:sequence minOccurs="0">
                     <xs:element name="filename" type="xs:string" />
-                    <xs:element name="shop">
-                        <xs:complexType>
-                            <xs:attribute name="filename" use="required" />
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="colorGrading">
-                        <xs:complexType>
-                            <xs:attribute name="filename" use="required" />
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="storeItems">
-                        <xs:complexType>
-                            <xs:attribute name="filename" use="required" />
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="sounds">
-                        <xs:complexType>
-                            <xs:attribute name="filename" use="required" />
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="environment">
-                        <xs:complexType>
-                            <xs:attribute name="filename" use="required" />
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="wildlife">
-                        <xs:complexType>
-                            <xs:attribute name="filename" use="required" />
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="helpline">
-                        <xs:complexType>
-                            <xs:attribute name="filename" use="required" />
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="gameplayHints">
-                        <xs:complexType>
-                            <xs:attribute name="filename" use="required" />
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="husbandryAnimals">
-                        <xs:complexType>
-                            <xs:attribute name="filename" use="required" />
-                        </xs:complexType>
-                    </xs:element>
+                    <xs:element name="shop" type="filenameType" />
+                    <xs:element name="colorGrading" type="filenameType" />
+                    <xs:element name="storeItems" type="filenameType" />
+                    <xs:element name="sounds" type="filenameType" />
+                    <xs:element name="environment" type="filenameType" />
+                    <xs:element name="wildlife" type="filenameType" />
+                    <xs:element name="helpline" type="filenameType" />
+                    <xs:element name="gameplayHints" type="filenameType" />
+                    <xs:element name="husbandryAnimals" type="filenameType" />
                     <xs:choice maxOccurs="unbounded">
-                        <xs:element name="animalNames">
-                            <xs:complexType>
-                                <xs:attribute name="filename" use="required" />
-                            </xs:complexType>
-                        </xs:element>
-                        <xs:element name="husbandryFood">
-                            <xs:complexType>
-                                <xs:attribute name="filename" use="required" />
-                            </xs:complexType>
-                        </xs:element>
+                        <xs:element name="animalNames" type="filenameType" />
+                        <xs:element name="husbandryFood" type="filenameType" />
                     </xs:choice>
-                    <xs:element name="transportMissions">
-                        <xs:complexType>
-                            <xs:attribute name="filename" use="required" />
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="missionVehicles">
-                        <xs:complexType>
-                            <xs:attribute name="filename" use="required" />
-                        </xs:complexType>
-                    </xs:element>
+                    <xs:element name="transportMissions" type="filenameType" />
+                    <xs:element name="missionVehicles" type="filenameType" />
                     <xs:element name="vertexBufferMemoryUsage" type="xs:integer" />
                     <xs:element name="indexBufferMemoryUsage" type="xs:integer" />
                     <xs:element name="textureMemoryUsage" type="xs:integer" />
@@ -253,26 +201,11 @@
                             <xs:attribute name="xzOffset" use="required" type="xs:integer" />
                         </xs:complexType>
                     </xs:element>
-                    <xs:element name="densityMap">
-                        <xs:complexType>
-                            <xs:attribute name="revision" use="required" type="xs:integer" />
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="terrainLodTexture">
-                        <xs:complexType>
-                            <xs:attribute name="revision" use="required" type="xs:integer" />
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="splitShapes">
-                        <xs:complexType>
-                            <xs:attribute name="revision" use="required" type="xs:integer" />
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="tipCollision">
-                        <xs:complexType>
-                            <xs:attribute name="revision" use="required" type="xs:integer" />
-                        </xs:complexType>
-                    </xs:element>
+                    <xs:element name="densityMap" type="revisionType"/>
+                    <xs:element name="terrainLodTexture" type="revisionType"/>
+                    <xs:element name="splitShapes" type="revisionType"/>
+                    <xs:element name="tipCollision" type="revisionType" />
+
                     <xs:element name="hotspots">
                         <xs:complexType>
                             <xs:sequence>
@@ -297,11 +230,7 @@
                     <xs:element name="additionalFiles">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="additionalFile" maxOccurs="unbounded">
-                                    <xs:complexType>
-                                        <xs:attribute name="filename" use="required" />
-                                    </xs:complexType>
-                                </xs:element>
+                                <xs:element name="additionalFile" maxOccurs="unbounded" type="filenameType" />
                             </xs:sequence>
                         </xs:complexType>
                     </xs:element>
@@ -417,11 +346,7 @@
                                 <xs:element name="treeType">
                                     <xs:complexType>
                                         <xs:sequence>
-                                            <xs:element name="stage" maxOccurs="unbounded">
-                                                <xs:complexType>
-                                                    <xs:attribute name="filename" use="required" />
-                                                </xs:complexType>
-                                            </xs:element>
+                                            <xs:element name="stage" maxOccurs="unbounded" type="filenameType" />
                                         </xs:sequence>
                                         <xs:attribute name="growthTimeHours" use="required" type="xs:integer" />
                                         <xs:attribute name="name" use="required" type="xs:NCName" />
@@ -464,11 +389,7 @@
                                                         <xs:attribute name="maxPhysicalSurfaceAngle" use="required" type="xs:decimal" />
                                                     </xs:complexType>
                                                 </xs:element>
-                                                <xs:element name="pallet" minOccurs="0">
-                                                    <xs:complexType>
-                                                        <xs:attribute name="filename" use="required" />
-                                                    </xs:complexType>
-                                                </xs:element>
+                                                <xs:element name="pallet" minOccurs="0" type="filenameType" />
                                             </xs:sequence>
                                             <xs:attribute name="fillPlaneColors" />
                                             <xs:attribute name="name" use="required" type="xs:NCName" />
@@ -526,4 +447,10 @@
             <xs:attribute name="windrowFactor" type="xs:decimal" />
         </xs:complexType>
     </xs:element>
+    <xs:complexType name="filenameType">
+        <xs:attribute name="filename" use="required" />
+    </xs:complexType>
+    <xs:complexType name="revisionType">
+        <xs:attribute name="revision" use="required" type="xs:integer" />
+    </xs:complexType>
 </xs:schema>
