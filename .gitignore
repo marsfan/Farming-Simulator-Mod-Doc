@@ -128,9 +128,14 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# VS code stuff
+
 .vscode/*
 
 *.code-workspace
+
+# VS stuff
+.vs/*
 
 # Local History for Visual Studio Code
 .history/
