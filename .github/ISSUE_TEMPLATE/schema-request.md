@@ -19,7 +19,7 @@ Thorough description of what should be added or changed
 
 ## Proof (if relevant)
 Example of use of your recommended addition. Do not copy and paste the example here, instead describe where the
-file that provides proof can be found. See [CONTRIBUTING.md](../../CONTRIBUTING.md) for information on how to properly
+file that provides proof can be found. See CONTRIBUTING.md for information on how to properly
 provide proof.
 
 ## Additional Context (if needed)

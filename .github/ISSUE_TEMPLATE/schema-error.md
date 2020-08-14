@@ -24,7 +24,7 @@ What should it be changed to?
 
 ## Proof (if relevant)
 Example that proves the error needs correction. Do not copy and paste the example here, instead describe where the
-file that provides proof can be found. See [CONTRIBUTING.md](../../CONTRIBUTING.md) for information on how to properly
+file that provides proof can be found. See CONTRIBUTING.md for information on how to properly
 provide proof.
 
 ## Additional Context (if needed)
