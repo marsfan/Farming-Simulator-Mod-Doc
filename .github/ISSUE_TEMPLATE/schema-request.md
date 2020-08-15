@@ -11,10 +11,7 @@ assignees: ''
 ## **IMPORTANT**
 Check all of the open and closed issues to see if someone else has already made the same request.
 
-## Summary
-Summarize the addition you would like to see
-
-## Details (if needed)
+## Details
 Thorough description of what should be added or changed
 
 ## Proof (if relevant)

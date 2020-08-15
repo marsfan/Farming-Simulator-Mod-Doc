@@ -7,6 +7,8 @@ assignees: ''
 
 ---
 
+## Details
+
 ## **IMPORTANT**
 Check all of the open and closed issues to see if someone else has already reported the issue.
 

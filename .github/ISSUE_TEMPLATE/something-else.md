@@ -10,10 +10,7 @@ assignees: ''
 ## **IMPORTANT**
 Check all of the open and closed issues to see if someone else has already reported the issue.
 
-## Summary
-What is your issue
-
-## Details (if needed)
+## Details
 Detailed information about your issue
 
 ## Additional Context (if needed)
