@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"/>
+    <xs:element name="map">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="baleTypes">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="baleType" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="diameter" type="xs:decimal" />
+                                    <xs:attribute name="filename" use="required" type="i3dFilepath"/>
+                                    <xs:attribute name="fillType" use="required" type="xs:NCName" />
+                                    <xs:attribute name="height" type="xs:decimal" />
+                                    <xs:attribute name="isRoundbale" use="required" type="xs:boolean" />
+                                    <xs:attribute name="length" type="xs:decimal" />
+                                    <xs:attribute name="width" use="required" type="xs:decimal" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

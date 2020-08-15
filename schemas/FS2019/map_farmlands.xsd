@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:include schemaLocation="commonTypes.xsd"/>
+    <xs:element name="map">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="farmlands">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="farmland" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="defaultFarmProperty" type="xs:boolean" />
+                                    <xs:attribute name="id" use="required" type="xs:integer" />
+                                    <xs:attribute name="npcName" use="required" type="xs:NCName" />
+                                    <xs:attribute name="priceScale" use="required" type="xs:decimal" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="densityMapFilename" use="required" type="grleFilepath" />
+                        <xs:attribute name="numChannels" use="required" type="xs:integer" />
+                        <xs:attribute name="pricePerHa" use="required" type="xs:integer" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

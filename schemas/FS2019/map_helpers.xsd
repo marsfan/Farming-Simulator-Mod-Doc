@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:include schemaLocation="commonTypes.xsd"></xs:include>
+    <xs:element name="map">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="helpers">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="helper" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="filename" use="required" type="xmlFilepath"/>
+                                    <xs:attribute name="name" use="required" type="xs:NCName" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

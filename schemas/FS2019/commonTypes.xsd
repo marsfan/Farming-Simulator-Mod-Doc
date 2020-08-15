@@ -17,8 +17,17 @@
         <xs:attribute name="linkNode" use="required" type="node" />
         <xs:attribute name="template" use="required" type="xs:NCName" />
     </xs:complexType>
+
     <xs:complexType name="nodeType">
         <xs:attribute name="node" use="required" type="node" />
+    </xs:complexType>
+
+    <xs:complexType name="i3dFilenameType">
+        <xs:attribute name="filename" use="required" type="i3dFilepath"/>
+    </xs:complexType>
+
+    <xs:complexType name="xmlFilenameType">
+        <xs:attribute name="filename" use="required" type="xmlFilepath" />
     </xs:complexType>
 
     <xs:complexType name="indoorOutdoorType">
@@ -41,6 +50,10 @@
             </xs:extension>
         </xs:complexContent>
         </xs:complexType>
+
+    <xs:complexType name="mixedNameType" mixed="true">
+            <xs:attribute name="name" use="required" type="xs:NCName" />
+    </xs:complexType>
 
 
     <!-- This section has restriction types for attributes-->

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"></xs:include>
+    <xs:element name="map">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="fillTypeConverters">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="fillTypeConverter">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="converter" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="factor" use="required" type="xs:decimal" />
+                                                <xs:attribute name="from" use="required" type="xs:NCName" />
+                                                <xs:attribute name="to" use="required" type="xs:NCName" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="name" use="required" type="xs:NCName" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="fillTypes">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="fillType" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="image">
+                                            <xs:complexType>
+                                                <xs:attribute name="hud" use="required" type="pngFilepath"/>
+                                                <xs:attribute name="hudSmall" use="required" type="pngFilepath"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="physics">
+                                            <xs:complexType>
+                                                <xs:attribute name="massPerLiter" use="required" type="xs:decimal" />
+                                                <xs:attribute name="maxPhysicalSurfaceAngle" use="required" type="xs:decimal" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="pallet" minOccurs="0" type="xmlFilenameType"/>
+                                    </xs:sequence>
+                                    <xs:attribute name="fillPlaneColors" type="rgb"/>
+                                    <xs:attribute name="name" use="required" type="xs:NCName" />
+                                    <xs:attribute name="pricePerLiter" use="required" type="xs:decimal" />
+                                    <xs:attribute name="showOnPriceTable" use="required" type="xs:boolean" />
+                                    <xs:attribute name="title" use="required"  type="xs:string" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="fillTypeCategories">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="fillTypeCategory" maxOccurs="unbounded" type="mixedNameType"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="fillTypeSounds">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="fillTypeSound" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="sound">
+                                            <xs:complexType>
+                                                <xs:attribute name="template" use="required" type="xs:NCName" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="fillTypes" />
+                                    <xs:attribute name="isDefault" type="xs:boolean" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

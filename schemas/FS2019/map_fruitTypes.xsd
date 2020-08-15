@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:include schemaLocation="commonTypes.xsd"/>
+    <xs:element name="map">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="fruitTypes">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="fruitType" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="general">
+                                            <xs:complexType>
+                                                <xs:attribute name="numStateChannels" use="required" type="xs:integer" />
+                                                <xs:attribute name="startStateChannel" use="required" type="xs:integer" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="cultivation">
+                                            <xs:complexType>
+                                                <xs:attribute name="alignsToSun" use="required" type="xs:boolean" />
+                                                <xs:attribute name="allowsSeeding" use="required" type="xs:boolean" />
+                                                <xs:attribute name="directionSnapAngle" use="required" type="xs:integer" />
+                                                <xs:attribute name="needsSeeding" use="required" type="xs:boolean" />
+                                                <xs:attribute name="plantsWeed" type="xs:boolean" />
+                                                <xs:attribute name="seedUsagePerSqm" use="required" type="xs:decimal" />
+                                                <xs:attribute name="useSeedingWidth" use="required" type="xs:boolean" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element minOccurs="0" name="harvest">
+                                            <xs:complexType>
+                                                <xs:attribute name="allowsPartialGrowthState" use="required" type="xs:boolean" />
+                                                <xs:attribute name="cutState" use="required" type="xs:integer" />
+                                                <xs:attribute name="literPerSqm" use="required" type="xs:decimal" />
+                                                <xs:attribute name="maxHarvestingGrowthState" use="required" type="xs:integer" />
+                                                <xs:attribute name="minForageGrowthState" type="xs:integer" />
+                                                <xs:attribute name="minHarvestingGrowthState" use="required" type="xs:integer" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element minOccurs="0" name="growth">
+                                            <xs:complexType>
+                                                <xs:attribute name="firstRegrowthState" type="xs:integer" />
+                                                <xs:attribute name="groundTypeChangeGrowthState" use="required" type="xs:integer" />
+                                                <xs:attribute name="groundTypeChangeMask" type="stringList"/>
+                                                <xs:attribute name="groundTypeChanged" use="required" type="xs:NCName" />
+                                                <xs:attribute name="growthRequiresLime" use="required" type="xs:boolean" />
+                                                <xs:attribute name="growthStateTime" use="required" type="xs:integer" />
+                                                <xs:attribute name="numGrowthStates" use="required" type="xs:integer" />
+                                                <xs:attribute name="regrows" type="xs:boolean" />
+                                                <xs:attribute name="resetsSpray" use="required" type="xs:boolean" />
+                                                <xs:attribute name="witheringNumGrowthStates" use="required" type="xs:integer" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element minOccurs="0" name="preparing">
+                                            <xs:complexType>
+                                                <xs:attribute name="maxGrowthState" use="required" type="xs:integer" />
+                                                <xs:attribute name="minGrowthState" use="required" type="xs:integer" />
+                                                <xs:attribute name="outputName" use="required" type="xs:NCName" />
+                                                <xs:attribute name="preparedGrowthState" use="required" type="xs:integer" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element minOccurs="0" name="weedGrowth">
+                                            <xs:complexType>
+                                                <xs:attribute name="growthStateTime" use="required" type="xs:integer" />
+                                                <xs:attribute name="maxGrowthState" use="required" type="xs:integer" />
+                                                <xs:attribute name="minGrowthState" use="required" type="xs:integer" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element minOccurs="0" name="windrow">
+                                            <xs:complexType>
+                                                <xs:attribute name="litersPerSqm" use="required" type="xs:decimal" />
+                                                <xs:attribute name="name" use="required" type="xs:NCName" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element minOccurs="0" name="options">
+                                            <xs:complexType>
+                                                <xs:attribute name="consumesLime" use="required" type="xs:boolean" />
+                                                <xs:attribute name="destroyedByRoller" type="xs:boolean" />
+                                                <xs:attribute name="increasesSoilDensity" use="required" type="xs:boolean" />
+                                                <xs:attribute name="lowSoilDensityRequired" use="required" type="xs:boolean" />
+                                                <xs:attribute name="startSprayState" use="required" type="xs:integer" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element minOccurs="0" name="destruction">
+                                            <xs:complexType>
+                                                <xs:attribute name="filterEnd" use="required" type="xs:integer" />
+                                                <xs:attribute name="filterStart" use="required" type="xs:integer" />
+                                                <xs:attribute name="state" use="required" type="xs:integer" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="herbicideReplace" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="source" use="required" type="xs:integer" />
+                                                <xs:attribute name="target" use="required" type="xs:integer" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="mapColors">
+                                            <xs:complexType>
+                                                <xs:attribute name="colorBlind" use="required" type="rgba" />
+                                                <xs:attribute name="default" use="required" type="rgba" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="name" use="required" type="xs:NCName" />
+                                    <xs:attribute name="showOnPriceTable" type="xs:boolean" />
+                                    <xs:attribute name="shownOnMap" use="required" type="xs:boolean" />
+                                    <xs:attribute name="title" type="xs:string" />
+                                    <xs:attribute name="useForFieldJob" use="required" type="xs:boolean" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="fruitTypeCategories">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="fruitTypeCategory" maxOccurs="unbounded" type="mixedNameType" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="fruitTypeConverters">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="fruitTypeConverter" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="converter" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="factor" use="required" type="xs:decimal" />
+                                                <xs:attribute name="from" use="required" type="xs:NCName" />
+                                                <xs:attribute name="to" use="required" type="xs:NCName" />
+                                                <xs:attribute name="windrowFactor" type="xs:decimal" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="name" use="required" type="xs:NCName" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

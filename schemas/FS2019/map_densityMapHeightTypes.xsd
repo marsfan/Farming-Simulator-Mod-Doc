@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"></xs:include>
+    <xs:element name="map">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="densityMapHeightTypes">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="densityMapHeightType" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="collision">
+                                            <xs:complexType>
+                                                <xs:attribute name="baseOffset" use="required" type="xs:decimal" />
+                                                <xs:attribute name="maxOffset" use="required" type="xs:decimal" />
+                                                <xs:attribute name="minOffset" use="required" type="xs:decimal" />
+                                                <xs:attribute name="scale" use="required" type="xs:decimal" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="textures">
+                                            <xs:complexType>
+                                                <xs:attribute name="diffuse" use="required" type="pngFilepath"/>
+                                                <xs:attribute name="distance" use="required" type="pngFilepath"/>
+                                                <xs:attribute name="normal" use="required" type="pngFilepath"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="allowsSmoothing" use="required" type="xs:boolean" />
+                                    <xs:attribute name="fillToGroundScale" use="required" type="xs:decimal" />
+                                    <xs:attribute name="fillTypeName" use="required" type="xs:NCName" />
+                                    <xs:attribute name="maxSurfaceAngle" use="required" type="xs:integer" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"/>
+    <xs:element name="map">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="npcs">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="npc" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="category" use="required" type="xs:NCName" />
+                                    <xs:attribute name="imageFilename" use="required" type="pngFilepath"/>
+                                    <xs:attribute name="name" use="required" type="xs:NCName" />
+                                    <xs:attribute name="title" use="required" type="xs:string"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
