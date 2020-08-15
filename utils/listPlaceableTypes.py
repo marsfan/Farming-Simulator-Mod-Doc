@@ -15,7 +15,7 @@ def main():
     args = parser.parse_args()
 
     dataPath = Path(args.dataFolder)
-    xmlFiles = dataPath.glob('*.xml')
+    xmlFiles = dataPath.glob('**/*.xml')
 
     placeableTypes: Set[str] = set()
 
