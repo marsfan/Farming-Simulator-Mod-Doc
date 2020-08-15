@@ -19,7 +19,7 @@ def main():
     args = parser.parse_args()
 
     dataPath = Path(args.dataFolder)
-    xmlFiles = dataPath.glob('vehicle/*.xml')
+    xmlFiles = dataPath.glob('**/*.xml')
 
     vehicleTypes: Set[str] = set()
 
