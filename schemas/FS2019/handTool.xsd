@@ -1,45 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:include schemaLocation="storeData.xsd" />
+    <xs:include schemaLocation="commonTypes.xsd" />
     <xs:element name="handTool">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="storeData">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="name" type="xs:string" />
-                            <xs:element name="functions">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element name="function" type="xs:string" />
-                                    </xs:sequence>
-                                </xs:complexType>
-                            </xs:element>
-                            <xs:element name="image" type="xs:string" />
-                            <xs:element name="price" type="xs:integer" />
-                            <xs:element name="lifetime" type="xs:integer" />
-                            <xs:element name="rotation" type="xs:integer" />
-                            <xs:element name="brand" type="xs:NCName" />
-                            <xs:sequence minOccurs="0">
-                                <xs:element name="canBeSold" type="xs:boolean" />
-                                <xs:element name="showInStore" type="xs:boolean" />
-                            </xs:sequence>
-                            <xs:element name="category" type="xs:NCName" />
-                            <xs:element name="species" type="xs:NCName" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
+                <xs:element ref="storeData" />
                 <xs:element name="handToolType" type="xs:NCName" />
                 <xs:element name="filename" type="xs:string" />
                 <xs:element name="handNode">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="firstPerson" type="viewType"/>
-                            <xs:element name="thirdPerson" type="viewType"/>
+                            <xs:element name="firstPerson" type="handNodeType" />
+                            <xs:element name="thirdPerson" type="handNodeType" />
                             <xs:element name="thirdPersonCutting" minOccurs="0">
                                 <xs:complexType>
                                     <xs:complexContent>
-                                        <xs:restriction base="viewType">
-                                            <xs:attribute name="node" use="prohibited"/>
+                                        <xs:restriction base="handNodeType">
+                                            <xs:attribute name="node" use="prohibited" type="node"/>
                                         </xs:restriction>
                                     </xs:complexContent>
                                 </xs:complexType>
@@ -53,7 +31,7 @@
                             <xs:sequence>
                                 <xs:element name="equipment">
                                     <xs:complexType>
-                                        <xs:attribute name="uvs" use="required" />
+                                        <xs:attribute name="uvs" use="required" type="twoNumber"/>
                                     </xs:complexType>
                                 </xs:element>
                                 <xs:element name="chain">
@@ -62,7 +40,7 @@
                                             <xs:element name="animationNode">
                                                 <xs:complexType>
                                                     <xs:attribute name="class" use="required" type="xs:NCName" />
-                                                    <xs:attribute name="node" use="required" />
+                                                    <xs:attribute name="node" use="required" type="node"/>
                                                     <xs:attribute name="scrollSpeed" use="required" type="xs:integer" />
                                                     <xs:attribute name="shaderParameterComponent" use="required" type="xs:integer" />
                                                     <xs:attribute name="speedFunc" use="required" type="xs:NCName" />
@@ -77,7 +55,7 @@
                                             <xs:element name="emitterShape" maxOccurs="unbounded">
                                                 <xs:complexType>
                                                     <xs:attribute name="emitCountScale" use="required" type="xs:integer" />
-                                                    <xs:attribute name="node" use="required" />
+                                                    <xs:attribute name="node" use="required" type="node"/>
                                                     <xs:attribute name="particleType" use="required" type="xs:NCName" />
                                                 </xs:complexType>
                                             </xs:element>
@@ -86,7 +64,7 @@
                                 </xs:element>
                                 <xs:element name="ringSelector">
                                     <xs:complexType>
-                                        <xs:attribute name="file" use="required" />
+                                        <xs:attribute name="file" use="required" type="i3dFilepath" />
                                         <xs:attribute name="scaleOffset" use="required" type="xs:decimal" />
                                     </xs:complexType>
                                 </xs:element>
@@ -111,9 +89,9 @@
                                         <xs:sequence>
                                             <xs:element name="key" maxOccurs="unbounded">
                                                 <xs:complexType>
-                                                    <xs:attribute name="rotation" use="required" />
+                                                    <xs:attribute name="rotation" use="required" type="threeNumber"/>
                                                     <xs:attribute name="time" use="required" type="xs:integer" />
-                                                    <xs:attribute name="translation" use="required" />
+                                                    <xs:attribute name="translation" use="required" type="threeNumber"/>
                                                 </xs:complexType>
                                             </xs:element>
                                         </xs:sequence>
@@ -129,7 +107,7 @@
                                 <xs:element name="lance">
                                     <xs:complexType>
                                         <xs:attribute name="pricePerMinute" use="required" type="xs:integer" />
-                                        <xs:attribute name="raycastNode" use="required" />
+                                        <xs:attribute name="raycastNode" use="required" type="node"/>
                                         <xs:attribute name="washDistance" use="required" type="xs:integer" />
                                         <xs:attribute name="washMultiplier" use="required" type="xs:integer" />
                                     </xs:complexType>
@@ -140,7 +118,7 @@
                                             <xs:element name="effectNode" maxOccurs="unbounded">
                                                 <xs:complexType>
                                                     <xs:attribute name="effectClass" type="xs:NCName" />
-                                                    <xs:attribute name="effectNode" use="required" />
+                                                    <xs:attribute name="effectNode" use="required" type="node" />
                                                     <xs:attribute name="emitCountScale" type="xs:integer" />
                                                     <xs:attribute name="materialType" type="xs:NCName" />
                                                     <xs:attribute name="materialTypeId" type="xs:integer" />
@@ -164,13 +142,13 @@
                                         <xs:element name="rotationNode" minOccurs="0" maxOccurs="unbounded">
                                             <xs:complexType>
                                                 <xs:attribute name="id" use="required" type="xs:integer" />
-                                                <xs:attribute name="rotation" use="required" />
+                                                <xs:attribute name="rotation" use="required" type="threeNumber"/>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
                                     <xs:attribute name="ikChain" use="required" type="xs:NCName" />
-                                    <xs:attribute name="targetNode" use="required" />
-                                    <xs:attribute name="targetOffset" />
+                                    <xs:attribute name="targetNode" use="required" type="node"/>
+                                    <xs:attribute name="targetOffset" type="threeNumber"/>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -182,12 +160,7 @@
     <xs:element name="sounds">
         <xs:complexType>
             <xs:choice>
-                <xs:element name="washing">
-                    <xs:complexType>
-                        <xs:attribute name="linkNode" use="required" />
-                        <xs:attribute name="template" use="required" type="xs:NCName" />
-                    </xs:complexType>
-                </xs:element>
+                <xs:element name="washing" type="linkNodeType" />
                 <xs:sequence>
                     <xs:element name="start" type="soundType" />
                     <xs:element name="stop" type="soundType" />
@@ -255,21 +228,16 @@
                     <xs:attribute name="outdoor" use="required" type="xs:decimal" />
                 </xs:complexType>
             </xs:element>
-            <xs:element name="lowpassGain">
-                <xs:complexType>
-                    <xs:attribute name="indoor" use="required" type="xs:decimal" />
-                    <xs:attribute name="outdoor" use="required" type="xs:decimal" />
-                </xs:complexType>
-            </xs:element>
+            <xs:element name="lowpassGain" type="indoorOutdoorType" />
         </xs:sequence>
-        <xs:attribute name="file" use="required" />
+        <xs:attribute name="file" use="required" type="wavFilepath"/>
         <xs:attribute name="innerRadius" use="required" type="xs:decimal" />
-        <xs:attribute name="linkNode" use="required" />
+        <xs:attribute name="linkNode" use="required" type="node"/>
         <xs:attribute name="outerRadius" use="required" type="xs:decimal" />
     </xs:complexType>
-    <xs:complexType name="viewType">
-        <xs:attribute name="node" />
-        <xs:attribute name="position" use="required" />
-        <xs:attribute name="rotation" use="required" />
+    <xs:complexType name="handNodeType">
+        <xs:attribute name="node" type="node"/>
+        <xs:attribute name="position" use="required" type="threeNumber"/>
+        <xs:attribute name="rotation" use="required" type="threeNumber"/>
     </xs:complexType>
 </xs:schema>

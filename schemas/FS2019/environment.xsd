@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"/>
     <xs:element name="environment">
         <xs:complexType>
             <xs:sequence>
@@ -12,7 +13,7 @@
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
-                        <xs:attribute name="basePath" use="required" />
+                        <xs:attribute name="basePath" use="required" type="dirPath"/>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="autoExposure" type="keyType"></xs:element>
@@ -21,8 +22,8 @@
                         <xs:sequence>
                             <xs:element name="colorGrading" maxOccurs="unbounded">
                                 <xs:complexType>
-                                    <xs:attribute name="filename" use="required" />
-                                    <xs:attribute name="time" use="required" />
+                                    <xs:attribute name="filename" use="required" type="xmlFilepath" />
+                                    <xs:attribute name="time" use="required" type="multiplyType"/>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -119,7 +120,7 @@
     <xs:element name="rain">
         <xs:complexType>
             <xs:attribute name="dropScale" type="xs:decimal" />
-            <xs:attribute name="filename" />
+            <xs:attribute name="filename" type="i3dFilepath" />
         </xs:complexType>
     </xs:element>
     <xs:complexType name="keyType">
@@ -131,9 +132,9 @@
                     <xs:attribute name="minExposure" type="xs:decimal" />
                     <xs:attribute name="primary" type="xs:integer" />
                     <xs:attribute name="secondary" type="xs:integer" />
-                    <xs:attribute name="time" use="required" />
+                    <xs:attribute name="time" use="required" type="multiplyType"/>
                     <xs:attribute name="value" type="xs:decimal" />
-                    <xs:attribute name="values" />
+                    <xs:attribute name="values" type="rgb"/>
                 </xs:complexType>
             </xs:element>
         </xs:sequence>
@@ -141,4 +142,5 @@
     <xs:complexType name="densityScaleType">
         <xs:attribute name="densityScale" use="required" type="xs:decimal" />
     </xs:complexType>
+    
 </xs:schema>

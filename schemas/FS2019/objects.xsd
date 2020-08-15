@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"/>
     <xs:element name="objects">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="objects" maxOccurs="unbounded">
                     <xs:complexType>
-                        <xs:attribute name="link" use="required" />
+                        <xs:attribute name="link" use="required" type="dirPath"/>
                         <xs:attribute name="name" use="required" type="xs:NCName" />
                     </xs:complexType>
                 </xs:element>

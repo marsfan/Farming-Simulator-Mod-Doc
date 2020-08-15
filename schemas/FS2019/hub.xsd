@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"/>
     <xs:element name="hub">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="filename" type="xs:string" />
+                <xs:element name="filename" type="i3dFilepath"/>
                 <xs:element name="nodes">
                     <xs:complexType>
-                        <xs:attribute name="left" use="required" />
-                        <xs:attribute name="right" use="required" />
+                        <xs:attribute name="left" use="required" type="node"/>
+                        <xs:attribute name="right" use="required" type="node"/>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="color0" type="xs:string" minOccurs="0" />
-                <xs:element name="color1" type="xs:string" minOccurs="0" />
-                <xs:element name="color2" type="xs:string" minOccurs="0" />
-                <xs:element name="color3" type="xs:string" minOccurs="0" />
-                <xs:element name="scale" type="xs:string" />
+                <xs:element name="color0" type="fourNumber" minOccurs="0" />
+                <xs:element name="color1" type="fourNumber" minOccurs="0" />
+                <xs:element name="color2" type="fourNumber" minOccurs="0" />
+                <xs:element name="color3" type="fourNumber" minOccurs="0" />
+                <xs:element name="scale" type="threeNumber" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>

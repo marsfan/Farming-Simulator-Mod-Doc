@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"></xs:include>
     <xs:element name="wheel">
         <xs:complexType>
             <xs:sequence>
@@ -35,12 +36,12 @@
                                         <xs:element minOccurs="0" ref="innerRim" />
                                         <xs:element name="additional" minOccurs="0" maxOccurs="unbounded">
                                             <xs:complexType>
-                                                <xs:attribute name="filename" use="required" />
+                                                <xs:attribute name="filename" use="required" type="i3dFilepath"/>
                                                 <xs:attribute name="mass" type="xs:decimal" />
-                                                <xs:attribute name="nodeLeft" use="required" />
-                                                <xs:attribute name="nodeRight" use="required" />
+                                                <xs:attribute name="nodeLeft" use="required" type="node" />
+                                                <xs:attribute name="nodeRight" use="required" type="node"/>
                                                 <xs:attribute name="offset" type="xs:decimal" />
-                                                <xs:attribute name="scale" />
+                                                <xs:attribute name="scale" type="threeNumber"/>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
@@ -55,30 +56,30 @@
     </xs:element>
     <xs:element name="tire">
         <xs:complexType>
-            <xs:attribute name="filename" />
+            <xs:attribute name="filename" type="i3dFilepath"/>
             <xs:attribute name="isCareWheel" type="xs:boolean" />
             <xs:attribute name="maxDeformation" type="xs:decimal" />
-            <xs:attribute name="nodeLeft" />
-            <xs:attribute name="nodeRight" />
+            <xs:attribute name="nodeLeft" type="node"/>
+            <xs:attribute name="nodeRight" type="node" />
             <xs:attribute name="tireTrackAtlasIndex" type="xs:integer" />
         </xs:complexType>
     </xs:element>
     <xs:element name="outerRim">
         <xs:complexType>
-            <xs:attribute name="filename" />
-            <xs:attribute name="node" />
-            <xs:attribute name="scale" />
-            <xs:attribute name="widthAndDiam" />
+            <xs:attribute name="filename" type="i3dFilepath" />
+            <xs:attribute name="node"  type="node"/>
+            <xs:attribute name="scale" type="threeNumber" />
+            <xs:attribute name="widthAndDiam" type="twoNumber"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="innerRim">
         <xs:complexType>
-            <xs:attribute name="filename" />
-            <xs:attribute name="nodeLeft" />
-            <xs:attribute name="nodeRight" />
-            <xs:attribute name="offset" type="xs:NMTOKEN" />
-            <xs:attribute name="scale" />
-            <xs:attribute name="widthAndDiam" />
+            <xs:attribute name="filename" type="i3dFilepath"/>
+            <xs:attribute name="nodeLeft" type="node"/>
+            <xs:attribute name="nodeRight" type="node"/>
+            <xs:attribute name="offset" type="xs:decimal" />
+            <xs:attribute name="scale" type="threeNumber"/>
+            <xs:attribute name="widthAndDiam" type="twoNumber"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

@@ -1,92 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"></xs:include>
     <xs:element name="powerTakeOff">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="startNode">
-                    <xs:complexType>
-                        <xs:attribute name="node" use="required" type="xs:integer" />
-                    </xs:complexType>
-                </xs:element>
+                <xs:element name="startNode" type="nodeType" />
                 <xs:choice minOccurs="0">
-                    <xs:element name="startJoint">
-                        <xs:complexType>
-                            <xs:attribute name="node" use="required" />
-                        </xs:complexType>
-                    </xs:element>
+                    <xs:element name="startJoint" type="nodeType" />
                     <xs:sequence>
-                        <xs:element name="startJoint1">
-                            <xs:complexType>
-                                <xs:attribute name="node" use="required" />
-                            </xs:complexType>
-                        </xs:element>
-                        <xs:element name="startJoint2">
-                            <xs:complexType>
-                                <xs:attribute name="node" use="required" />
-                            </xs:complexType>
-                        </xs:element>
+                        <xs:element name="startJoint1" type="nodeType" />
+                        <xs:element name="startJoint2" type="nodeType" />
                     </xs:sequence>
                 </xs:choice>
                 <xs:sequence minOccurs="0">
-                    <xs:element name="scalePart">
-                        <xs:complexType>
-                            <xs:attribute name="node" use="required" />
-                            <xs:attribute name="referenceNode" use="required" />
-                        </xs:complexType>
-                    </xs:element>
+                    <xs:element name="scalePart" type="refNode"/>
                     <xs:element name="translationPart">
                         <xs:complexType>
                             <xs:sequence>
                                 <xs:element name="decal">
                                     <xs:complexType>
                                         <xs:attribute name="minOffset" use="required" type="xs:decimal" />
-                                        <xs:attribute name="node" use="required" />
+                                        <xs:attribute name="node" use="required" type="node" />
                                         <xs:attribute name="offset" use="required" type="xs:decimal" />
                                         <xs:attribute name="size" use="required" type="xs:decimal" />
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
                             <xs:attribute name="length" use="required" type="xs:decimal" />
-                            <xs:attribute name="node" use="required" />
-                            <xs:attribute name="referenceNode" use="required" />
+                            <xs:attribute name="node" use="required" type="node" />
+                            <xs:attribute name="referenceNode" use="required" type="node" />
                         </xs:complexType>
                     </xs:element>
                 </xs:sequence>
                 <xs:choice minOccurs="0">
-                    <xs:element name="endJoint">
-                        <xs:complexType>
-                            <xs:attribute name="node" use="required" />
-                        </xs:complexType>
-                    </xs:element>
+                    <xs:element name="endJoint" type="nodeType" />
                     <xs:sequence>
-                        <xs:element name="endJoint1">
-                            <xs:complexType>
-                                <xs:attribute name="node" use="required" />
-                                <xs:attribute name="referenceNode" use="required" />
-                            </xs:complexType>
-                        </xs:element>
-                        <xs:element name="endJoint2">
-                            <xs:complexType>
-                                <xs:attribute name="node" use="required" />
-                            </xs:complexType>
-                        </xs:element>
+                        <xs:element name="endJoint1" type="refNode"/>
+                        <xs:element name="endJoint2" type="nodeType" />
                     </xs:sequence>
                 </xs:choice>
-                <xs:element name="linkNode">
-                    <xs:complexType>
-                        <xs:attribute name="node" use="required" />
-                    </xs:complexType>
-                </xs:element>
+                <xs:element name="linkNode" type="nodeType" />
                 <xs:element name="animationNodes" minOccurs="0">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="animationNode" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:attribute name="class" type="xs:NCName" />
-                                    <xs:attribute name="node" use="required" />
+                                    <xs:attribute name="node" use="required" type="node" />
                                     <xs:attribute name="rotAxis" type="xs:integer" />
                                     <xs:attribute name="rotSpeed" type="xs:integer" />
-                                    <xs:attribute name="shaking" />
+                                    <!-- TODO: Further limit this. Appears that first 3 nums are -1 to 1 and last one is 0 to 100-->
+                                    <xs:attribute name="shaking" type="fourNumber"/>
                                     <xs:attribute name="turnOffFadeTime" use="required" type="xs:integer" />
                                     <xs:attribute name="turnOnFadeTime" use="required" type="xs:integer" />
                                 </xs:complexType>
@@ -96,7 +60,7 @@
                 </xs:element>
             </xs:sequence>
             <xs:attribute name="colorShaderParameter" type="xs:NCName" />
-            <xs:attribute name="filename" use="required" />
+            <xs:attribute name="filename" use="required" type="i3dFilepath"/>
             <xs:attribute name="isDoubleJoint" type="xs:boolean" />
             <xs:attribute name="isSingleJoint" type="xs:boolean" />
             <xs:attribute name="minLength" type="xs:decimal" />
@@ -104,4 +68,13 @@
             <xs:attribute name="zOffset" type="xs:decimal" />
         </xs:complexType>
     </xs:element>
+    
+    <xs:complexType name="refNode">
+        <xs:complexContent>
+            <xs:extension base="nodeType">
+                <xs:attribute name="referenceNode" use="required" type="node" />
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
 </xs:schema>

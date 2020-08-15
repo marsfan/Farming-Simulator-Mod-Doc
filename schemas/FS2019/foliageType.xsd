@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"/>
     <xs:element name="foliageType">
         <xs:complexType>
             <xs:sequence>
@@ -8,20 +9,20 @@
                         <xs:sequence>
                             <xs:element name="foliageStateDefaults">
                                 <xs:complexType>
-                                    <xs:attribute name="distanceMapLayer" type="xs:integer" />
-                                    <xs:attribute name="heightVariance" type="xs:decimal" />
-                                    <xs:attribute name="horizontalPositionVariance" type="xs:decimal" />
-                                    <xs:attribute name="widthVariance" type="xs:decimal" />
+                                    <xs:attribute name="distanceMapLayer" type="xs:integer"/>
+                                    <xs:attribute name="heightVariance" type="xs:decimal"/>
+                                    <xs:attribute name="horizontalPositionVariance" type="xs:decimal"/>
+                                    <xs:attribute name="widthVariance" type="xs:decimal"/>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="foliageLodDefaults" maxOccurs="unbounded">
                                 <xs:complexType>
-                                    <xs:attribute name="atlasOffset" />
-                                    <xs:attribute name="atlasSize" type="xs:integer" />
-                                    <xs:attribute name="blendOutDistance" type="xs:integer" />
-                                    <xs:attribute name="lod" use="required" type="xs:integer" />
-                                    <xs:attribute name="texCoords" />
-                                    <xs:attribute name="viewDistance" use="required" type="xs:integer" />
+                                    <xs:attribute name="atlasOffset" type="twoNumber"/>
+                                    <xs:attribute name="atlasSize" type="xs:integer"/>
+                                    <xs:attribute name="blendOutDistance" type="xs:integer"/>
+                                    <xs:attribute name="lod" use="required" type="xs:integer"/>
+                                    <xs:attribute name="texCoords" type="fourNumber"/>
+                                    <xs:attribute name="viewDistance" use="required" type="xs:integer"/>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="foliageState" maxOccurs="unbounded">
@@ -32,42 +33,42 @@
                                                 <xs:sequence>
                                                     <xs:element name="foliageLod" maxOccurs="unbounded">
                                                         <xs:complexType>
-                                                            <xs:attribute name="atlasOffset" />
-                                                            <xs:attribute name="atlasSize" type="xs:integer" />
-                                                            <xs:attribute name="blockShape" use="required" />
-                                                            <xs:attribute name="lod" type="xs:integer" />
-                                                            <xs:attribute name="texCoords" />
+                                                            <xs:attribute name="atlasOffset" type="twoNumber"/>
+                                                            <xs:attribute name="atlasSize" type="xs:integer"/>
+                                                            <xs:attribute name="blockShape" use="required" type="node"/>
+                                                            <xs:attribute name="lod" type="xs:integer"/>
+                                                            <xs:attribute name="texCoords" type="fourNumber"/>
                                                         </xs:complexType>
                                                     </xs:element>
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
-                                    <xs:attribute name="distanceMap" />
-                                    <xs:attribute name="distanceMapLayer" type="xs:integer" />
-                                    <xs:attribute name="height" type="xs:decimal" />
-                                    <xs:attribute name="heightVariance" type="xs:decimal" />
-                                    <xs:attribute name="horizontalPositionVariance" type="xs:decimal" />
-                                    <xs:attribute name="index" type="xs:integer" />
-                                    <xs:attribute name="name" />
-                                    <xs:attribute name="numBlocksPerUnit" type="xs:decimal" />
-                                    <xs:attribute name="width" type="xs:decimal" />
-                                    <xs:attribute name="widthVariance" type="xs:decimal" />
+                                    <xs:attribute name="distanceMap" type="pngFilepath"/>
+                                    <xs:attribute name="distanceMapLayer" type="xs:integer"/>
+                                    <xs:attribute name="height" type="xs:decimal"/>
+                                    <xs:attribute name="heightVariance" type="xs:decimal"/>
+                                    <xs:attribute name="horizontalPositionVariance" type="xs:decimal"/>
+                                    <xs:attribute name="index" type="xs:integer"/>
+                                    <xs:attribute name="name" type="xs:string"/>
+                                    <xs:attribute name="numBlocksPerUnit" type="xs:decimal"/>
+                                    <xs:attribute name="width" type="xs:decimal"/>
+                                    <xs:attribute name="widthVariance" type="xs:decimal"/>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
-                        <xs:attribute name="cellSize" use="required" type="xs:integer" />
-                        <xs:attribute name="decalLayer" use="required" type="xs:integer" />
-                        <xs:attribute name="densityMapChannelOffset" use="required" type="xs:integer" />
-                        <xs:attribute name="name" type="xs:NCName" />
-                        <xs:attribute name="numBlocksPerUnit" use="required" type="xs:decimal" />
-                        <xs:attribute name="numDensityMapChannels" use="required" type="xs:integer" />
-                        <xs:attribute name="objectMask" use="required" type="xs:integer" />
-                        <xs:attribute name="shapeSource" use="required" type="xs:NCName" />
+                        <xs:attribute name="cellSize" use="required" type="xs:integer"/>
+                        <xs:attribute name="decalLayer" use="required" type="xs:integer"/>
+                        <xs:attribute name="densityMapChannelOffset" use="required" type="xs:integer"/>
+                        <xs:attribute name="name" type="xs:NCName"/>
+                        <xs:attribute name="numBlocksPerUnit" use="required" type="xs:decimal"/>
+                        <xs:attribute name="numDensityMapChannels" use="required" type="xs:integer"/>
+                        <xs:attribute name="objectMask" use="required" type="xs:integer"/>
+                        <xs:attribute name="shapeSource" use="required" type="xs:NCName"/>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
-            <xs:attribute name="distanceTexturePath" use="required" type="xs:NCName" />
+            <xs:attribute name="distanceTexturePath" use="required" type="xs:NCName"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

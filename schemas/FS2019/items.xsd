@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"/>
     <xs:element name="items">
         <xs:complexType>
             <xs:sequence>
@@ -8,10 +9,10 @@
                         <xs:attribute name="className" use="required" type="xs:NCName" />
                         <xs:attribute name="defaultFarmProperty" type="xs:boolean" />
                         <xs:attribute name="farmId" type="xs:integer" />
-                        <xs:attribute name="filename" use="required" />
+                        <xs:attribute name="filename" use="required" type="xmlFilepath"/>
                         <xs:attribute name="mapBoundId" type="xs:NCName" />
-                        <xs:attribute name="position" use="required" />
-                        <xs:attribute name="rotation" use="required" />
+                        <xs:attribute name="position" use="required" type="threeNumber"/>
+                        <xs:attribute name="rotation" use="required" type="threeNumber"/>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>

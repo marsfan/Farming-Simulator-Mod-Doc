@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:include schemaLocation="commonTypes.xsd"></xs:include>
     <xs:element name="map">
         <xs:complexType>
             <xs:sequence>
@@ -20,9 +21,9 @@
                                             </xs:element>
                                             <xs:element name="textures">
                                                 <xs:complexType>
-                                                    <xs:attribute name="diffuse" use="required" />
-                                                    <xs:attribute name="distance" use="required" />
-                                                    <xs:attribute name="normal" use="required" />
+                                                    <xs:attribute name="diffuse" use="required" type="pngFilepath" />
+                                                    <xs:attribute name="distance" use="required" type="pngFilepath" />
+                                                    <xs:attribute name="normal" use="required" type="pngFilepath" />
                                                 </xs:complexType>
                                             </xs:element>
                                         </xs:sequence>
@@ -74,7 +75,7 @@
                                                         <xs:complexType>
                                                             <xs:attribute name="firstRegrowthState" type="xs:integer" />
                                                             <xs:attribute name="groundTypeChangeGrowthState" use="required" type="xs:integer" />
-                                                            <xs:attribute name="groundTypeChangeMask" />
+                                                            <xs:attribute name="groundTypeChangeMask" type="xs:string" />
                                                             <xs:attribute name="groundTypeChanged" use="required" type="xs:NCName" />
                                                             <xs:attribute name="growthRequiresLime" use="required" type="xs:boolean" />
                                                             <xs:attribute name="growthStateTime" use="required" type="xs:integer" />
@@ -134,15 +135,15 @@
                                                 </xs:choice>
                                                 <xs:element name="mapColors">
                                                     <xs:complexType>
-                                                        <xs:attribute name="colorBlind" use="required" />
-                                                        <xs:attribute name="default" use="required" />
+                                                        <xs:attribute name="colorBlind" use="required" type="rgba" />
+                                                        <xs:attribute name="default" use="required" type="rgba" />
                                                     </xs:complexType>
                                                 </xs:element>
                                             </xs:sequence>
                                             <xs:attribute name="name" use="required" type="xs:NCName" />
                                             <xs:attribute name="showOnPriceTable" type="xs:boolean" />
                                             <xs:attribute name="shownOnMap" use="required" type="xs:boolean" />
-                                            <xs:attribute name="title" />
+                                            <xs:attribute name="title" type="xs:string" />
                                             <xs:attribute name="useForFieldJob" use="required" type="xs:boolean" />
                                         </xs:complexType>
                                     </xs:element>
@@ -177,7 +178,7 @@
                     </xs:sequence>
                 </xs:choice>
                 <xs:sequence minOccurs="0">
-                    <xs:element name="filename" type="xs:string" />
+                    <xs:element name="filename" type="i3dFilepath" />
                     <xs:element name="shop" type="filenameType" />
                     <xs:element name="colorGrading" type="filenameType" />
                     <xs:element name="storeItems" type="filenameType" />
@@ -201,9 +202,9 @@
                             <xs:attribute name="xzOffset" use="required" type="xs:integer" />
                         </xs:complexType>
                     </xs:element>
-                    <xs:element name="densityMap" type="revisionType"/>
-                    <xs:element name="terrainLodTexture" type="revisionType"/>
-                    <xs:element name="splitShapes" type="revisionType"/>
+                    <xs:element name="densityMap" type="revisionType" />
+                    <xs:element name="terrainLodTexture" type="revisionType" />
+                    <xs:element name="splitShapes" type="revisionType" />
                     <xs:element name="tipCollision" type="revisionType" />
 
                     <xs:element name="hotspots">
@@ -213,9 +214,9 @@
                                     <xs:complexType>
                                         <xs:attribute name="blinking" use="required" type="xs:boolean" />
                                         <xs:attribute name="category" use="required" type="xs:NCName" />
-                                        <xs:attribute name="fullName" use="required" />
+                                        <xs:attribute name="fullName" use="required" type="xs:string" />
                                         <xs:attribute name="hidable" use="required" type="xs:boolean" />
-                                        <xs:attribute name="imageUVs" use="required" />
+                                        <xs:attribute name="imageUVs" use="required" type="fourNumber" />
                                         <xs:attribute name="name" use="required" type="xs:NCName" />
                                         <xs:attribute name="persistent" use="required" type="xs:boolean" />
                                         <xs:attribute name="renderLast" use="required" type="xs:boolean" />
@@ -269,13 +270,13 @@
                             <xs:element name="npc" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:attribute name="category" use="required" type="xs:NCName" />
-                                    <xs:attribute name="imageFilename" use="required" />
+                                    <xs:attribute name="imageFilename" use="required" type="pngFilepath" />
                                     <xs:attribute name="name" use="required" type="xs:NCName" />
-                                    <xs:attribute name="title" use="required" />
+                                    <xs:attribute name="title" use="required" type="xs:string" />
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
-                        <xs:attribute name="filename" />
+                        <xs:attribute name="filename" type="xmlFilepath" />
                     </xs:complexType>
                 </xs:element>
                 <xs:choice minOccurs="0">
@@ -285,7 +286,7 @@
                                 <xs:element name="baleType" maxOccurs="unbounded">
                                     <xs:complexType>
                                         <xs:attribute name="diameter" type="xs:decimal" />
-                                        <xs:attribute name="filename" use="required" />
+                                        <xs:attribute name="filename" use="required" type="i3dFilepath" />
                                         <xs:attribute name="fillType" use="required" type="xs:NCName" />
                                         <xs:attribute name="height" type="xs:decimal" />
                                         <xs:attribute name="isRoundbale" use="required" type="xs:boolean" />
@@ -308,8 +309,8 @@
                                     </xs:complexType>
                                 </xs:element>
                             </xs:sequence>
-                            <xs:attribute name="densityMapFilename" />
-                            <xs:attribute name="filename" />
+                            <xs:attribute name="densityMapFilename" type="grleFilepath" />
+                            <xs:attribute name="filename" type="xmlFilepath" />
                             <xs:attribute name="numChannels" type="xs:integer" />
                             <xs:attribute name="pricePerHa" type="xs:integer" />
                         </xs:complexType>
@@ -319,7 +320,7 @@
                             <xs:sequence>
                                 <xs:element name="helper" maxOccurs="unbounded">
                                     <xs:complexType>
-                                        <xs:attribute name="filename" use="required" />
+                                        <xs:attribute name="filename" use="required" type="xmlFilepath" />
                                         <xs:attribute name="name" use="required" type="xs:NCName" />
                                     </xs:complexType>
                                 </xs:element>
@@ -379,8 +380,8 @@
                                             <xs:sequence>
                                                 <xs:element name="image">
                                                     <xs:complexType>
-                                                        <xs:attribute name="hud" use="required" />
-                                                        <xs:attribute name="hudSmall" use="required" />
+                                                        <xs:attribute name="hud" use="required" type="pngFilepath" />
+                                                        <xs:attribute name="hudSmall" use="required" type="pngFilepath" />
                                                     </xs:complexType>
                                                 </xs:element>
                                                 <xs:element name="physics">
@@ -391,11 +392,11 @@
                                                 </xs:element>
                                                 <xs:element name="pallet" minOccurs="0" type="filenameType" />
                                             </xs:sequence>
-                                            <xs:attribute name="fillPlaneColors" />
+                                            <xs:attribute name="fillPlaneColors" type="rgb" />
                                             <xs:attribute name="name" use="required" type="xs:NCName" />
                                             <xs:attribute name="pricePerLiter" use="required" type="xs:decimal" />
                                             <xs:attribute name="showOnPriceTable" use="required" type="xs:boolean" />
-                                            <xs:attribute name="title" use="required" />
+                                            <xs:attribute name="title" use="required" type="xs:string" />
                                         </xs:complexType>
                                     </xs:element>
                                 </xs:sequence>
@@ -424,7 +425,7 @@
                                                     </xs:complexType>
                                                 </xs:element>
                                             </xs:sequence>
-                                            <xs:attribute name="fillTypes" />
+                                            <xs:attribute name="fillTypes" type="xs:string" />
                                             <xs:attribute name="isDefault" type="xs:boolean" />
                                         </xs:complexType>
                                     </xs:element>
@@ -435,7 +436,7 @@
                 </xs:choice>
             </xs:sequence>
             <xs:attribute name="height" type="xs:integer" />
-            <xs:attribute name="imageFilename" />
+            <xs:attribute name="imageFilename" type="pngFilepath" />
             <xs:attribute name="width" type="xs:integer" />
         </xs:complexType>
     </xs:element>
@@ -448,7 +449,11 @@
         </xs:complexType>
     </xs:element>
     <xs:complexType name="filenameType">
-        <xs:attribute name="filename" use="required" />
+        <xs:attribute name="filename" use="required">
+            <xs:simpleType>
+                <xs:union memberTypes="xmlFilepath i3dFilepath" />
+            </xs:simpleType>
+        </xs:attribute>
     </xs:complexType>
     <xs:complexType name="revisionType">
         <xs:attribute name="revision" use="required" type="xs:integer" />

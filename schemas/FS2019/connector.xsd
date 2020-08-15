@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"></xs:include>
     <xs:element name="connector">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="file">
                     <xs:complexType>
-                        <xs:attribute name="leftNode" use="required" />
-                        <xs:attribute name="name" use="required" />
-                        <xs:attribute name="rightNode" use="required" />
+                        <xs:attribute name="leftNode" use="required" type="node"/>
+                        <xs:attribute name="name" use="required" type="i3dFilepath"/>
+                        <xs:attribute name="rightNode" use="required" type="node"/>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>

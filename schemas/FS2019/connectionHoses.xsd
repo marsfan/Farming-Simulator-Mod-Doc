@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"/>
     <xs:element name="connectionHoses">
         <xs:complexType>
             <xs:sequence>
@@ -10,10 +11,10 @@
                                 <xs:complexType>
                                     <xs:attribute name="diameter" use="required" type="xs:decimal" />
                                     <xs:attribute name="endStraightening" use="required" type="xs:decimal" />
-                                    <xs:attribute name="filename" use="required" />
+                                    <xs:attribute name="filename" use="required" type="i3dFilepath"/>
                                     <xs:attribute name="length" use="required" type="xs:decimal" />
                                     <xs:attribute name="minCenterPointAngle" use="required" type="xs:integer" />
-                                    <xs:attribute name="node" use="required" />
+                                    <xs:attribute name="node" use="required" type="node" />
                                     <xs:attribute name="realLength" use="required" type="xs:integer" />
                                     <xs:attribute name="startStraightening" use="required" type="xs:decimal" />
                                 </xs:complexType>
@@ -29,19 +30,19 @@
                                     <xs:sequence>
                                         <xs:element name="adapter" minOccurs="0" maxOccurs="unbounded">
                                             <xs:complexType>
-                                                <xs:attribute name="filename" use="required" />
+                                                <xs:attribute name="filename" use="required" type="i3dFilepath"/>
                                                 <xs:attribute name="name" use="required" type="xs:NCName" />
-                                                <xs:attribute name="node" use="required" />
+                                                <xs:attribute name="node" use="required" type="node"/>
                                             </xs:complexType>
                                         </xs:element>
                                         <xs:element name="material">
                                             <xs:complexType>
-                                                <xs:attribute name="defaultColor" use="required" />
-                                                <xs:attribute name="filename" use="required" />
-                                                <xs:attribute name="materialNode" use="required" type="xs:integer" />
+                                                <xs:attribute name="defaultColor" use="required" type="rgba"/>
+                                                <xs:attribute name="filename" use="required" type="i3dFilepath"/>
+                                                <xs:attribute name="materialNode" use="required" type="node" />
                                                 <xs:attribute name="name" use="required" type="xs:NCName" />
-                                                <xs:attribute name="uvOffset" use="required" />
-                                                <xs:attribute name="uvScale" use="required" />
+                                                <xs:attribute name="uvOffset" use="required" type="twoNumber"/>
+                                                <xs:attribute name="uvScale" use="required" type="twoNumber"/>
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
@@ -59,18 +60,18 @@
                                     <xs:sequence>
                                         <xs:element name="cab" maxOccurs="unbounded">
                                             <xs:complexType>
-                                                <xs:attribute name="closedRotation" />
+                                                <xs:attribute name="closedRotation" type="threeNumber"/>
                                                 <xs:attribute name="closedVisibility" type="xs:boolean" />
                                                 <xs:attribute name="node" use="required" type="xs:integer" />
-                                                <xs:attribute name="openedRotation" />
+                                                <xs:attribute name="openedRotation" type="threeNumber"/>
                                                 <xs:attribute name="openedVisibility" type="xs:boolean" />
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
-                                    <xs:attribute name="filename" use="required" />
+                                    <xs:attribute name="filename" use="required" type="i3dFilepath"/>
                                     <xs:attribute name="name" use="required" type="xs:NCName" />
-                                    <xs:attribute name="node" use="required" />
-                                    <xs:attribute name="referenceNode" use="required" type="xs:integer" />
+                                    <xs:attribute name="node" use="required" type="node"/>
+                                    <xs:attribute name="referenceNode" use="required" type="node" />
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>

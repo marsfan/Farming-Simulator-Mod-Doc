@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"></xs:include>
+    <xs:element name="storeData">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element minOccurs="1" maxOccurs="1" name="name" type="xs:string" />
+                <xs:element minOccurs="1" maxOccurs="1" name="functions">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="function" type="xs:string" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="image" minOccurs="1" maxOccurs="1" type="pngFilepath" />
+                <xs:element name="price" minOccurs="1" maxOccurs="1" type="xs:integer" />
+                <xs:element name="lifetime" minOccurs="1" maxOccurs="1" type="xs:integer" />
+                <xs:element name="rotation" minOccurs="1" maxOccurs="1" type="xs:integer" />
+                <xs:element name="brand" minOccurs="1" maxOccurs="1" type="xs:NCName" />
+                <xs:element name="canBeSold" maxOccurs="1" type="xs:boolean" />
+                <xs:element name="showInStore" maxOccurs="1" type="xs:boolean" />
+                <xs:element name="category" minOccurs="1" maxOccurs="1" type="xs:NCName" />
+                <xs:element name="species" minOccurs="1" maxOccurs="1" type="xs:NCName" />
+                <xs:choice>
+                    <xs:annotation>
+                        <xs:documentation>These element are used by placeables types</xs:documentation>
+                    </xs:annotation>
+                    <xs:element name="boughtWithFarmland" minOccurs="0" maxOccurs="1" type="xs:boolean" />
+                    <xs:element name="dailyUpkeep" minOccurs="0" maxOccurs="1" type="xs:integer" />
+                    <xs:element name="indexBufferMemoryUsage" minOccurs="0" maxOccurs="1" type="xs:integer" />
+                    <xs:element name="instanceIndexBufferMemoryUsage" minOccurs="0" maxOccurs="1" type="xs:integer" />
+                    <xs:element name="instanceVertexBufferMemoryUsage" minOccurs="0" maxOccurs="1" type="xs:integer" />
+                    <xs:element name="maxItemCount" minOccurs="0" maxOccurs="1" type="xs:integer" />
+                    <xs:element name="specs" minOccurs="0" maxOccurs="1">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="capacity" type="xs:integer" minOccurs="0" />
+                                <xs:element name="fillTypes" type="stringList" />
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="textureMemoryUsage" minOccurs="0" maxOccurs="1" type="xs:integer" />
+                    <xs:element name="vertexBufferMemoryUsage" minOccurs="0" maxOccurs="1" type="xs:integer" />
+                </xs:choice>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

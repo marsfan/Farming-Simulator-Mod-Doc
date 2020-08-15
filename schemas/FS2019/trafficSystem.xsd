@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"></xs:include>
     <xs:element name="trafficSystem">
         <xs:complexType>
             <xs:sequence>
@@ -19,8 +20,8 @@
                                                                     <xs:complexType>
                                                                         <xs:attribute name="distToRotCenter" use="required" type="xs:decimal" />
                                                                         <xs:attribute name="radius" use="required" type="xs:decimal" />
-                                                                        <xs:attribute name="xRotNode" use="required" />
-                                                                        <xs:attribute name="yRotNode" use="required" />
+                                                                        <xs:attribute name="xRotNode" use="required"  type="node" />
+                                                                        <xs:attribute name="yRotNode" use="required" type="node"/>
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                             </xs:sequence>
@@ -31,31 +32,16 @@
                                                             <xs:sequence>
                                                                 <xs:element name="light">
                                                                     <xs:complexType>
-                                                                        <xs:attribute name="decoration" use="required" />
-                                                                        <xs:attribute name="highProfile" use="required" />
+                                                                        <xs:attribute name="decoration" use="required" type="node"/>
+                                                                        <xs:attribute name="highProfile" use="required" type="node"/>
                                                                         <xs:attribute name="index" use="required" type="xs:integer" />
                                                                         <xs:attribute name="intensity" use="required" type="xs:integer" />
-                                                                        <xs:attribute name="lowProfile" use="required" />
+                                                                        <xs:attribute name="lowProfile" use="required" type="node"/>
                                                                     </xs:complexType>
                                                                 </xs:element>
-                                                                <xs:element name="brake">
-                                                                    <xs:complexType>
-                                                                        <xs:attribute name="decoration" use="required" />
-                                                                        <xs:attribute name="intensity" use="required" type="xs:integer" />
-                                                                    </xs:complexType>
-                                                                </xs:element>
-                                                                <xs:element name="turnLeft">
-                                                                    <xs:complexType>
-                                                                        <xs:attribute name="decoration" use="required" />
-                                                                        <xs:attribute name="intensity" use="required" type="xs:integer" />
-                                                                    </xs:complexType>
-                                                                </xs:element>
-                                                                <xs:element name="turnRight">
-                                                                    <xs:complexType>
-                                                                        <xs:attribute name="decoration" use="required" />
-                                                                        <xs:attribute name="intensity" use="required" type="xs:integer" />
-                                                                    </xs:complexType>
-                                                                </xs:element>
+                                                                <xs:element name="brake" type="vehicleLightType" />
+                                                                <xs:element name="turnLeft" type="vehicleLightType" />
+                                                                <xs:element name="turnRight" type="vehicleLightType"/>
                                                             </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
@@ -64,7 +50,7 @@
                                                             <xs:sequence>
                                                                 <xs:element name="color" maxOccurs="unbounded">
                                                                     <xs:complexType>
-                                                                        <xs:attribute name="rgb" use="required" />
+                                                                        <xs:attribute name="rgb" use="required" type="rgb"/>
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                             </xs:sequence>
@@ -79,7 +65,7 @@
                                                             <xs:sequence>
                                                                 <xs:element name="motor">
                                                                     <xs:complexType>
-                                                                        <xs:attribute name="filename" use="required" />
+                                                                        <xs:attribute name="filename" use="required" type="wavFilepath"/>
                                                                         <xs:attribute name="indoor" use="required" type="xs:decimal" />
                                                                         <xs:attribute name="indoorLowpassGain" use="required" type="xs:decimal" />
                                                                         <xs:attribute name="innerRange" use="required" type="xs:integer" />
@@ -108,8 +94,8 @@
                                                     </xs:element>
                                                 </xs:sequence>
                                                 <xs:attribute name="driverIndex" use="required" type="xs:integer" />
-                                                <xs:attribute name="filename" use="required" />
-                                                <xs:attribute name="filenameParked" />
+                                                <xs:attribute name="filename" use="required" type="i3dFilepath"/>
+                                                <xs:attribute name="filenameParked" type="i3dFilepath"/>
                                                 <xs:attribute name="lightsIndex" use="required" type="xs:integer" />
                                                 <xs:attribute name="triggerIndex" use="required" type="xs:integer" />
                                             </xs:complexType>
@@ -127,4 +113,9 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+
+    <xs:complexType name="vehicleLightType">
+        <xs:attribute name="decoration" use="required" type="node" />
+        <xs:attribute name="intensity" use="required" type="xs:integer" />
+    </xs:complexType>
 </xs:schema>

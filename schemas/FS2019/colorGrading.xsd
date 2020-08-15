@@ -1,75 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"></xs:include>
     <xs:element name="colorGrading">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="global">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element ref="saturation" />
-                            <xs:element ref="contrast" />
-                            <xs:element ref="gamma" />
-                            <xs:element ref="gain" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="shadows">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element ref="saturation" />
-                            <xs:element ref="contrast" />
-                            <xs:element ref="gamma" />
-                            <xs:element ref="gain" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="midtones">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element ref="saturation" />
-                            <xs:element ref="contrast" />
-                            <xs:element ref="gamma" />
-                            <xs:element ref="gain" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="highlights">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element ref="saturation" />
-                            <xs:element ref="contrast" />
-                            <xs:element ref="gamma" />
-                            <xs:element ref="gain" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
+                <xs:element name="global" type="colorGradingType" />
+                <xs:element name="shadows" type="colorGradingType" />
+                <xs:element name="midtones" type="colorGradingType" />
+                <xs:element name="highlights" type="colorGradingType" />
             </xs:sequence>
             <xs:attribute name="highlightsMinLuminance" use="required" type="xs:decimal" />
             <xs:attribute name="shadowsMaxLuminance" use="required" type="xs:decimal" />
         </xs:complexType>
     </xs:element>
-    <xs:element name="saturation">
-        <xs:complexType>
-            <xs:attribute name="rgb" use="required" />
-            <xs:attribute name="scale" use="required" type="xs:integer" />
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="contrast">
-        <xs:complexType>
-            <xs:attribute name="rgb" use="required" />
-            <xs:attribute name="scale" use="required" type="xs:integer" />
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="gamma">
-        <xs:complexType>
-            <xs:attribute name="rgb" use="required" />
-            <xs:attribute name="scale" use="required" type="xs:integer" />
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="gain">
-        <xs:complexType>
-            <xs:attribute name="rgb" use="required" />
-            <xs:attribute name="scale" use="required" type="xs:integer" />
-        </xs:complexType>
-    </xs:element>
+    <xs:complexType name="colorGradingType">
+        <xs:sequence>
+            <xs:element name="saturation" type="rgbType" />
+            <xs:element name="contrast" type="rgbType" />
+            <xs:element name="gamma" type="rgbType" />
+            <xs:element name="gain" type="rgbType" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="rgbType">
+        <xs:attribute name="rgb" use="required" type="rgb"/>
+        <xs:attribute name="scale" use="required" type="xs:integer" />
+    </xs:complexType>
 </xs:schema>

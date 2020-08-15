@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"/>
     <xs:element name="soundTemplates">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="template" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="volume" minOccurs="0">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element minOccurs="0" maxOccurs="unbounded" ref="modifier" />
-                                    </xs:sequence>
-                                    <xs:attribute name="indoor" use="required" type="xs:decimal" />
-                                    <xs:attribute name="outdoor" use="required" type="xs:decimal" />
-                                </xs:complexType>
-                            </xs:element>
+                            <xs:element name="volume" minOccurs="0" type="indoorOutdoorModifierType"/>
                             <xs:element name="pitch" minOccurs="0">
                                 <xs:complexType>
                                     <xs:choice>
@@ -31,12 +24,8 @@
                                 </xs:complexType>
                             </xs:element>
                             <xs:choice minOccurs="0">
-                                <xs:element name="lowpassGain">
-                                    <xs:complexType>
-                                        <xs:attribute name="indoor" use="required" type="xs:decimal" />
-                                        <xs:attribute name="outdoor" use="required" type="xs:decimal" />
-                                    </xs:complexType>
-                                </xs:element>
+                                <xs:element name="lowpassGain" type="indoorOutdoorType"/>
+                                    
                                 <xs:element name="randomization">
                                     <xs:complexType>
                                         <xs:attribute name="maxLowpassGain" use="required" type="xs:integer" />
@@ -50,15 +39,15 @@
                             </xs:choice>
                             <xs:element name="sourceRandomization" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType>
-                                    <xs:attribute name="file" use="required" />
+                                    <xs:attribute name="file" use="required" type="wavFilepath" />
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
                         <xs:attribute name="fadeIn" type="xs:decimal" />
                         <xs:attribute name="fadeOut" type="xs:decimal" />
-                        <xs:attribute name="file" />
+                        <xs:attribute name="file" type="wavFilepath"/>
                         <xs:attribute name="innerRadius" type="xs:decimal" />
-                        <xs:attribute name="linkNode" />
+                        <xs:attribute name="linkNode" type="node"/>
                         <xs:attribute name="name" use="required" type="xs:NCName" />
                         <xs:attribute name="outerRadius" type="xs:decimal" />
                         <xs:attribute name="parent" type="xs:NCName" />
@@ -67,11 +56,5 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="modifier">
-        <xs:complexType>
-            <xs:attribute name="modifiedValue" use="required" type="xs:decimal" />
-            <xs:attribute name="type" use="required" type="xs:NCName" />
-            <xs:attribute name="value" use="required" type="xs:decimal" />
-        </xs:complexType>
-    </xs:element>
+   
 </xs:schema>

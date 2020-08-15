@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<!-- This section countains elements used in multiple files. -->
+    <xs:element name="modifier">
+        <xs:complexType>
+            <xs:attribute name="modifiedValue" use="required" type="xs:decimal" />
+            <xs:attribute name="type" use="required" type="xs:NCName" />
+            <xs:attribute name="value" use="required" type="xs:decimal" />
+        </xs:complexType>
+    </xs:element>
+    
+
+<!-- This section has types that are used in multiple different files. It helps bring the size of 
+    those files down -->
+    <xs:complexType name="linkNodeType">
+        <xs:attribute name="linkNode" use="required" type="node" />
+        <xs:attribute name="template" use="required" type="xs:NCName" />
+    </xs:complexType>
+    <xs:complexType name="nodeType">
+        <xs:attribute name="node" use="required" type="node" />
+    </xs:complexType>
+
+    <xs:complexType name="indoorOutdoorType">
+        <xs:attribute name="indoor" use="required" type="xs:decimal" />
+        <xs:attribute name="outdoor" use="required" type="xs:decimal" />
+    </xs:complexType>
+
+    <xs:complexType name="lightType">
+        <xs:attribute name="intensity" type="xs:decimal" />
+        <xs:attribute name="node" use="required" type="node"/>
+    </xs:complexType>
+    
+   
+    <xs:complexType name="indoorOutdoorModifierType">
+        <xs:complexContent>
+            <xs:extension base="indoorOutdoorType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" ref="modifier" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+        </xs:complexType>
+
+
+    <!-- This section has restriction types for attributes-->
+    <xs:simpleType name="node">
+        <xs:annotation>
+            <xs:documentation>Matches anything with only positive numbers, | and >, and does not allow it to end with |</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(\d+)(>?)([\|>][\d]+)*"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="rgb">
+        <xs:annotation>
+            <xs:documentation>Matches string that is three positive numbers ranging from 0 to 1 seperated by a space</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(((0(\.\d+)?)|(1(\.0+)?)) ){2}((0(\.\d+)?)|(1(\.0+)?))"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="threeNumber">
+        <xs:annotation>
+            <xs:documentation>Matches string that is three numbers seperated by a space</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(-?[\d\.]* ){2}-?[\d\.]*"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="fourNumber">
+        <xs:annotation>
+            <xs:documentation>Matches string that is three numbers seperated by a space</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(-?[\d\.]* ){3}-?[\d\.]*"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="rgba">
+        <xs:annotation>
+            <xs:documentation>Matches string that is four numbers (ranging from 0 to 1), seperated by a space</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(((0(\.\d+)?)|(1(\.0+)?)) ){3}((0(\.\d+)?)|(1(\.0+)?))"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="twoNumber">
+        <xs:annotation>
+            <xs:documentation>Matches string that is three numbers (optionally with a decimal), seperated by a space</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(-?[\d\.]* )-?[\d\.]*"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="pixel2D">
+        <xs:annotation>
+            <xs:documentation>Matches a string that is two number with px after them to indicate dimensions are in pixels. Example: "3px 5px"</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(-?[\d\.]*px )-?[\d\.]*px"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="intList">
+        <xs:annotation>
+            <xs:documentation>Matches string that is any set of integers, seperated by a space</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(-?[\d]* )*-?[\d\.]*"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="decList">
+        <xs:annotation>
+            <xs:documentation>Matches string that is any set of numbers, seperated by a space</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(-?[\d\.]* )*-?[\d\.]*"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="i3dFilepath">
+        <xs:annotation>
+            <xs:documentation>Matchess filepaths to i3d files</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[$/\w\-. _]+.i3d"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="pngFilepath">
+        <xs:annotation>
+            <xs:documentation>Matchess filepaths to png files. Also alows </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([$/\w\-. _]+.png|\s?)"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="wavFilepath">
+        <xs:annotation>
+            <xs:documentation>Matchess filepaths to png files. Also alows</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([$/\w\-. _]+.wav)"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="dirPath">
+        <xs:annotation>
+            <xs:documentation>Matchess filepaths to a directory</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[$/\w\-. _]+/?"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="xmlFilepath">
+        <xs:annotation>
+            <xs:documentation>Matchess filepaths to an xml file</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[$/\w\-. _]+xml"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="grleFilepath">
+        <xs:annotation>
+            <xs:documentation>Matchess filepaths to an xml file</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[$/\w\-. _]+grle"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="stringList">
+        <xs:annotation>
+            <xs:documentation>List of strings</xs:documentation>
+        </xs:annotation>
+        <xs:list itemType="xs:string"/>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="multiplyType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[\d .]+\*60"></xs:pattern>
+        </xs:restriction>
+    </xs:simpleType>
+    
+
+</xs:schema>

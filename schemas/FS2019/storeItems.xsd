@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"></xs:include>
     <xs:element name="storeItems">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="storeItem" maxOccurs="unbounded">
                     <xs:complexType>
-                        <xs:attribute name="xmlFilename" use="required" />
+                        <xs:attribute name="xmlFilename" use="required" type="xmlFilepath" />
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>

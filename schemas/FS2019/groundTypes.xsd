@@ -5,7 +5,7 @@
             <xs:sequence>
                 <xs:element name="groundType" maxOccurs="unbounded">
                     <xs:complexType>
-                        <xs:attribute name="fallbacks" use="required" />
+                        <xs:attribute name="fallbacks" use="required" type="xs:string"/>
                         <xs:attribute name="name" use="required" type="xs:NCName" />
                     </xs:complexType>
                 </xs:element>

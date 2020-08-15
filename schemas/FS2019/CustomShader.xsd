@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:include schemaLocation="commonTypes.xsd"></xs:include>
     <xs:element name="CustomShader">
         <xs:complexType>
             <xs:sequence>
@@ -8,10 +9,10 @@
                         <xs:sequence>
                             <xs:element name="Parameter" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType>
-                                    <xs:attribute name="defaultValue" />
+                                    <xs:attribute name="defaultValue" type="decList"/>
                                     <xs:attribute name="group" type="xs:NCName" />
-                                    <xs:attribute name="maxValue" />
-                                    <xs:attribute name="minValue" />
+                                    <xs:attribute name="maxValue" type="decList" />
+                                    <xs:attribute name="minValue" type="decList" />
                                     <xs:attribute name="name" use="required" type="xs:NCName" />
                                     <xs:attribute name="target" use="required" type="xs:NCName" />
                                     <xs:attribute name="type" use="required" type="xs:NCName" />
@@ -27,7 +28,7 @@
                                 <xs:element name="Texture" minOccurs="0" maxOccurs="unbounded">
                                     <xs:complexType>
                                         <xs:attribute name="defaultColorProfile" type="xs:NCName" />
-                                        <xs:attribute name="defaultFilename" />
+                                        <xs:attribute name="defaultFilename" type="pngFilepath"/>
                                         <xs:attribute name="defaultWrap" type="xs:boolean" />
                                         <xs:attribute name="group" type="xs:NCName" />
                                         <xs:attribute name="isOptional" type="xs:boolean" />
@@ -62,7 +63,7 @@
                         <xs:sequence>
                             <xs:element name="Variation" minOccurs="0" maxOccurs="unbounded">
                                 <xs:complexType mixed="true">
-                                    <xs:attribute name="groups" />
+                                    <xs:attribute name="groups" type="xs:string"/>
                                     <xs:attribute name="name" use="required" type="xs:NCName" />
                                 </xs:complexType>
                             </xs:element>

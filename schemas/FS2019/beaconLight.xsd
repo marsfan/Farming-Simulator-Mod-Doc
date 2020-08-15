@@ -1,31 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd" />
     <xs:element name="beaconLight">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="filename" type="xs:string" />
-                <xs:element name="rootNode">
-                    <xs:complexType>
-                        <xs:attribute name="node" use="required" type="xs:integer" />
-                    </xs:complexType>
-                </xs:element>
+                <xs:element name="filename" type="i3dFilepath" />
+                <xs:element name="rootNode" type="nodeType" />
                 <xs:element name="rotator">
                     <xs:complexType>
-                        <xs:attribute name="node" use="required" />
+                        <xs:attribute name="node" use="required" type="node" />
                         <xs:attribute name="speed" use="required" type="xs:decimal" />
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="light">
                     <xs:complexType>
                         <xs:attribute name="intensity" use="required" type="xs:integer" />
-                        <xs:attribute name="shaderNode" use="required" />
+                        <xs:attribute name="shaderNode" use="required" type="node" />
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="realLight">
-                    <xs:complexType>
-                        <xs:attribute name="node" use="required" />
-                    </xs:complexType>
-                </xs:element>
+                <xs:element name="realLight" type="nodeType"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="commonTypes.xsd"/>
     <xs:element name="shop">
         <xs:complexType>
             <xs:sequence>
@@ -16,8 +17,8 @@
                         <xs:sequence>
                             <xs:element name="colorGrading">
                                 <xs:complexType>
-                                    <xs:attribute name="filename" use="required" />
-                                    <xs:attribute name="time" use="required" />
+                                    <xs:attribute name="filename" use="required" type="xmlFilepath"/>
+                                    <xs:attribute name="time" use="required" type="multiplyType"/>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -32,92 +33,36 @@
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
-                        <xs:attribute name="basePath" use="required" />
+                        <xs:attribute name="basePath" use="required" type="dirPath"/>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="autoExposure">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="sunRotation">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="lightScatteringRotation">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="primaryDynamicLightingScale">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="primaryExtraterrestrialColor">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="secondaryExtraterrestrialColor">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="asymmetryFactor">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="sunBrightnessScale">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="sunSizeScale">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="nightSkyBlendWeight">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element maxOccurs="unbounded" ref="key" />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
+                <xs:element name="autoExposure" type="key"/>
+                <xs:element name="sunRotation" type="key"/>
+                <xs:element name="lightScatteringRotation" type="key"/>
+                <xs:element name="primaryDynamicLightingScale" type="key"/>
+                <xs:element name="primaryExtraterrestrialColor" type="key"/>
+                <xs:element name="secondaryExtraterrestrialColor" type="key"/>
+                <xs:element name="asymmetryFactor" type="key"/>
+                <xs:element name="sunBrightnessScale" type="key"/>
+                <xs:element name="sunSizeScale" type="key"/>
+                <xs:element name="nightSkyBlendWeight" type="key"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="key">
-        <xs:complexType>
-            <xs:attribute name="keyLuminance" type="xs:decimal" />
-            <xs:attribute name="maxExposure" type="xs:decimal" />
-            <xs:attribute name="minExposure" type="xs:decimal" />
-            <xs:attribute name="primary" type="xs:integer" />
-            <xs:attribute name="secondary" type="xs:integer" />
-            <xs:attribute name="time" use="required" />
-            <xs:attribute name="value" type="xs:decimal" />
-            <xs:attribute name="values" />
-        </xs:complexType>
-    </xs:element>
+    <xs:complexType name="key">
+        <xs:sequence>
+            <xs:element name="key" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:attribute name="keyLuminance" type="xs:decimal" />
+                    <xs:attribute name="maxExposure" type="xs:decimal" />
+                    <xs:attribute name="minExposure" type="xs:decimal" />
+                    <xs:attribute name="primary" type="xs:integer" />
+                    <xs:attribute name="secondary" type="xs:integer" />
+                    <xs:attribute name="time" use="required" type="multiplyType" />
+                    <xs:attribute name="value" type="xs:decimal" />
+                    <xs:attribute name="values" type="threeNumber" />
+                </xs:complexType>
+                </xs:element>
+        </xs:sequence>
+    </xs:complexType>
 </xs:schema>
