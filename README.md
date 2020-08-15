@@ -76,7 +76,11 @@ A number of tools are available to validate files against a schema. Websites can
 ### Using an command line tool
 On Linux, the command line tool `xmllint` can be used to quickly validate multiple XML files against a schema.
 As an example, to validate all files in the current directory against a schema file in the current directory, do
-`xmllint --noout --schema schema.xsd *.xml`.
+`xmllint --noout --schema schema.xsd *.xml`. In the utils folder there is a tool called `validateXML.sh` that
+abstracts away the flags, to simplify the process.
+
+_Note: `xmllint` does not seem to work with fetching XML schemas from GitHub. If you wish to validate a file against
+schemas with `xmllint`, you must manually download the schema and all its imports first.
 
 ### Your preferred editor/tool
 If you already have a tool that you prefer for validating XML files, go ahead and use it, and add it to this readme
