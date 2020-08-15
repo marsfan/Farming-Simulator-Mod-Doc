@@ -23,7 +23,11 @@ def main():
         with open(xmlFile) as fileObj:
             fileData = fileObj.read()
             # Some files have a blank line before data starts. This skips over that if it is there.
-            placeableTypes.add(typeRegex.search(fileData).group(1))
+            placeableType = typeRegex.search(fileData)
+            if placeableType is not None:
+                placeableTypes.add(placeableType.group(1))
+
+
 
     [print(placeableType) for placeableType in placeableTypes]
 
