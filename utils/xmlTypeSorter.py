@@ -9,10 +9,11 @@ import os
 from pathlib import Path
 from typing import Union
 import re
-from shutil import copyfile
+from shutil import copy, copyfile
+import listPlaceableTypes
+import listVehicleTypes
 
-xmlRegex = re.compile(r"<([A-z]*)")
-typeRegex = re.compile(r"type=\"([A-z]*)\">")
+xmlRegex = re.compile(r"<\?xml[^>]*>\n\n?<(\w*)[^>]*>")
 
 
 def main() -> None:
@@ -20,6 +21,7 @@ def main() -> None:
     fileCount = 0
     parser = argparse.ArgumentParser(description="Sort FS2019 xml files by type")
     parser.add_argument("dataFolder", type=str, help="Data directory to sort")
+    parser.add_argument("-t", "--types", action="store_true", help="Sort Vehicle and Placeables by type")
     args = parser.parse_args()
     dataPath = Path(args.dataFolder)
     safeMakeDir("SortedXML")
@@ -28,13 +30,16 @@ def main() -> None:
     for xmlFile in xmlFiles:
         fileCount += 1
         with open(xmlFile) as fileObj:
-            next(fileObj)
-            fileData = next(fileObj)
-            # Some files have a blank line before data starts. This skips over that if it is there.
-            if fileData == '\n':
-                fileData = next(fileObj)
-            xmlType = xmlRegex.search(fileData).group(1)
-            copyDest = Path("SortedXML") / xmlType
+            fileData = fileObj.read()
+        xmlType = xmlRegex.search(fileData).group(1)
+        copyDest: Path = Path("SortedXML") / xmlType
+        if args.types:
+            placeableType = listPlaceableTypes.checkPlaceableType(fileData)
+            vehicleType = listVehicleTypes.checkVehicleType(fileData)
+            if placeableType is not None:
+                copyDest = copyDest / placeableType
+            elif vehicleType is not None:
+                copyDest = copyDest / vehicleType
         safeMakeDir(copyDest)
         copyfile(xmlFile, copyDest / xmlFile.name)
 
