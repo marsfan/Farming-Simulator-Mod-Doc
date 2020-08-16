@@ -6,6 +6,7 @@ usage="$(basename "$0") [-h] name -- Validate all files for a category in Sorted
     -h          Show this help text"
 
 
+
 if [[ $# -eq 0 ]] ; then
     echo "$usage"
     exit 0
@@ -19,7 +20,7 @@ while getopts ":h" option; do
    esac
 done
 
-
+shopt -s globstar
 xmllint  --noout --schema schemas/FS2019/$1.xsd utils/SortedXML/$1/**/*.xml 2>&1
 
 exit 0
