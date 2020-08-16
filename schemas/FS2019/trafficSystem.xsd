@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
-<xs:include schemaLocation="commonTypes.xsd"></xs:include>
+<xs:include schemaLocation="common/commonTypes.xsd"></xs:include>
     <xs:element name="trafficSystem">
         <xs:complexType>
             <xs:sequence>
@@ -80,7 +80,7 @@
                                                                 </xs:element>
                                                                 <xs:element name="honk">
                                                                     <xs:complexType>
-                                                                        <xs:attribute name="filename" use="required" />
+                                                                        <xs:attribute name="filename" use="required" type="wavFilepath"/>
                                                                         <xs:attribute name="indoor" use="required" type="xs:decimal" />
                                                                         <xs:attribute name="indoorLowpassGain" use="required" type="xs:decimal" />
                                                                         <xs:attribute name="innerRange" use="required" type="xs:integer" />

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
-<xs:include schemaLocation="commonTypes.xsd"></xs:include>
+<xs:include schemaLocation="common/commonTypes.xsd"></xs:include>
     <xs:element name="map">
         <xs:complexType>
             <xs:sequence>
@@ -73,7 +73,7 @@
                                             </xs:complexType>
                                         </xs:element>
                                     </xs:sequence>
-                                    <xs:attribute name="fillTypes" />
+                                    <xs:attribute name="fillTypes" type="stringList"/>
                                     <xs:attribute name="isDefault" type="xs:boolean" />
                                 </xs:complexType>
                             </xs:element>

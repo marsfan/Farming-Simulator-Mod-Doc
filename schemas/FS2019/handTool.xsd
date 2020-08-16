@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
-    <xs:include schemaLocation="storeData.xsd" />
-    <xs:include schemaLocation="commonTypes.xsd" />
+    <xs:include schemaLocation="common/storeData.xsd" />
+    <xs:include schemaLocation="common/commonTypes.xsd" />
     <xs:element name="handTool">
         <xs:complexType>
             <xs:sequence>
