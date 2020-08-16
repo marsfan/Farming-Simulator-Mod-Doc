@@ -1,7 +1,7 @@
-for dir in ./SortedXML/*; do
+for dir in ./SortedXML/**; do
     # Get the name of the directory
     # See https://stackoverflow.com/questions/1371261/get-current-directory-name-without-full-path-in-a-bash-script
-    dirName="${dir%"${dir##*[!/]}"}" # extglob-free multi-trailing-/ trim
+    dirName="${dir%"${dir##*[!/]}"}"
     dirName="${dirName##*/}"
 
     mkdir -p ./generatedXSD

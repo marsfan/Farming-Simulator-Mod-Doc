@@ -20,7 +20,7 @@ while getopts ":h" option; do
 done
 
 
-xmllint  --noout --schema schemas/FS2019/$1.xsd utils/SortedXML/$1/*.xml 2>&1
+xmllint  --noout --schema schemas/FS2019/$1.xsd utils/SortedXML/$1/**/*.xml 2>&1
 
 exit 0
 
