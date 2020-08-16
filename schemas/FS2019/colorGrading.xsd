@@ -18,11 +18,18 @@
             <xs:element name="saturation" type="rgbType" />
             <xs:element name="contrast" type="rgbType" />
             <xs:element name="gamma" type="rgbType" />
-            <xs:element name="gain" type="rgbType" />
+            <xs:element name="gain" >
+            <xs:complexType>
+                <xs:attribute name="rgb" use="required" type="threeNumber" />
+                <xs:attribute name="scale" use="required" type="xs:integer" />
+            </xs:complexType>
+        </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="rgbType">
         <xs:attribute name="rgb" use="required" type="rgb"/>
         <xs:attribute name="scale" use="required" type="xs:integer" />
     </xs:complexType>
+
+
 </xs:schema>
