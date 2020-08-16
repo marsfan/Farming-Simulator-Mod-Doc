@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="../common/commonTypes.xsd"></xs:include>
+<xs:include schemaLocation="placeableTypes.xsd"></xs:include>
+    <xs:element name="trainSystem">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="spline">
+                    <xs:complexType>
+                        <xs:attribute name="node" use="required" type="xs:integer" />
+                        <xs:attribute name="splineYOffset" use="required" type="xs:decimal" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="train">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="vehicle" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="railroadCallers">
+                    <!-- FIXME: This is likely wrong, but neither base maps have anything the 
+                                        <railroadCallers> element, so using this as the argument is good for now -->
+                    <xs:complexType>
+                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                            <xs:element name="railroadCaller" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="railroadCrossings">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="railroadCrossing" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element ref="activation" />
+                                        <xs:element ref="gates" />
+                                        <xs:element ref="signals" />
+                                        <xs:element ref="sounds" />
+                                    </xs:sequence>
+                                    <xs:attribute name="rootNode" use="required" type="xs:integer" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="activation">
+        <xs:complexType>
+            <xs:attribute name="endDistance" use="required" type="xs:integer" />
+            <xs:attribute name="startDistance" use="required" type="xs:integer" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="gates">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="gate" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="closingOffset" type="xs:decimal" />
+                        <xs:attribute name="duration" use="required" type="xs:integer" />
+                        <xs:attribute name="endRot" type="threeNumber" />
+                        <xs:attribute name="endTrans" type="threeNumber" />
+                        <xs:attribute name="node" use="required" type="node" />
+                        <xs:attribute name="startRot" type="threeNumber" />
+                        <xs:attribute name="startTrans" type="threeNumber" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="signals">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="signal" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="alternatingLights" use="required" type="xs:boolean" />
+                        <xs:attribute name="node" use="required" type="node" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

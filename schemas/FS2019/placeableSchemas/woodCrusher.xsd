@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="../common/commonTypes.xsd"/>
+<xs:include schemaLocation="placeableTypes.xsd"/>
+<xs:element name="woodCrusher">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="moveTriggers">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="trigger" type="nodeType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="moveCollisions">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="collision" maxOccurs="unbounded" type="nodeType" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="crushEffects">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" ref="effectNode" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="animationNodes">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="animationNode" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="class" type="xs:NCName" />
+                                <xs:attribute name="node" use="required" type="node" />
+                                <xs:attribute name="rotAxis" type="xs:integer" />
+                                <xs:attribute name="rotSpeed" type="xs:integer" />
+                                <xs:attribute name="scrollSpeed" type="xs:decimal" />
+                                <xs:attribute name="shaderParameterComponent" type="xs:integer" />
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element ref="sounds" />
+        </xs:sequence>
+        <xs:attribute name="automaticallyTurnOn" use="required" type="xs:boolean" />
+        <xs:attribute name="cutNode" use="required" type="node" />
+        <xs:attribute name="cutSizeY" use="required" type="xs:decimal" />
+        <xs:attribute name="cutSizeZ" use="required" type="xs:integer" />
+        <xs:attribute name="downForce" use="required" type="xs:integer" />
+        <xs:attribute name="downForceNode" use="required" type="node" />
+        <xs:attribute name="mainDrumRefNode" use="required" type="node" />
+        <xs:attribute name="moveMaxForce" use="required" type="xs:integer" />
+        <xs:attribute name="priceScale" use="required" type="xs:decimal" />
+    </xs:complexType>
+</xs:element>
+</xs:schema>

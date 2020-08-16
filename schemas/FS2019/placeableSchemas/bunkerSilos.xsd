@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="../common/commonTypes.xsd"></xs:include>
+<xs:include schemaLocation="placeableTypes.xsd"></xs:include>
+    <xs:element name="bunkerSilos">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bunkerSilo" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="area" />
+                            <xs:element name="interactionTrigger" type="nodeType" />
+                        </xs:sequence>
+                        <xs:attribute name="acceptedFillTypes" use="required" type="xs:string" />
+                        <xs:attribute name="distanceToCompactedFillLevel" use="required" type="xs:integer" />
+                        <xs:attribute name="fermentingHours" use="required" type="xs:integer" />
+                        <xs:attribute name="inputFillType" use="required" type="xs:NCName" />
+                        <xs:attribute name="openingLength" use="required" type="xs:integer" />
+                        <xs:attribute name="outputFillType" use="required" type="xs:NCName" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

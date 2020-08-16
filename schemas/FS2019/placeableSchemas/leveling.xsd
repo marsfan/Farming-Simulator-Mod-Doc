@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="../common/commonTypes.xsd"></xs:include>
+
+    <xs:element name="leveling">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="levelAreas">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="levelArea" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="groundType" type="xs:NCName" />
+                                    <xs:attribute name="heightNode" use="required" type="node" />
+                                    <xs:attribute name="startNode" use="required" type="node" />
+                                    <xs:attribute name="widthNode" use="required" type="node" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="rampAreas" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="rampArea" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="groundType" type="xs:NCName" />
+                                    <xs:attribute name="heightNode" use="required" type="node" />
+                                    <xs:attribute name="maxSlope" use="required" type="xs:integer" />
+                                    <xs:attribute name="rootNode" use="required" type="node" />
+                                    <xs:attribute name="startNode" use="required" type="node" />
+                                    <xs:attribute name="widthNode" use="required" type="node" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="maxEdgeAngle" use="required" type="xs:integer" />
+            <xs:attribute name="maxSlope" use="required" type="xs:integer" />
+            <xs:attribute name="maxSmoothDistance" use="required" type="xs:integer" />
+            <xs:attribute name="requireLeveling" use="required" type="xs:boolean" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

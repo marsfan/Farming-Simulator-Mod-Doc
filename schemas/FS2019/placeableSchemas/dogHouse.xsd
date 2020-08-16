@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="../common/commonTypes.xsd" />
+    <xs:element name="dogHouse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="dog">
+                    <xs:complexType>
+                        <xs:attribute name="node" use="required" type="xs:integer" />
+                        <xs:attribute name="xmlFilename" use="required" type="xmlFilepath" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="ball">
+                    <xs:complexType>
+                        <xs:attribute name="filename" use="required" type="i3dFilepath" />
+                        <xs:attribute name="node" use="required" type="xs:integer" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="playerInteractionTrigger" type="nodeType" />
+                <xs:element name="bowl">
+                    <xs:complexType>
+                        <xs:attribute name="eatLocationNode" use="required" type="xs:integer" />
+                        <xs:attribute name="foodNode" use="required" type="node" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="nameplate" type="nodeType" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

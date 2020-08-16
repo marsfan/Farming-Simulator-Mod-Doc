@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="../common/commonTypes.xsd"/>
+<xs:include schemaLocation="placeableTypes.xsd"/>
+    <xs:element name="sellingStation">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="unloadTrigger" />
+                <xs:element maxOccurs="unbounded" ref="fillType" />
+            </xs:sequence>
+            <xs:attribute name="appearsOnPDA" use="required" type="xs:boolean" />
+            <xs:attribute name="fullPriceRecoverHours" use="required" type="xs:integer" />
+            <xs:attribute name="hotspotTextOffset" type="pixel2D" />
+            <xs:attribute name="litersForFullPriceDrop" use="required" type="xs:integer" />
+            <xs:attribute name="stationName" use="required" type="xs:string" />
+            <xs:attribute name="storageRadius" use="required" type="xs:integer" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="woodSellStation">
+        <xs:complexType>
+            <xs:attribute name="appearsOnPDA" use="required" type="xs:boolean" />
+            <xs:attribute name="hotspotTextOffset" type="pixel2D" />
+            <xs:attribute name="sellTrigger" use="required" type="xs:integer" />
+            <xs:attribute name="stationName" use="required" type="xs:string" />
+            <xs:attribute name="triggerNode" use="required" type="xs:integer" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="loadingStation">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="loadTrigger" />
+            </xs:sequence>
+            <xs:attribute name="appearsOnPDA" use="required" type="xs:boolean" />
+            <xs:attribute name="fillSoundIdentifier" use="required" type="xs:NCName" />
+            <xs:attribute name="node" type="node" />
+            <xs:attribute name="stationName" use="required" type="xs:string" />
+            <xs:attribute name="storageRadius" use="required" type="xs:integer" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="unloadingStation">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="unloadTrigger" />
+            </xs:sequence>
+            <xs:attribute name="appearsOnPDA" use="required" type="xs:boolean" />
+            <xs:attribute name="appearsOnStats" type="xs:boolean" />
+            <xs:attribute name="node" type="node" />
+            <xs:attribute name="stationName" use="required" type="xs:string" />
+            <xs:attribute name="storageRadius" use="required" type="xs:integer" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

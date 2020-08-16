@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:include schemaLocation="../common/commonTypes.xsd"/>
+    <xs:element name="sounds">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element name="moving">
+                    <xs:complexType>
+                        <xs:attribute name="fadeOut" use="required" type="xs:decimal" />
+                        <xs:attribute name="file" use="required" type="wavFilepath" />
+                        <xs:attribute name="innerRadius" use="required" type="xs:integer" />
+                        <xs:attribute name="linkNode" use="required" type="node" />
+                        <xs:attribute name="loops" use="required" type="xs:integer" />
+                        <xs:attribute name="radius" use="required" type="xs:integer" />
+                        <xs:attribute name="volume" use="required" type="xs:decimal" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="posEnd" type="endSoundType" />
+                <xs:element name="negEnd" type="endSoundType" />
+                <xs:element name="idle" minOccurs="0" type="linkNodeType" />
+                <xs:element name="crossing" type="linkNodeType" />
+                <xs:element name="work">
+                    <xs:complexType>
+                        <xs:attribute name="fadeIn" type="xs:decimal" />
+                        <xs:attribute name="fadeOut" type="xs:decimal" />
+                        <xs:attribute name="file" type="wavFilepath" />
+                        <xs:attribute name="innerRadius" type="xs:integer" />
+                        <xs:attribute name="linkNode" use="required" type="node" />
+                        <xs:attribute name="loops" type="xs:integer" />
+                        <xs:attribute name="outerRadius" type="xs:integer" />
+                        <xs:attribute name="template" type="xs:NCName" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="compressor" type="linkNodeType" />
+                <xs:element name="switch" type="linkNodeType" />
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="endSoundType">
+        <xs:attribute name="file" use="required" type="wavFilepath" />
+        <xs:attribute name="innerRadius" use="required" type="xs:integer" />
+        <xs:attribute name="linkNode" use="required" type="node" />
+        <xs:attribute name="radius" use="required" type="xs:integer" />
+        <xs:attribute name="volume" use="required" type="xs:decimal" />
+    </xs:complexType>
+
+    <xs:element name="vehicle">
+        <xs:complexType>
+            <xs:attribute name="xmlFilename" use="required" type="xmlFilepath" />
+        </xs:complexType>
+    </xs:element>
+
+   
+   
+    <xs:element name="storages">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="storage" />
+            </xs:sequence>
+            <xs:attribute name="perFarm" type="xs:boolean" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="unloadTrigger">
+        <xs:complexType>
+            <xs:attribute name="baleTriggerNode" type="node" />
+            <xs:attribute name="exactFillRootNode" type="node" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="storage">
+        <xs:complexType>
+            <xs:attribute name="capacityPerFillType" use="required" type="xs:integer" />
+            <xs:attribute name="costsPerFillLevelAndDay" type="xs:decimal" />
+            <xs:attribute name="fillTypeCategories" type="xs:NCName" />
+            <xs:attribute name="fillTypes" type="stringList" />
+            <xs:attribute name="node" use="required" type="node" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="loadTrigger">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" ref="effectNode" />
+            </xs:sequence>
+            <xs:attribute name="autoStart" type="xs:boolean" />
+            <xs:attribute name="dischargeNode" type="node" />
+            <xs:attribute name="fillLitersPerSecond" use="required" type="xs:integer" />
+            <xs:attribute name="infiniteCapacity" type="xs:boolean" />
+            <xs:attribute name="triggerNode" use="required" type="node" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="effectNode">
+        <xs:complexType>
+            <xs:attribute name="controlPoint" type="fourNumber" />
+            <xs:attribute name="effectClass" type="xs:NCName" />
+            <xs:attribute name="effectNode" use="required" type="node" />
+            <xs:attribute name="fadeTime" type="xs:decimal" />
+            <xs:attribute name="materialType" type="xs:NCName" />
+            <xs:attribute name="materialTypeId" type="xs:integer" />
+            <xs:attribute name="maxBending" type="xs:integer" />
+            <xs:attribute name="particleType" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="fillType">
+        <xs:complexType>
+            <xs:attribute name="disablePriceDrop" type="xs:boolean" />
+            <xs:attribute name="fillTypes" type="stringList" />
+            <xs:attribute name="name" type="xs:NCName" />
+            <xs:attribute name="pricePerLiter" type="xs:decimal" />
+            <xs:attribute name="priceScale" type="xs:decimal" />
+            <xs:attribute name="scale" type="xs:decimal" />
+            <xs:attribute name="supportsGreatDemand" type="xs:boolean" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="buyingStation">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="loadTrigger" />
+                <xs:element ref="fillType" />
+            </xs:sequence>
+            <xs:attribute name="appearsOnPDA" use="required" type="xs:boolean" />
+            <xs:attribute name="fillSoundIdentifier" use="required" type="xs:NCName" />
+            <xs:attribute name="hotspotImageName" type="xs:NCName" />
+            <xs:attribute name="hotspotTextOffset" type="pixel2D" />
+            <xs:attribute name="showHotspotText" type="xs:boolean" />
+            <xs:attribute name="stationName" use="required" type="xs:string" />
+            <xs:attribute name="storageRadius" use="required" type="xs:integer" />
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="area">
+        <xs:complexType>
+            <xs:attribute name="heightNode" use="required" type="node" />
+            <xs:attribute name="startNode" use="required" type="node" />
+            <xs:attribute name="widthNode" use="required" type="node" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

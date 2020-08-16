@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="../common/commonTypes.xsd"/>
+<xs:include schemaLocation="placeableTypes.xsd"/>
+    <xs:element name="animatedObjects">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="animatedObject" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="animation">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="part" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="keyFrame" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="rotation" use="required" type="threeNumber" />
+                                                            <xs:attribute name="time" use="required" type="xs:decimal" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="node" use="required" type="node" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="duration" use="required" type="xs:decimal" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="controls">
+                                <xs:complexType>
+                                    <xs:attribute name="negText" use="required" type="xs:NCName" />
+                                    <xs:attribute name="posAction" use="required" type="xs:NCName" />
+                                    <xs:attribute name="posText" use="required" type="xs:NCName" />
+                                    <xs:attribute name="triggerNode" use="required" type="node" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element ref="sounds" />
+                        </xs:sequence>
+                        <xs:attribute name="saveId" use="required" type="xs:NCName" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

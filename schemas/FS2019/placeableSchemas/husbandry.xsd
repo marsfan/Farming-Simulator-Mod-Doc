@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="../common/commonTypes.xsd"/>
+<xs:include schemaLocation="placeableTypes.xsd"/>
+    <xs:element name="husbandry">
+    
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="modules">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="module" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="config">
+                                            <xs:complexType>
+                                                <xs:choice>
+                                                    <xs:element name="fillPlane">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="colorChange" type="xs:boolean" />
+                                                            <xs:attribute name="maxY" use="required" type="xs:decimal" />
+                                                            <xs:attribute name="minY" use="required" type="xs:decimal" />
+                                                            <xs:attribute name="node" use="required" type="node" />
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element minOccurs="0" maxOccurs="unbounded" ref="area" />
+                                                </xs:choice>
+                                                <xs:attribute name="acceptedToolTypes" type="stringList" />
+                                                <xs:attribute name="animalLoadTriggerNode" type="node" />
+                                                <xs:attribute name="animalPlacesNode" type="xs:integer" />
+                                                <xs:attribute name="baleTriggerNode" type="xs:integer" />
+                                                <xs:attribute name="carryingCapacity" type="xs:integer" />
+                                                <xs:attribute name="exactFillRootNode" type="xs:integer" />
+                                                <xs:attribute name="filename" type="xmlFilepath" />
+                                                <xs:attribute name="fillType" type="xs:NCName" />
+                                                <xs:attribute name="fillTypes" type="xs:NCName" />
+                                                <xs:attribute name="fillUnitIndex" type="xs:integer" />
+                                                <xs:attribute name="heightNode" type="node" />
+                                                <xs:attribute name="husbandryFileName" type="xmlFilepath" />
+                                                <xs:attribute name="maxNumAnimals" type="xs:integer" />
+                                                <xs:attribute name="navmeshNode" type="node" />
+                                                <xs:attribute name="node" type="node" />
+                                                <xs:attribute name="placementRaycastDistance" type="xs:decimal" />
+                                                <xs:attribute name="rideableDeliveryHeightNode" type="node" />
+                                                <xs:attribute name="rideableDeliveryStartNode" type="node" />
+                                                <xs:attribute name="rideableDeliveryWidthNode" type="node" />
+                                                <xs:attribute name="size" type="xs:decimal" />
+                                                <xs:attribute name="startNode" type="node" />
+                                                <xs:attribute name="triggerNode" type="xs:integer" />
+                                                <xs:attribute name="type" type="xs:NCName" />
+                                                <xs:attribute name="widthNode" type="node" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="name" use="required" type="xs:NCName" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="placementRaycast">
+                    <xs:complexType>
+                        <xs:attribute name="distance" use="required" type="xs:integer" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="hasStatistics" use="required" type="xs:boolean" />
+            <xs:attribute name="saveId" use="required" type="xs:NCName" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

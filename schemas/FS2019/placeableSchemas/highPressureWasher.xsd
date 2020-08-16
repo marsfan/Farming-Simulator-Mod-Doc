@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="../common/commonTypes.xsd"/>
+<xs:include schemaLocation="placeableTypes.xsd"/>
+    <xs:element name="highPressureWasher">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="handtool">
+                    <xs:complexType>
+                        <xs:attribute name="filename" use="required" type="xmlFilepath" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="lance" type="nodeType" />
+                <xs:element ref="sounds" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

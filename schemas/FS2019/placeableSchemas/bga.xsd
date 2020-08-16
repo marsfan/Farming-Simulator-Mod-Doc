@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:include schemaLocation="../common/commonTypes.xsd"/>
+<xs:include schemaLocation="placeableTypes.xsd"/>
+<xs:include schemaLocation="stations.xsd"/>
+    <xs:element name="bga">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="bunker">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="unloadingStation" />
+                            <xs:element name="slot" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" ref="fillType" />
+                                        <xs:element name="display" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:attribute name="baseNode" use="required" type="node" />
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="capacity" use="required" type="xs:integer" />
+                                    <xs:attribute name="litersPerSecond" use="required" type="xs:integer" />
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="digestateSilo">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="loadingStation" />
+                            <xs:element ref="storages" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="sounds" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
