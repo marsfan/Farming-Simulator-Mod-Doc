@@ -29,7 +29,7 @@ jobs:
 
 
     - name: Make Badge
-      uses: RubbaBoy/BYOB@v1.1.0
+      uses: RubbaBoy/BYOB@v1
       with:
         NAME: todoCount
         LABEL: 'Sphinx TODOs'
